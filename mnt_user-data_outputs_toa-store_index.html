@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="theoneanother: custom posters, stickers, polaroids and UNO cards printed from your own photos. Delivered across India in 5–7 working days.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="theoneanother – The one you never were">
+<meta property="og:description" content="Custom posters, stickers, polaroids and UNO cards printed from your photos.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Ctext x='32' y='45' font-size='38' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23ff6a00'%3Et%3C/text%3E%3C/svg%3E">
+<title>theoneanother – The one you never were</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--card:#161616;--ink:#fff;--mut:#a3a3a3;--ln:#2b2b2b;--o:#ff6a00;--g:linear-gradient(135deg,#ff8a1f,#ff4d00);color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f4f4;--card:#fff;--ink:#0a0a0a;--mut:#555;--ln:#ddd;color-scheme:light}}
+:root[data-theme="dark"]{--bg:#0a0a0a;--card:#161616;--ink:#fff;--mut:#a3a3a3;--ln:#2b2b2b}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:radial-gradient(1000px 520px at 85% -8%,#3a3a3a55,transparent),var(--bg);color:var(--ink);font:400 16px/1.5 Roboto,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+a{color:inherit;text-decoration:none}
+.ic{width:20px;height:20px;vertical-align:-4px}
+button,.btn{font:700 14px Roboto,sans-serif;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:10px 18px;border-radius:999px;display:inline-block;transition:transform .15s,box-shadow .2s}
+button:hover,.btn:hover{transform:translateY(-2px)}
+.pri{background:var(--g);border-color:transparent;color:#0a0a0a;box-shadow:0 8px 24px #ff4d0040}
+:focus-visible{outline:3px solid var(--o);outline-offset:2px}
+.band{background:var(--g);color:#0a0a0a;overflow:hidden;white-space:nowrap;font-weight:700;font-size:13px}
+.band div{display:inline-block;padding:8px 0;animation:mq 38s linear infinite}
+.band span{padding:0 28px}
+@keyframes mq{to{transform:translateX(-50%)}}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:flex;align-items:center;gap:16px;padding:12px 5vw;background:#0a0a0acc;backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);color:#fff}
+.logo{font-weight:700;font-size:24px;letter-spacing:-.05em;line-height:1;display:inline-flex;overflow:hidden;padding:6px 0}
+.logo span{display:inline-block;animation:lg .7s cubic-bezier(.2,.9,.3,1.15) both;animation-delay:calc(var(--i)*40ms)}
+.logo:hover span{animation:wv .55s ease both;animation-delay:calc(var(--i)*28ms)}
+@keyframes lg{from{translate:0 110%;opacity:0}}
+@keyframes wv{45%{translate:0 -4px;color:var(--o)}}
+.nb{background:none;border:0;color:#fff;font:500 15px Roboto,sans-serif;padding:8px 12px;border-radius:10px}
+.nb:hover,.nb[aria-expanded="true"]{background:#ffffff1f;transform:none}
+.nb .ic{width:14px;height:14px;transition:rotate .2s}
+.nb[aria-expanded="true"] .ic{rotate:180deg}
+.mm{position:absolute;left:5vw;right:5vw;top:calc(100% + 8px);background:var(--card);color:var(--ink);border:1px solid var(--ln);border-radius:20px;padding:24px;box-shadow:0 30px 60px #000a;display:flex;gap:28px;flex-wrap:wrap;opacity:0;translate:0 -10px;pointer-events:none;visibility:hidden;transition:opacity .2s,translate .2s,visibility .2s}
+.mm.open{opacity:1;translate:0 0;pointer-events:auto;visibility:visible}
+.mc{flex:1 1 170px;min-width:160px}
+.mh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mc:has(+.mc) .mh::after{content:"";flex:1;border-top:1.5px dotted var(--mut);opacity:.5}
+.mi{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#ff8a1f33,#ff4d0022);display:grid;place-items:center;color:var(--o)}
+.mc h4{font-size:15px;margin-bottom:8px}
+.mc a,.mt{display:block;padding:5px 0;font-size:14px;color:var(--mut)}
+.mc a:hover{color:var(--o);translate:3px 0}
+.mp{flex:0 1 220px;border-radius:16px;padding:16px;background:linear-gradient(150deg,#ff8a1f,#ff4d00 45%,#2a2a2a);color:#0a0a0a;display:grid;gap:8px;align-content:end;min-height:150px;font-size:14px}
+.mp b{font-size:24px;line-height:1.05;font-weight:900;color:#fff}
+.mp .art{max-width:140px}
+
+header nav{margin-left:auto;display:flex;gap:2px;align-items:center;font-weight:500}
+section{padding:64px 5vw}
+.hero{min-height:78vh;display:grid;align-content:center;gap:22px;background:linear-gradient(120deg,#0a0a0a,#2a2a2a,#0a0a0a);background-size:240% 240%;animation:bgm 14s ease infinite;position:relative;overflow:hidden;color:#fff}
+.hero::after{content:"";position:absolute;right:-10%;top:-20%;width:55vw;height:55vw;background:radial-gradient(circle,#ff6a0055,transparent 65%);animation:fl 8s ease-in-out infinite}
+@keyframes bgm{50%{background-position:100% 50%}}
+@keyframes fl{50%{translate:-5% 8%}}
+.hero h1{font-weight:900;font-size:clamp(46px,10vw,128px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase;position:relative;z-index:1}
+.hero h1 em{font-style:normal;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:50ch;color:#cfcfcf;font-size:18px;position:relative;z-index:1}
+.cta{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.hero .btn:not(.pri){color:#fff;border-color:#fff}
+h2{font-weight:900;font-size:clamp(32px,5vw,58px);letter-spacing:-.02em;text-transform:uppercase;line-height:1}
+.hd{display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:7px 15px;font-size:13px}
+.chip.on{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.pc{background:linear-gradient(160deg,#242424,var(--card));border:1px solid var(--ln);border-radius:18px;padding:14px;display:grid;gap:10px;transition:transform .25s,box-shadow .25s;opacity:0;translate:0 24px}
+.pc.in{opacity:1;translate:0 0;transition:opacity .6s,translate .6s,transform .25s,box-shadow .25s}
+.pc:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 18px 40px #ff4d0033}
+.pc h3{font-size:17px}
+.pc .row{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:14px}
+.pc .row b{color:var(--o);font-size:17px}
+.art{aspect-ratio:1;border-radius:14px;background:linear-gradient(145deg,var(--a),var(--b));display:grid;place-items:center;overflow:hidden}
+.art i{display:block;width:44%;aspect-ratio:3/4;background:#fff;border-radius:6px;rotate:-6deg;box-shadow:0 14px 30px #0009;transition:rotate .4s}
+.pc:hover .art i{rotate:4deg}
+.art.sticker i{aspect-ratio:1;border-radius:50%;border:6px solid #fff;background:var(--b)}
+.art.polaroid i{aspect-ratio:.82;border:8px solid #fff;border-bottom-width:30px;background:var(--a)}
+.art.uno i{aspect-ratio:.66;background:#111;border:6px solid #fff;border-radius:12px}
+.catblk{margin-bottom:46px}
+.ch{font-weight:900;font-size:clamp(24px,3.4vw,38px);text-transform:uppercase;letter-spacing:-.01em;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.ch::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,var(--o),transparent)}
+.art img{width:100%;height:100%;object-fit:cover}
+.tag{font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;background:#ffffff18}
+.tag.out{background:#7f1d1d;color:#fff}
+input,select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);font:inherit}
+dialog{border:1px solid var(--ln);border-radius:20px;background:var(--card);color:var(--ink);padding:20px;width:min(94vw,520px);max-height:92vh;overflow:auto}
+dialog::backdrop{background:#000c}
+.f{display:grid;gap:10px;margin-top:10px}
+.mut{color:var(--mut);font-size:14px}
+.ci{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--ln);padding:8px 0;font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.steps div{border:1px solid var(--ln);border-radius:16px;padding:18px;background:linear-gradient(160deg,#242424,var(--card))}
+.steps b{font-size:34px;font-weight:900;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+footer{padding:44px 5vw;border-top:1px solid var(--ln);display:flex;gap:28px;flex-wrap:wrap;justify-content:space-between}
+footer p{color:var(--mut);max-width:42ch;font-size:14px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));translate:-50% 0;background:var(--g);color:#0a0a0a;padding:10px 18px;border-radius:99px;font-weight:700;z-index:90}
+#adm{padding:20px 5vw 60px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.cards div{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:14px}
+.cards b{display:block;font-size:26px;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:8px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}
+td input{width:84px;padding:6px}
+.w{overflow-x:auto}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.pc{opacity:1;translate:0 0}}
+@media(max-width:700px){header.top{flex-wrap:wrap}header nav{order:3;width:100%;margin-left:0;overflow-x:auto}.mm{left:3vw;right:3vw;max-height:70vh;overflow:auto;flex-direction:column;gap:14px}section{padding:44px 5vw}}
+</style>
+</head>
+<body>
+<div class="band"><div id="band"></div></div>
+<div id="site">
+<header class="top" id="top"><a class="logo" href="#top" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customizations</button><button id="cartBtn" aria-label="Cart" style="color:#fff;border-color:#fff"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
+<section class="hero"><h1>The one<br><em>you never were.</em></h1><p>Custom posters, stickers, polaroids and UNO cards from your own photos. Upload, order, and we print.</p><div class="cta"><a class="btn pri" href="#shopgrid">Shop now</a><a class="btn" id="waH" target="_blank" rel="noopener"></a><a class="btn" id="igH" target="_blank" rel="noopener"></a></div></section>
+<section id="shopgrid"><div class="hd"><h2>Shop</h2><div class="chips" id="chips"></div></div><div id="grid"></div></section>
+<section id="how"><div class="hd"><h2>How it works</h2></div><div class="steps"><div><b>01</b><h3>Pick</h3><p class="mut">Choose a product and size.</p></div><div><b>02</b><h3>Upload</h3><p class="mut">Add up to 10 photos and a note.</p></div><div><b>03</b><h3>Pay by UPI</h3><p class="mut">Direct to us, no middleman.</p></div><div><b>04</b><h3>We confirm</h3><p class="mut">We check your photos on WhatsApp, then print in 5–7 working days.</p></div></div></section>
+
+<footer id="contact"><div><div class="logo" aria-label="theoneanother">theoneanother</div><p>The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p style="margin-top:8px">15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com · +91 73971 93050</p></div><div><p><b>Policies</b><br>Custom products are non-refundable and non-returnable.<br>Minimum order ₹249. Lead time 5–7 working days.<br>Photos are confirmed with you on WhatsApp before printing.</p></div></footer>
+</div>
+<dialog id="dg"></dialog>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const WA="917397193050",IG="https://www.instagram.com/theoneanother.in",$=i=>document.getElementById(i);
+const IC={bag:'<path d="M6 7h12l-1 13H7L6 7zM9 7a3 3 0 016 0"/>',ig:'<rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="4"/>',chat:'<path d="M4 5h16v11H9l-5 4V5z"/>',home:'<path d="M4 11l8-7 8 7v9H4z"/>',box:'<path d="M12 3l8 4v10l-8 4-8-4V7l8-4zM4 7l8 4 8-4M12 11v10"/>',img:'<rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M20 16l-5-4-8 7"/>',down:'<path d="M6 9l6 6 6-6"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'};
+const ic=n=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
+const inr=n=>"₹"+Number(n).toLocaleString("en-IN"),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+/* Paste the same Supabase project URL and anon key as the admin. */
+const CFG={url:"https://YOUR-PROJECT.supabase.co",key:"YOUR-ANON-KEY"};
+const sb=CFG.url.includes("YOUR-")?null:supabase.createClient(CFG.url,CFG.key);
+const CL={poster:["#ff7a18","#2a2a2a"],sticker:["#3a3a3a","#ff4d00"],polaroid:["#8a8a8a","#0a0a0a"],uno:["#ff4d00","#0a0a0a"]};
+async function loadData(){if(!sb)throw new Error("Store is not connected yet");const[p,c,t]=await Promise.all([sb.from("products").select("id,name,type,image,category_id,variants(id,name,price,stock)").order("id"),sb.from("categories").select("*").order("position").order("id"),sb.from("settings").select("*")]);if(p.error||c.error||t.error)throw(p.error||c.error||t.error);
+S.C=c.data;const cn=id=>((S.C.find(x=>x.id==id)||{}).name||"").toLowerCase(),shape=n=>n.includes("sticker")?"sticker":n.includes("polaroid")?"polaroid":n.includes("uno")?"uno":"poster";
+S.P=p.data.map(x=>{const sh=shape(cn(x.category_id));return{id:x.id,name:x.name,cat:x.category_id,t:sh,c:CL[sh],img:x.image?sb.storage.from("product-images").getPublicUrl(x.image).data.publicUrl:"",v:x.variants.sort((a,b)=>a.id-b.id).map(v=>({id:v.id,n:v.name,p:v.price,s:v.stock}))}}).filter(x=>x.v.length);
+const m={};t.data.forEach(r=>m[r.key]=r.value);S.set={band:m.band||"",bf:m.band_from||"",bt:m.band_to||"",upi:m.upi||"",min:+m.min_order||249}}
+let S={set:{band:"",upi:"",min:249},P:[],C:[]};
+
+const toast=t=>{const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.append(d);setTimeout(()=>d.remove(),3200)};
+const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const art=p=>p.img?`<div class="art" style="background:#111"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy"></div>`:`<div class="art ${p.t}" style="--a:${p.c[0]};--b:${p.c[1]}"><i></i></div>`;
+const out=p=>p.v.every(v=>v.s<=0);
+let C=[],flt="all",dg=$("dg"),cur=null,F=[];
+$("waH").innerHTML=ic("chat")+" WhatsApp";$("waH").href=`https://wa.me/${WA}`;$("igH").innerHTML=ic("ig")+" Instagram";$("igH").href=IG;
+function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
+function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
+function shop(){const cats=[...S.C,{id:null,name:"More"}].map(c=>({c,l:S.P.filter(p=>(p.cat||null)===c.id)})).filter(x=>x.l.length);
+$("chips").innerHTML=cats.map(x=>`<button class="chip" data-k="${x.c.id}">${esc(x.c.name)}</button>`).join("");
+$("grid").innerHTML=cats.map(x=>`<div class="catblk" id="c-${x.c.id}"><h3 class="ch">${esc(x.c.name)}</h3><div class="grid">${x.l.map(p=>`<article class="pc">${art(p)}<h3>${esc(p.name)}</h3><div class="row"><span>From <b>${inr(Math.min(...p.v.map(v=>v.p)))}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"pri"}" data-o="${p.id}" ${out(p)?"disabled":""}>Customise &amp; order</button></article>`).join("")}</div></div>`).join("")||'<p class="mut">Products are coming soon.</p>';
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll(".pc").forEach((c,i)=>{c.style.transitionDelay=(i%4)*70+"ms";io.observe(c)})}
+$("chips").onclick=e=>{const k=e.target.dataset.k;if(k!=null){const el=$("c-"+k);if(el)el.scrollIntoView({behavior:"smooth"})}};
+$("grid").onclick=e=>{const o=e.target.dataset.o;if(o)openP(+o)};
+function openP(id){cur=S.P.find(p=>p.id==id);F=[];dg.innerHTML=`${art(cur)}<h3 style="margin-top:10px">${esc(cur.name)}</h3><div class="f"><select id="pv">${cur.v.map((v,i)=>`<option value="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)} – ${inr(v.p)}${v.s<=0?" (out of stock)":""}</option>`).join("")}</select><input id="pq" type="number" min="1" value="1" aria-label="Quantity"><label class="btn" style="text-align:center">Upload photos (max 10, JPG/PNG/PDF)<input id="pf" type="file" multiple accept=".jpg,.jpeg,.png,.pdf" hidden></label><p class="mut" id="fl">No photos selected</p><textarea id="pn" rows="2" placeholder="Short note, name or message to print (optional)"></textarea><button class="pri" id="pa">Add to cart</button><button id="px">Close</button></div>`;
+$("px").onclick=()=>dg.close();
+$("pf").onchange=e=>{const a=[...e.target.files];if(a.length>10)return toast("Maximum 10 photos");const bad=a.find(f=>!/\.(jpe?g|png|pdf)$/i.test(f.name)||f.size>500*1048576);if(bad)return toast("Only JPG, PNG or PDF up to 500MB");F=a;$("fl").textContent=a.length+" file(s): "+a.map(f=>f.name).join(", ")};
+$("pa").onclick=()=>{const vi=+$("pv").value,q=Math.max(1,+$("pq").value||1),v=cur.v[vi];if(q>v.s)return toast("Only "+v.s+" in stock");C.push({pid:cur.id,vi,q,files:F.map(f=>f.name),raw:F,note:$("pn").value.trim()});cartBtn();dg.close();toast("Added to cart")};dg.showModal()}
+const sub=()=>C.reduce((a,i)=>{const p=S.P.find(x=>x.id==i.pid);return a+(p?p.v[i.vi].p*i.q:0)},0);
+function openCart(){if(!C.length){dg.innerHTML='<h3>Your cart</h3><p class="mut" style="margin:10px 0">Your cart is empty.</p><button id="px">Close</button>';$("px").onclick=()=>dg.close();return dg.showModal()}
+const t=sub(),amt=(t+(1+Math.floor(Math.random()*99))/100).toFixed(2);
+dg.innerHTML=`<h3>Your cart</h3>${C.map((i,k)=>{const p=S.P.find(x=>x.id==i.pid);return`<div class="ci"><span>${esc(p.name)} · ${esc(p.v[i.vi].n)} × ${i.q}<br><span class="mut">${i.files.length} photo(s)${i.note?" · "+esc(i.note):""}</span></span><span>${inr(p.v[i.vi].p*i.q)} <button data-r="${k}" style="padding:2px 10px">×</button></span></div>`}).join("")}<p style="margin:10px 0"><b>Total ${inr(t)}</b> <span class="mut">(minimum order ${inr(S.set.min)})</span></p>
+<form class="f" id="co"><input id="cn" placeholder="Full name" required><input id="cp" type="tel" placeholder="Phone" required pattern="[0-9+ ]{10,15}"><input id="ce" type="email" placeholder="Email" required><textarea id="ca" rows="3" placeholder="Full delivery address with pincode" required></textarea>
+<div class="ci" style="flex-direction:column"><b>Pay by UPI (direct to TOA)</b><span class="mut">Pay exactly <b style="color:var(--o)">₹${amt}</b> to <b>${esc(S.set.upi)}</b>. The extra paise help us match your payment.</span><span class="cta"><a class="btn" href="upi://pay?pa=${encodeURIComponent(S.set.upi)}&pn=theoneanother&am=${amt}&cu=INR">Open UPI app</a></span></div>
+<input id="cu" placeholder="UPI transaction ID (UTR)" required pattern="[A-Za-z0-9]{8,30}"><label class="mut"><input type="checkbox" id="cg" required style="width:auto"> I understand custom products are non-refundable and non-returnable.</label><button class="pri" style="font-size:16px">Place order</button><button type="button" id="px">Keep shopping</button></form>`;
+$("px").onclick=()=>dg.close();
+dg.onclick=e=>{const r=e.target.dataset.r;if(r!=null&&e.target.tagName=="BUTTON"){C.splice(+r,1);cartBtn();openCart()}};
+$("co").onsubmit=async e=>{e.preventDefault();if(!sb)return toast("Store is not connected yet");if(t<S.set.min)return toast("Minimum order is "+inr(S.set.min));
+for(const i of C){const p=S.P.find(x=>x.id==i.pid);if(!p||i.q>p.v[i.vi].s)return toast("Stock changed, please review your cart")}
+const btn=e.target.querySelector(".pri");btn.disabled=true;
+try{const items=[];for(const i of C){const v=S.P.find(x=>x.id==i.pid).v[i.vi],paths=[];for(const f of i.raw){const path="uploads/"+crypto.randomUUID()+"/"+f.name.replace(/[^\w.\-]/g,"_"),u=await sb.storage.from("order-photos").upload(path,f);if(u.error)throw u.error;paths.push(path)}items.push({variant_id:v.id,qty:i.q,note:i.note||null,photos:paths})}
+const r=await sb.rpc("place_order",{p:{name:$("cn").value.trim(),phone:$("cp").value.trim(),email:$("ce").value.trim(),address:$("ca").value.trim(),pay_amount:amt,utr:$("cu").value.trim(),items}});if(r.error)throw r.error;
+const id=r.data,msg=`Hi theoneanother, I placed order ${id} and uploaded my photos on the website. Paid ₹${amt} (UTR ${$("cu").value.trim()}).`;C=[];cartBtn();
+dg.innerHTML=`<h3>Order placed</h3><p style="margin:10px 0">Your order number is <b style="color:var(--o)">${id}</b>. We will verify your payment and confirm your photos with you on WhatsApp before printing. Delivery in 5–7 working days.</p><a class="btn pri" target="_blank" rel="noopener" href="${wa(msg)}">Message us on WhatsApp</a> <button id="px">Close</button>`;$("px").onclick=()=>dg.close();loadData().then(shop).catch(()=>{})}
+catch(err){btn.disabled=false;toast(err.message||"Could not place order");loadData().then(shop).catch(()=>{})}};dg.showModal()}
+$("cartBtn").onclick=openCart;
+
+document.querySelectorAll(".logo").forEach(l=>{const t=l.textContent;l.innerHTML=[...t].map((c,i)=>`<span aria-hidden="true" style="--i:${i}">${c}</span>`).join("")});
+const mm=$("mm"),nb=[...document.querySelectorAll(".nb")],hd=document.querySelector("header.top");let mk=null,mt;
+const mcol=(i,h,items)=>`<div class="mc"><div class="mh"><span class="mi">${ic(i)}</span></div><h4>${h}</h4>${items.join("")}</div>`;
+const ML=(a,t)=>`<a href="#" data-a="${a}">${t}</a>`,MX=(h,t)=>`<a href="${h}" target="_blank" rel="noopener">${t}</a>`,MT=t=>`<span class="mt">${t}</span>`;
+function mmHTML(k){
+ if(k=="home")return mcol("home","Explore",[ML("go:shopgrid","Shop all products"),ML("go:how","How it works")])+mcol("info","Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("chat","Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
+ if(k=="prod"){const lo=S.P.length?Math.min(...S.P.flatMap(p=>p.v.map(v=>v.p))):0;return S.C.filter(c=>S.P.some(p=>p.cat==c.id)).slice(0,4).map(c=>mcol("box",esc(c.name),[ML("c:"+c.id,"View all"),...S.P.filter(p=>p.cat==c.id).slice(0,5).map(p=>ML("o:"+p.id,`${esc(p.name)} · from ${inr(Math.min(...p.v.map(v=>v.p)))}`))])).join("")+`<div class="mp">${S.P[0]?art(S.P[0]):""}<span>Starting at ${inr(lo)}</span></div>`}
+ return mcol("img","Choose a product",S.P.slice(0,4).map(p=>ML("o:"+p.id,"Customise "+esc(p.name.replace("Custom ","")))))+mcol("info","Photo rules",[MT("Up to 10 photos per product"),MT("JPG, PNG or PDF, up to 500MB"),MT("Add a name or message note")])+mcol("chat","After you order",[MT("We confirm your photos on WhatsApp"),MT("Printed in 5–7 working days")])+`<div class="mp"><b>Upload.<br>We print.</b><span>Your photos, your product.</span></div>`}
+function openMM(k){clearTimeout(mt);mk=k;mm.innerHTML=mmHTML(k);mm.classList.add("open");nb.forEach(b=>b.setAttribute("aria-expanded",String(b.dataset.m==k)))}
+function closeMM(){mk=null;mm.classList.remove("open");nb.forEach(b=>b.setAttribute("aria-expanded","false"))}
+nb.forEach(b=>{b.innerHTML=b.textContent.trim()+" "+ic("down");b.onclick=e=>{e.stopPropagation();mk==b.dataset.m?closeMM():openMM(b.dataset.m)};b.onmouseenter=()=>{if(matchMedia("(hover:hover)").matches)openMM(b.dataset.m)}});
+hd.onmouseleave=()=>{mt=setTimeout(closeMM,220)};hd.onmouseenter=()=>clearTimeout(mt);
+document.addEventListener("click",e=>{if(!e.target.closest("header.top"))closeMM()});
+document.addEventListener("keydown",e=>{if(e.key=="Escape")closeMM()});
+mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.preventDefault();const[x,v]=a.dataset.a.split(":");closeMM();if(x=="go")$(v).scrollIntoView({behavior:"smooth"});if(x=="c"){const el=$("c-"+v);if(el)el.scrollIntoView({behavior:"smooth"})}if(x=="o")openP(+v)}else closeMM()};
+async function init(){band();cartBtn();$("grid").innerHTML='<p class="mut">Loading products…</p>';try{await loadData()}catch(e){$("grid").innerHTML='<p class="mut">The store could not load right now. Please try again shortly.</p>';return}band();shop()}
+init();
+</script>
+</body>
+</html>

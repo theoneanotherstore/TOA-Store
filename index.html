@@ -131,7 +131,7 @@ const IC={bag:'<path d="M6 7h12l-1 13H7L6 7zM9 7a3 3 0 016 0"/>',ig:'<rect x="4"
 const ic=n=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
 const inr=n=>"₹"+Number(n).toLocaleString("en-IN"),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 /* Paste the same Supabase project URL and anon key as the admin. */
-const CFG={url:"https://eymxrutbkbtglynynokb.supabase.co",key:"sb_publishable_wyqPB_t2uyQjEN_JFDdQLA_vAPUV79U"};
+const CFG={url:"https://vxukroqdykktdcntmpee.supabase.co",key:"sb_publishable_K0f5xxBCVVYYQ0F07mSVFQ_mIX1Vklf"};
  const sb=CFG.url.includes("YOUR-")?null:supabase.createClient(CFG.url,CFG.key);
 const CL={poster:["#ff7a18","#2a2a2a"],sticker:["#3a3a3a","#ff4d00"],polaroid:["#8a8a8a","#0a0a0a"],uno:["#ff4d00","#0a0a0a"]};
 async function loadData(){if(!sb)throw new Error("Store is not connected yet");const[p,c,t]=await Promise.all([sb.from("products").select("id,name,type,image,category_id,variants(id,name,price,stock)").order("id"),sb.from("categories").select("*").order("position").order("id"),sb.from("settings").select("*")]);if(p.error||c.error||t.error)throw(p.error||c.error||t.error);

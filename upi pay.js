@@ -2,8 +2,8 @@
    Needs: a Supabase client on the page, and the submit_upi_payment SQL function (Step 2). */
 
 const UPI_CONFIG = {
-  upiId: "YOUR_UPI_ID@bank",       // TODO: replace with the client's business UPI ID
-  payeeName: "theoneanother",      // TODO: replace with the business name shown in the UPI app
+  upiId: "poojameenupranav-1@okhdfcbank",       // TODO: replace with the client's business UPI ID
+  payeeName: "pooja",      // TODO: replace with the business name shown in the UPI app
 };
 
 function upiGetDb() {

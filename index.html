@@ -100,6 +100,12 @@ footer{padding:44px 5vw;border-top:1px solid var(--ln);display:flex;gap:28px;fle
 footer p{color:var(--mut);max-width:42ch;font-size:14px}
 .toast{position:fixed;left:50%;top:50%;translate:-50% -50%;width:max-content;max-width:86vw;text-align:center;background:var(--g);color:#0a0a0a;padding:16px 26px;border-radius:18px;font-weight:700;font-size:16px;line-height:1.35;box-shadow:0 20px 60px #000b;z-index:9999;pointer-events:none;animation:tp .25s ease both}
 @keyframes tp{from{opacity:0;scale:.92}}
+#ck{position:fixed;inset:0;z-index:70;overflow:auto;background:var(--bg);padding:calc(24px + env(safe-area-inset-top,0px)) 5vw 60px}
+.ckw{max-width:640px;margin:0 auto;display:grid;gap:14px}
+.ckw h2{font-size:clamp(28px,5vw,44px)}
+.ckw>button,.ckw>a.btn{justify-self:start}
+.box{background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:18px}
+.box>b{display:block;margin-bottom:8px}
 #adm{padding:20px 5vw 60px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
@@ -125,6 +131,7 @@ td input{width:84px;padding:6px}
 <footer id="contact"><div><div class="logo" aria-label="theoneanother">theoneanother</div><p>The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p style="margin-top:8px">15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com · +91 73971 93050</p></div><div><p><b>Policies</b><br>Custom products are non-refundable and non-returnable.<br>Minimum order ₹249. Lead time 5–7 working days.<br>Photos are confirmed with you on WhatsApp before printing.</p></div></footer>
 </div>
 <dialog id="dg"></dialog>
+<div id="ck" hidden></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 const WA="917397193050",IG="https://www.instagram.com/theoneanother.in",$=i=>document.getElementById(i);
@@ -161,22 +168,49 @@ $("pf").onchange=e=>{const a=[...e.target.files];if(a.length>10)return toast("Ma
 $("pa").onclick=()=>{const vi=+$("pv").value,q=Math.max(1,+$("pq").value||1),v=cur.v[vi];if(q>v.s)return toast("Only "+v.s+" in stock");C.push({pid:cur.id,vi,q,files:F.map(f=>f.name),raw:F,note:$("pn").value.trim()});cartBtn();dg.close();toast("Added to cart")};dg.showModal()}
 const sub=()=>C.reduce((a,i)=>{const p=S.P.find(x=>x.id==i.pid);return a+(p?p.v[i.vi].p*i.q:0)},0);
 function openCart(){if(!C.length){dg.innerHTML='<h3>Your cart</h3><p class="mut" style="margin:10px 0">Your cart is empty.</p><button id="px">Close</button>';$("px").onclick=()=>dg.close();return dg.showModal()}
-const t=sub(),amt=(t+(1+Math.floor(Math.random()*99))/100).toFixed(2);
-dg.innerHTML=`<h3>Your cart</h3>${C.map((i,k)=>{const p=S.P.find(x=>x.id==i.pid);return`<div class="ci"><span>${esc(p.name)} · ${esc(p.v[i.vi].n)} × ${i.q}<br><span class="mut">${i.files.length} photo(s)${i.note?" · "+esc(i.note):""}</span></span><span>${inr(p.v[i.vi].p*i.q)} <button data-r="${k}" style="padding:2px 10px">×</button></span></div>`}).join("")}<p style="margin:10px 0"><b>Total ${inr(t)}</b> <span class="mut">(minimum order ${inr(S.set.min)})</span></p>
-<form class="f" id="co"><input id="cn" placeholder="Full name" required><input id="cp" type="tel" placeholder="Phone" required pattern="[0-9+ ]{10,15}"><input id="ce" type="email" placeholder="Email" required><textarea id="ca" rows="3" placeholder="Full delivery address with pincode" required></textarea>
-<div class="ci" style="flex-direction:column"><b>Pay by UPI (direct to TOA)</b><span class="mut">Pay exactly <b style="color:var(--o)">₹${amt}</b> to <b>${esc(S.set.upi)}</b>. The extra paise help us match your payment.</span><span class="cta"><a class="btn" href="upi://pay?pa=${encodeURIComponent(S.set.upi)}&pn=theoneanother&am=${amt}&cu=INR">Open UPI app</a></span></div>
-<input id="cu" placeholder="UPI transaction ID (UTR)" required pattern="[A-Za-z0-9]{8,30}"><label class="mut"><input type="checkbox" id="cg" required style="width:auto"> I understand custom products are non-refundable and non-returnable.</label><button class="pri" style="font-size:16px">Place order</button><button type="button" id="px">Keep shopping</button></form>`;
+const t=sub();
+dg.innerHTML=`<h3>Your cart</h3>${C.map((i,k)=>{const p=S.P.find(x=>x.id==i.pid);return`<div class="ci"><span>${esc(p.name)} · ${esc(p.v[i.vi].n)} × ${i.q}<br><span class="mut">${i.files.length} photo(s)${i.note?" · "+esc(i.note):""}</span></span><span>${inr(p.v[i.vi].p*i.q)} <button data-r="${k}" style="padding:2px 10px">×</button></span></div>`}).join("")}<p style="margin:10px 0"><b>Total ${inr(t)}</b> <span class="mut">(minimum order ${inr(S.set.min)})</span></p><div class="f"><button class="pri" id="go" style="font-size:16px">Proceed to checkout</button><button id="px">Keep shopping</button></div>`;
 $("px").onclick=()=>dg.close();
 dg.onclick=e=>{const r=e.target.dataset.r;if(r!=null&&e.target.tagName=="BUTTON"){C.splice(+r,1);cartBtn();openCart()}};
-$("co").onsubmit=async e=>{e.preventDefault();if(!sb)return toast("Store is not connected yet");if(t<S.set.min)return toast("Minimum order is "+inr(S.set.min));
-for(const i of C){const p=S.P.find(x=>x.id==i.pid);if(!p||i.q>p.v[i.vi].s)return toast("Stock changed, please review your cart")}
-const btn=e.target.querySelector(".pri");btn.disabled=true;
-try{const items=[];for(const i of C){const v=S.P.find(x=>x.id==i.pid).v[i.vi],paths=[];for(const f of i.raw){const path="uploads/"+crypto.randomUUID()+"/"+f.name.replace(/[^\w.\-]/g,"_"),u=await sb.storage.from("order-photos").upload(path,f);if(u.error)throw u.error;paths.push(path)}items.push({variant_id:v.id,qty:i.q,note:i.note||null,photos:paths})}
-const r=await sb.rpc("place_order",{p:{name:$("cn").value.trim(),phone:$("cp").value.trim(),email:$("ce").value.trim(),address:$("ca").value.trim(),pay_amount:amt,utr:$("cu").value.trim(),items}});if(r.error)throw r.error;
-const id=r.data,msg=`Hi theoneanother, I placed order ${id} and uploaded my photos on the website. Paid ₹${amt} (UTR ${$("cu").value.trim()}).`;C=[];cartBtn();
-dg.innerHTML=`<h3>Order placed</h3><p style="margin:10px 0">Your order number is <b style="color:var(--o)">${id}</b>. We will verify your payment and confirm your photos with you on WhatsApp before printing. Delivery in 5–7 working days.</p><a class="btn pri" target="_blank" rel="noopener" href="${wa(msg)}">Message us on WhatsApp</a> <button id="px">Close</button>`;$("px").onclick=()=>dg.close();loadData().then(shop).catch(()=>{})}
-catch(err){btn.disabled=false;toast(err.message||"Could not place order");loadData().then(shop).catch(()=>{})}};dg.showModal()}
+$("go").onclick=()=>{if(sub()<S.set.min)return toast("Minimum order is "+inr(S.set.min));dg.close();openCheckout()};
+dg.showModal()}
 $("cartBtn").onclick=openCart;
+
+/* ---------- Checkout page ---------- */
+let ORD=null;
+function openCheckout(){ORD=null;history.pushState({ck:1},"","#checkout");document.body.style.overflow="hidden";$("ck").hidden=false;$("ck").scrollTop=0;renderDetails()}
+function closeCk(){$("ck").hidden=true;document.body.style.overflow="";ORD=null;loadData().then(shop).catch(()=>{})}
+window.addEventListener("popstate",()=>{if(!$("ck").hidden)closeCk()});
+function renderDetails(){
+const ck=$("ck"),t=sub();
+ck.innerHTML=`<div class="ckw"><button id="ckb">← Back to shop</button><h2>Checkout</h2>
+<div class="box"><b>Order summary</b>${C.map(i=>{const p=S.P.find(x=>x.id==i.pid);return p?`<div class="ci"><span>${esc(p.name)} · ${esc(p.v[i.vi].n)} × ${i.q}<br><span class="mut">${i.files.length} photo(s)${i.note?" · "+esc(i.note):""}</span></span><span>${inr(p.v[i.vi].p*i.q)}</span></div>`:""}).join("")}<p style="margin-top:10px"><b>Total ${inr(t)}</b></p></div>
+<form class="f box" id="co"><b>Delivery details</b><input id="cn" placeholder="Full name" required><input id="cp" type="tel" placeholder="Phone" required pattern="[0-9+ ]{10,15}"><input id="ce" type="email" placeholder="Email (your receipt is sent here)" required><textarea id="ca" rows="3" placeholder="Full delivery address with pincode" required></textarea>
+<label class="mut"><input type="checkbox" id="cg" required style="width:auto"> I understand custom products are non-refundable and non-returnable.</label>
+<button class="pri" style="font-size:16px">Confirm order</button>
+<p class="mut">Your order is created now. Payment is the next step, and we start work once we verify it.</p></form></div>`;
+$("ckb").onclick=()=>history.back();
+$("co").onsubmit=async e=>{e.preventDefault();if(!sb)return toast("Store is not connected yet");const t=sub();if(t<S.set.min)return toast("Minimum order is "+inr(S.set.min));
+for(const i of C){const p=S.P.find(x=>x.id==i.pid);if(!p||i.q>p.v[i.vi].s)return toast("Stock changed, please review your cart")}
+const btn=e.target.querySelector(".pri");btn.disabled=true;btn.textContent="Placing order…";
+const amt=(t+(1+Math.floor(Math.random()*99))/100).toFixed(2),phone=$("cp").value.trim();
+try{const items=[];for(const i of C){const v=S.P.find(x=>x.id==i.pid).v[i.vi],paths=[];for(const f of i.raw){const path="uploads/"+crypto.randomUUID()+"/"+f.name.replace(/[^\w.\-]/g,"_"),u=await sb.storage.from("order-photos").upload(path,f);if(u.error)throw u.error;paths.push(path)}items.push({variant_id:v.id,qty:i.q,note:i.note||null,photos:paths})}
+const r=await sb.rpc("place_order",{p:{name:$("cn").value.trim(),phone,email:$("ce").value.trim(),address:$("ca").value.trim(),pay_amount:amt,items}});if(r.error)throw r.error;
+ORD={num:r.data,amt,phone};C=[];cartBtn();renderPay()}
+catch(err){btn.disabled=false;btn.textContent="Confirm order";toast(err.message||"Could not place order")}}}
+function renderPay(){
+const o=ORD,ck=$("ck"),upi=S.set.upi;
+ck.innerHTML=`<div class="ckw"><h2>Order <span style="color:var(--o)">${esc(o.num)}</span> placed</h2><p class="mut" style="margin-bottom:16px">Your order is saved. Complete the payment below so we can start.</p>
+<div class="box"><b>Pay by UPI (direct to TOA)</b>${upi?`<p class="mut" style="margin:8px 0 12px">Pay exactly <b style="color:var(--o)">₹${o.amt}</b> to <b>${esc(upi)}</b>. The extra paise help us match your payment.</p><a class="btn" href="upi://pay?pa=${encodeURIComponent(upi)}&pn=theoneanother&am=${o.amt}&cu=INR&tn=${encodeURIComponent("Order "+o.num)}">Open UPI app</a>`:`<p class="mut" style="margin-top:8px">UPI details are not available right now. Please message us on WhatsApp.</p>`}</div>
+<form class="f box" id="pf2"><b>After paying</b><input id="cu" placeholder="UPI transaction ID (UTR)" required pattern="[A-Za-z0-9]{8,30}"><button class="pri" style="font-size:16px">I have paid</button></form>
+<p class="mut" style="margin-bottom:12px">If you leave this page before paying, message us on WhatsApp with your order number.</p><a class="btn" target="_blank" rel="noopener" href="${wa("Hi theoneanother, I placed order "+o.num+" and need help with payment.")}">WhatsApp us</a></div>`;
+$("pf2").onsubmit=async e=>{e.preventDefault();const b=e.target.querySelector(".pri"),u=$("cu").value.trim();b.disabled=true;
+const r=await sb.rpc("submit_payment",{p_number:o.num,p_phone:o.phone,p_utr:u});
+if(r.error){b.disabled=false;return toast(r.error.message)}
+renderDone(u)}}
+function renderDone(u){const o=ORD;
+$("ck").innerHTML=`<div class="ckw"><h2>Payment submitted</h2><div class="box"><p>Thank you. Your order number is <b style="color:var(--o)">${esc(o.num)}</b>.</p><p class="mut" style="margin-top:8px">We will verify your payment and confirm your photos with you on WhatsApp before printing. Delivery in 5–7 working days.</p></div><a class="btn pri" target="_blank" rel="noopener" href="${wa("Hi theoneanother, I placed order "+o.num+" and uploaded my photos on the website. Paid ₹"+o.amt+" (UTR "+u+").")}">Message us on WhatsApp</a> <button id="ckd">Back to shop</button></div>`;
+$("ckd").onclick=()=>history.back()}
 
 document.querySelectorAll(".logo").forEach(l=>{const t=l.textContent;l.innerHTML=[...t].map((c,i)=>`<span aria-hidden="true" style="--i:${i}">${c}</span>`).join("")});
 const mm=$("mm"),nb=[...document.querySelectorAll(".nb")],hd=document.querySelector("header.top");let mk=null,mt;

@@ -194,7 +194,7 @@ document.addEventListener("keydown",e=>{if(e.key=="Escape")closeMM()});
 mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.preventDefault();const[x,v]=a.dataset.a.split(":");closeMM();if(x=="go")$(v).scrollIntoView({behavior:"smooth"});if(x=="c"){const el=$("c-"+v);if(el)el.scrollIntoView({behavior:"smooth"})}if(x=="o")openP(+v)}else closeMM()};
 async function init(){band();cartBtn();$("grid").innerHTML='<p class="mut">Loading products…</p>';try{await loadData()}catch(e){$("grid").innerHTML='<p class="mut">The store could not load right now. Please try again shortly.</p>';return}band();shop()}
 init();
- <div id="upi-pay"></div>
+<div id="upi-pay"></div>
 <script src="upi-pay.js"></script>
 </script>
 </body>

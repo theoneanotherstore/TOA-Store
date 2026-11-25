@@ -175,6 +175,28 @@ footer .fl a:hover{color:var(--o2)}
 .fb{margin-top:40px;padding-top:20px;border-top:1px solid var(--ln);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--mut);font-size:13px}
 .toast{position:fixed;inset:0;margin:auto;width:fit-content;height:fit-content;max-width:min(92vw,420px);padding:15px 24px;border:0;border-radius:16px;background:var(--ink);color:#fff;font-weight:500;font-size:15px;text-align:center;box-shadow:0 18px 60px #17120e55;z-index:90;pointer-events:none;overflow:visible}
 [hidden]{display:none!important}
+/* Section 3: product detail page */
+.pd{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:28px}
+.zm{position:relative;border-radius:20px;overflow:hidden;background:#f6efe8;aspect-ratio:1;cursor:zoom-in}
+.zm img{width:100%;height:100%;object-fit:cover;transition:opacity .25s,transform .3s}
+.zm.z{cursor:zoom-out}.zm.z img{transform:scale(2)}
+.gt{display:flex;gap:8px;margin-top:10px;overflow-x:auto}
+.gt button{flex:none;width:64px;height:64px;padding:0;border-radius:12px;overflow:hidden;border-color:var(--ln)}
+.gt button.on{border-color:var(--o);box-shadow:0 0 0 3px #ff6a0026}
+.gt img{width:100%;height:100%;object-fit:cover}
+.pp{font:700 32px/1.1 Roboto;color:var(--o2);margin:6px 0 4px}
+.stk{font-size:13px;font-weight:700}.stk.ok{color:#15803d}.stk.low{color:#c2410c}.stk.no{color:var(--mut)}
+.dsc{color:var(--mut);font-size:15px;margin-top:10px;display:grid;gap:6px}
+.eta{display:flex;gap:10px;align-items:center;background:var(--peach);border-radius:14px;padding:12px 14px;margin-top:16px;font-size:14px}
+.qs{display:inline-flex;align-items:center;border:1.5px solid var(--ink);border-radius:999px}
+.qs button{border:0;padding:8px 14px;font-size:18px;line-height:1}
+.qs span{min-width:28px;text-align:center;font-weight:700}
+.buybar{position:sticky;bottom:-16px;display:flex;gap:10px;align-items:center;background:#fff;padding:12px 0;margin-top:14px;border-top:1px solid var(--ln);z-index:3}
+.buybar .pri{flex:1}
+.rel{margin-top:26px;grid-column:1/-1}
+.rel h4{font:500 22px "Playfair Display",Georgia,serif;margin-bottom:12px}
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.rg a{display:grid;gap:6px;font-size:13px;cursor:pointer}.rg a b{font-weight:500}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.pc{opacity:1;translate:0 0}}
 @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.stack{height:340px}.bld{grid-template-columns:1fr}.brand{grid-template-columns:1fr;gap:28px}.fg{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){
@@ -203,6 +225,7 @@ section{padding:60px 5vw}
 .cb h3{font-size:17px}.cb{padding:2px 4px 6px}
 .steps{grid-template-columns:1fr 1fr;gap:10px}.steps div{padding:16px}.steps b{font-size:34px}
 dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
+.pd{grid-template-columns:1fr}.buybar{bottom:-16px;margin-inline:-16px;padding:12px 16px}.pp{font-size:26px}
 .fg{grid-template-columns:1fr}
 footer{padding:44px 5vw 28px}}
 </style>
@@ -245,7 +268,9 @@ let S={set:{band:"",upi:"",min:249},P:[],C:[]};
 async function loadData(){if(!sb)throw new Error("Store is not connected yet");const[p,c,t]=await Promise.all([sb.from("products").select("id,name,type,image,category_id,customizable,variants(id,name,price,stock)").order("id"),sb.from("categories").select("*").order("position").order("id"),sb.from("settings").select("*")]);if(p.error||c.error||t.error)throw(p.error||c.error||t.error);
  S.C=c.data;const cn=id=>((S.C.find(x=>x.id==id)||{}).name||"").toLowerCase(),shape=n=>n.includes("sticker")?"sticker":n.includes("polaroid")?"polaroid":n.includes("uno")?"uno":"poster";
  S.P=p.data.map(x=>{const sh=x.type&&CL[x.type]?x.type:shape(cn(x.category_id));return{id:x.id,name:x.name,cat:x.category_id,cu:!!x.customizable,t:sh,c:CL[sh],img:x.image?sb.storage.from("product-images").getPublicUrl(x.image).data.publicUrl:"",v:x.variants.sort((a,b)=>a.id-b.id).map(v=>({id:v.id,n:v.name,p:v.price,s:v.stock}))}}).filter(x=>x.v.length);
- const m={};t.data.forEach(r=>m[r.key]=r.value);S.set={band:m.band||"",bf:m.band_from||"",bt:m.band_to||"",upi:m.upi||"",min:+m.min_order||249}}
+ const m={};t.data.forEach(r=>m[r.key]=r.value);S.set={band:m.band||"",bf:m.band_from||"",bt:m.band_to||"",upi:m.upi||"",min:+m.min_order||249};
+ /* Optional product detail fields (description, extra images). Separate query so missing columns never break the shop. */
+ try{const x=await sb.from("products").select("id,description,images");if(!x.error)x.data.forEach(r=>{const p=S.P.find(y=>y.id==r.id);if(p){p.desc=r.description||"";p.imgs=(r.images||[]).map(k=>sb.storage.from("product-images").getPublicUrl(k).data.publicUrl)}})}catch(e){}}
 /* Failed-checkout tracking: once a phone number is entered at checkout, the cart and contact details are saved so the shop can follow up if payment is never completed. */
 const ckTok=()=>{try{let t=localStorage.getItem("toa-ck");if(!t){t=crypto.randomUUID();localStorage.setItem("toa-ck",t)}return t}catch(e){return window.__ck||(window.__ck=crypto.randomUUID())}};
 const ckReset=()=>{try{localStorage.removeItem("toa-ck")}catch(e){}window.__ck=null};
@@ -302,10 +327,34 @@ const hubGo=e=>{const c=e.target.closest("[data-b]");if(c)openB(+c.dataset.b)};
 $("hubgrid").onclick=hubGo;$("hubgrid").onkeydown=e=>{if(e.key=="Enter")hubGo(e)};
 function cleanup(){urls.forEach(u=>URL.revokeObjectURL(u));urls=[]}
 dg.addEventListener("close",cleanup);
-/* Ready-made product: choose a size and add to cart, nothing else */
-function openP(id){cur=S.P.find(p=>p.id==id);cleanup();dg.className="";dg.innerHTML=`${art(cur)}<h3 style="font:500 24px 'Playfair Display',Georgia,serif;margin-top:12px">${esc(cur.name)}</h3><div class="f"><label class="mut" for="pv">Size</label><select id="pv">${cur.v.map((v,i)=>`<option value="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)} – ${inr(v.p)}${v.s<=0?" (out of stock)":""}</option>`).join("")}</select><label class="mut" for="pq">Quantity</label><input id="pq" type="number" min="1" value="1"><button class="pri" id="pa">Add to cart</button><button id="px">Close</button></div>`;
+/* Ready-made product detail: gallery with zoom, size, quantity, stock, delivery estimate, related products, sticky add to cart */
+function openP(id){cur=S.P.find(p=>p.id==id);cleanup();dg.className="wide";
+ let vi=Math.max(0,cur.v.findIndex(v=>v.s>0)),q=1,gi=0;
+ const im=cur.imgs&&cur.imgs.length?cur.imgs:cur.img?[cur.img]:[],cat=(S.C.find(c=>c.id==cur.cat)||{}).name||"";
+ const eta=()=>{const f=n=>{let d=new Date();while(n>0){d.setDate(d.getDate()+1);if(d.getDay()!=0)n--}return d},o={day:"numeric",month:"short"};return f(5).toLocaleDateString("en-IN",o)+" – "+f(7).toLocaleDateString("en-IN",o)};
+ let rel=S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&x.cat==cur.cat);if(rel.length<4)rel=rel.concat(S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&!rel.includes(x))).slice(0,4);else rel=rel.slice(0,4);
+ const desc=(cur.desc||"").split(/\n+/).filter(Boolean).map(l=>`<p>${esc(l)}</p>`).join("")||"<p>Ready-made, no photo upload needed.</p>";
+ dg.innerHTML=`<button class="x" id="px" aria-label="Close">×</button><div class="pd"><div class="gal"><div class="zm" id="zm">${im.length?`<img id="gi" src="${esc(im[0])}" alt="${esc(cur.name)}">`:art(cur)}</div>${im.length>1?`<div class="gt" id="gt">${im.map((u,i)=>`<button type="button" class="${i==0?"on":""}" data-g="${i}" aria-label="Image ${i+1}"><img src="${esc(u)}" alt=""></button>`).join("")}</div>`:""}</div>
+<div><span class="eyebrow">${esc(cat||"Ready-made")}</span><h3 style="font:500 30px/1.1 'Playfair Display',Georgia,serif">${esc(cur.name)}</h3><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
+<span class="lb">Size</span><div class="opts" id="opts">${cur.v.map((v,i)=>`<button type="button" class="opt ${i==vi?"on":""}" data-vi="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)}<small>${inr(v.p)}${v.s<=0?" · sold out":""}</small></button>`).join("")}</div>
+<div class="eta">🚚 <span>Estimated delivery <b>${eta()}</b></span></div>
+<span class="lb">Quantity</span><div class="qs"><button type="button" id="qm" aria-label="Decrease">−</button><span id="qv">1</span><button type="button" id="qp" aria-label="Increase">+</button></div>
+<div class="buybar"><button class="pri big" id="pa"></button></div></div>
+${rel.length?`<div class="rel"><h4>You may also like</h4><div class="rg">${rel.map(p=>`<a data-rp="${p.id}">${art(p)}<b>${esc(p.name)}</b><span class="mut">From ${from(p)}</span></a>`).join("")}</div></div>`:""}</div>`;
+ const upd=()=>{const v=cur.v[vi];if(!v){$("pa").disabled=true;$("pa").textContent="Out of stock";$("pp").textContent="";$("sk").className="stk no";$("sk").textContent="Out of stock";return}
+  q=Math.min(Math.max(1,q),Math.max(1,v.s));$("qv").textContent=q;$("pp").textContent=inr(v.p*q);
+  $("sk").className="stk "+(v.s<=5?"low":"ok");$("sk").textContent=v.s<=5?"Only "+v.s+" left":"In stock";
+  $("pa").disabled=v.s<=0;$("pa").textContent="Add to cart · "+inr(v.p*q)};
+ const zm=$("zm"),gimg=$("gi");
+ zm.onclick=()=>zm.classList.toggle("z");
+ zm.onmousemove=e=>{if(!gimg)return;const r=zm.getBoundingClientRect();gimg.style.transformOrigin=((e.clientX-r.left)/r.width*100)+"% "+((e.clientY-r.top)/r.height*100)+"%"};
+ if($("gt"))$("gt").onclick=e=>{const b=e.target.closest("[data-g]");if(!b)return;gi=+b.dataset.g;zm.classList.remove("z");gimg.style.opacity=0;setTimeout(()=>{gimg.src=im[gi];gimg.style.opacity=1},200);$("gt").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x==b))};
+ $("opts").onclick=e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;vi=+b.dataset.vi;q=1;dg.querySelectorAll(".opt").forEach(x=>x.classList.toggle("on",x==b));upd()};
+ $("qm").onclick=()=>{q--;upd()};$("qp").onclick=()=>{q++;upd()};
+ dg.querySelectorAll("[data-rp]").forEach(a=>a.onclick=()=>{openP(+a.dataset.rp);dg.scrollTo(0,0)});
  $("px").onclick=()=>dg.close();
- $("pa").onclick=()=>{const vi=+$("pv").value,q=Math.max(1,Math.floor(+$("pq").value||1)),v=cur.v[vi];if(q>v.s)return toast("Only "+v.s+" in stock");C.push({pid:cur.id,vi,q,files:[],raw:[],note:""});cartBtn();dg.close();toast("Added to cart")};dg.showModal()}
+ $("pa").onclick=()=>{const v=cur.v[vi];if(!v||q>v.s)return toast("Only "+(v?v.s:0)+" in stock");C.push({pid:cur.id,vi,q,files:[],raw:[],note:""});cartBtn();dg.close();toast("Added to cart")};
+ upd();if(!dg.open)dg.showModal()}
 /* Customization: size, photos and a note, in the style of a print studio */
 function openB(id){cur=S.P.find(p=>p.id==id);cleanup();F=[];const MAX=10;let vi=Math.max(0,cur.v.findIndex(v=>v.s>0));
  dg.className="wide";dg.innerHTML=`<button class="x" id="px" aria-label="Close">×</button><div class="bld"><div class="bl">${art(cur)}<ul class="how2"><li><b>1</b>Choose your size</li><li><b>2</b>Add your photos</li><li><b>3</b>We confirm on WhatsApp, then print</li></ul></div><div class="br"><span class="eyebrow">Customization</span><h3>${esc(cur.name)}</h3><p class="mut">Printed from your own photos and delivered in 5–7 working days.</p>

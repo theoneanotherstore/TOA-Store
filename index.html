@@ -25,6 +25,7 @@ button,.btn{font:500 14px Roboto,sans-serif;letter-spacing:.02em;cursor:pointer;
 button:hover,.btn:hover{transform:translateY(-1px)}
 button:disabled{opacity:.45;cursor:not-allowed;transform:none}
 .pri{background:var(--g);border-color:transparent;color:#17120e;font-weight:700;box-shadow:0 10px 26px #ff6a0038}
+.big{padding:15px 34px;font-size:16px}
 .blk{background:var(--ink);color:#fff}
 :focus-visible{outline:3px solid #ffb27a;outline-offset:2px}
 .sf{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:500}
@@ -54,10 +55,13 @@ header nav{margin-left:auto;display:flex;gap:6px;align-items:center}
 .mp{flex:0 0 220px;border-radius:18px;padding:18px;background:var(--peach);display:grid;gap:8px;align-content:end;min-height:150px;font-size:14px;color:var(--mut)}
 .mp b{font:500 24px/1.1 "Playfair Display",Georgia,serif;font-style:italic;color:var(--ink)}
 .mp .art{max-width:140px}
-section{padding:84px 5vw}
+section{padding:96px 5vw}
 .hero{min-height:82vh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative}
 .hero h1{font-weight:900;font-size:clamp(46px,8.6vw,118px);line-height:.94;letter-spacing:-.035em;text-transform:uppercase}
 .hero h1 em{display:block;text-transform:none;letter-spacing:-.02em;font-size:.86em;color:var(--o);margin-top:.08em}
+.rv{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}
+.rv>span{display:inline-block;animation:rvu .85s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--w)*110ms + 150ms)}
+@keyframes rvu{from{translate:0 108%}}
 .hero p{max-width:46ch;color:var(--mut);font-size:18px;margin:24px 0 30px;font-weight:300}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
 .trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;color:var(--mut);font-size:13px;letter-spacing:.04em}
@@ -75,6 +79,10 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{padding:7px 16px;font-size:13px;border-color:var(--ln);color:var(--mut)}
 .chip:hover{border-color:var(--o);color:var(--o2)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.sortbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:-10px 0 22px}
+.sortbar>div{display:flex;gap:10px;align-items:center}
+.sortbar select{width:auto;padding:8px 12px}
 .cust{background:linear-gradient(180deg,var(--peach),#fff);border:1px solid var(--ln);border-radius:32px;margin:0 3vw;padding:64px 2vw}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
 .cc{background:#fff;border:1px solid var(--ln);border-radius:22px;padding:12px;cursor:pointer;transition:transform .3s,box-shadow .3s;display:grid;gap:12px}
@@ -85,14 +93,32 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-
 .cb p{margin:2px 0 10px;color:var(--mut);font-size:14px}.cb p b{color:var(--o2);font-weight:700}
 .go{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .cc:hover .go{color:var(--o2)}
+.ctg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.ct{display:grid;gap:10px;background:#fff;border:1px solid var(--ln);border-radius:20px;padding:10px;transition:transform .3s,box-shadow .3s,border-color .3s}
+.ct:hover{transform:translateY(-5px);border-color:var(--o);box-shadow:0 22px 44px #ff6a001a}
+.ct .art{border-radius:14px}
+.ct b{font:500 18px "Playfair Display",Georgia,serif;padding:0 6px}
+.ct small{color:var(--mut);padding:0 6px 6px;margin-top:-8px}
+.brand{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;background:var(--ink);color:#fff;border-radius:32px;margin:0 3vw}
+.brand h2{color:#fff}.brand h2 .sf{color:var(--o)}
+.brand p{color:#d9cfc6;font-weight:300;font-size:17px;margin-top:16px;max-width:52ch}
+.bst{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bst div{background:#ffffff0f;border:1px solid #ffffff1f;border-radius:20px;padding:22px}
+.bst b{display:block;font:500 34px/1 "Playfair Display",Georgia,serif;font-style:italic;color:var(--o);margin-bottom:6px}
+.bst span{font-size:13px;color:#d9cfc6}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
-.pc{background:#fff;border:1px solid var(--ln);border-radius:20px;padding:12px;display:grid;gap:10px;transition:transform .3s,box-shadow .3s,opacity .6s;opacity:0;translate:0 20px}
+.pc{background:#fff;border:1px solid var(--ln);border-radius:20px;padding:12px;display:grid;gap:10px;align-content:start;transition:transform .3s,box-shadow .3s,opacity .6s;opacity:0;translate:0 20px}
 .pc.in{opacity:1;translate:0 0}
 .pc:hover{transform:translateY(-5px);box-shadow:0 22px 44px #17120e14}
 .pc h3{font-size:16px;font-weight:500;padding:0 4px}
 .pc .row{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:14px;padding:0 4px}
 .pc .row b{color:var(--o2);font-size:17px;font-weight:700}
 .pc button{width:100%}
+.pw{position:relative}
+.pc .art img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pc:hover .art img{transform:scale(1.07)}
+.pc .wl{position:absolute;right:10px;top:10px;width:36px;height:36px;padding:0;border-radius:50%;border:0;background:#ffffffeb;color:var(--mut);font-size:19px;line-height:1;z-index:2;box-shadow:0 4px 12px #17120e22}
+.pc .wl.on{color:#e11d48}
 .art{aspect-ratio:1;border-radius:14px;background:linear-gradient(145deg,var(--a),var(--b));display:grid;place-items:center;overflow:hidden}
 .art img{width:100%;height:100%;object-fit:cover}
 .art i{display:block;width:44%;aspect-ratio:3/4;background:#fff;border-radius:6px;rotate:-6deg;box-shadow:0 14px 30px #17120e33;transition:rotate .4s}
@@ -100,8 +126,6 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-
 .art.sticker i{aspect-ratio:1;border-radius:50%;border:6px solid #fff;background:var(--b)}
 .art.polaroid i{aspect-ratio:.82;border:8px solid #fff;border-bottom-width:30px;background:var(--a)}
 .art.uno i{aspect-ratio:.66;background:#17120e;border:6px solid #fff;border-radius:12px}
-.catblk{margin-bottom:64px}
-.ch{font:500 clamp(26px,3.2vw,38px)/1.1 "Playfair Display",Georgia,serif;margin-bottom:22px}
 .tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 10px;border-radius:99px;background:var(--peach);color:var(--o2)}
 .tag.out{background:#f3f0ed;color:var(--mut)}
 input,select,textarea{width:100%;padding:11px 13px;border-radius:12px;border:1px solid #e6dccf;background:#fff;color:var(--ink);font:inherit}
@@ -142,12 +166,17 @@ summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--o2);font-size:24px;line-height:1}
 details[open] summary::after{content:"–"}
 details p{color:var(--mut);margin-top:10px;max-width:70ch}
-footer{padding:56px 5vw;background:var(--peach);display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between;margin-top:30px}
+footer{padding:64px 5vw 40px;background:var(--peach);margin-top:30px}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:36px}
 footer p{color:var(--mut);max-width:44ch;font-size:14px}
+footer h4{font:700 11px Roboto;letter-spacing:.16em;text-transform:uppercase;color:var(--o2);margin-bottom:12px}
+footer .fl a{display:block;padding:4px 0;font-size:14px;color:var(--ink)}
+footer .fl a:hover{color:var(--o2)}
+.fb{margin-top:40px;padding-top:20px;border-top:1px solid var(--ln);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--mut);font-size:13px}
 .toast{position:fixed;inset:0;margin:auto;width:fit-content;height:fit-content;max-width:min(92vw,420px);padding:15px 24px;border:0;border-radius:16px;background:var(--ink);color:#fff;font-weight:500;font-size:15px;text-align:center;box-shadow:0 18px 60px #17120e55;z-index:90;pointer-events:none;overflow:visible}
 [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.pc{opacity:1;translate:0 0}}
-@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.stack{height:340px}.bld{grid-template-columns:1fr}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.stack{height:340px}.bld{grid-template-columns:1fr}.brand{grid-template-columns:1fr;gap:28px}.fg{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){
 header.top{flex-wrap:wrap;gap:6px 10px;padding:10px 4vw}
 header nav{display:contents}
@@ -157,29 +186,38 @@ header nav{display:contents}
 .mm{left:0;right:0;border-radius:0 0 18px 18px;padding:16px 5vw 20px;flex-direction:column;gap:18px;max-height:65vh;overflow:auto}
 .mp{display:none}
 .band{font-size:11px}
-section{padding:52px 5vw}
+section{padding:60px 5vw}
 .hero{padding-top:36px}.hero p{font-size:16px}
 .cta .btn{flex:1 1 40%;text-align:center}
 .trust{gap:14px}
-.cust{margin:0 2vw;padding:40px 4vw;border-radius:24px}
+.cust,.brand{margin:0 2vw;padding:40px 4vw;border-radius:24px}
 .hd{margin-bottom:22px}
-.catblk{margin-bottom:40px}
+.chips{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:4px}
+.chip{white-space:nowrap}
 .grid,.cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ctg{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .pc,.cc{padding:8px;border-radius:16px}
 .pc h3{font-size:14px}.pc .row{font-size:12px;flex-wrap:wrap;gap:4px}.pc .row b{font-size:15px}
 .pc button{padding:9px 8px;font-size:13px}
+.pc .wl{width:32px;height:32px;padding:0}
 .cb h3{font-size:17px}.cb{padding:2px 4px 6px}
 .steps{grid-template-columns:1fr 1fr;gap:10px}.steps div{padding:16px}.steps b{font-size:34px}
 dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
-footer{flex-direction:column;padding:36px 5vw}}
+.fg{grid-template-columns:1fr}
+footer{padding:44px 5vw 28px}}
 </style>
 </head>
 <body>
 <div class="band"><div id="band"></div></div>
 <header class="top" id="top"><a class="logo" href="#top" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customization</button></div><button id="cartBtn" aria-label="Cart"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
-<section class="hero"><div><span class="eyebrow">Printed from your photos</span><h1>The one<em class="sf">you never were.</em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p><div class="cta"><a class="btn pri" href="#custom" id="heroCta">Start customising</a><a class="btn" href="#shopgrid">Shop ready-made</a></div><div class="trust"><span><b>5–7 days</b> delivery</span><span><b>UPI</b> direct payment</span><span><b>WhatsApp</b> photo check</span></div></div><div class="stack" id="stack" aria-hidden="true"></div></section>
+<section class="hero"><div><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p><div class="cta"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Start customising</a></div><div class="trust"><span><b>5–7 days</b> delivery</span><span><b>UPI</b> direct payment</span><span><b>WhatsApp</b> photo check</span></div></div><div class="stack" id="stack" aria-hidden="true"></div></section>
+<section id="catnav" hidden style="padding-top:20px"><div class="hd"><div><span class="eyebrow">Browse</span><h2>Shop by <span class="sf" style="color:var(--o)">category</span></h2></div></div><div class="ctg" id="catg"></div></section>
 <section class="cust" id="custom" hidden><div class="hd"><div><span class="eyebrow">Customization</span><h2>Your photos, <span class="sf" style="color:var(--o)">printed.</span></h2></div><p>Turn your memories into something you can hold. Pick a product, add your photos, and we take care of the rest.</p></div><div class="cgrid" id="hubgrid"></div></section>
-<section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div><div class="chips" id="chips"></div></div><div id="grid"></div></section>
+<section id="featured" hidden><div class="hd"><div><span class="eyebrow">Featured</span><h2>Ready to <span class="sf" style="color:var(--o)">gift</span></h2></div><p>A few ready-made picks that ship straight away.</p></div><div class="grid" id="featg"></div></section>
+<section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div><div class="chips" id="chips"></div></div>
+<div class="sortbar"><span class="mut" id="cnt"></span><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
+<div id="grid"></div></section>
+<section class="brand" id="about"><div><span class="eyebrow" style="color:var(--o)">Our story</span><h2>Made from <span class="sf">your</span> moments</h2><p>theoneanother is a small print studio in Chennai. We turn the photos already on your phone into posters, stickers, polaroids and UNO decks, and we check every photo with you on WhatsApp before anything is printed.</p></div><div class="bst"><div><b>5–7</b><span>working days to your door</span></div><div><b>10</b><span>photos per custom product</span></div><div><b>UPI</b><span>direct payment, no middleman</span></div><div><b>100%</b><span>photo check before printing</span></div></div></section>
 <section id="how"><div class="hd"><div><span class="eyebrow">How it works</span><h2>Simple, from photo to doorstep</h2></div></div><div class="steps"><div><b>01</b><h3>Pick</h3><p class="mut">Choose a product and a size.</p></div><div><b>02</b><h3>Upload</h3><p class="mut">On Customization products, add up to 10 photos and a note.</p></div><div><b>03</b><h3>Pay by UPI</h3><p class="mut">Direct to us, no middleman.</p></div><div><b>04</b><h3>We confirm</h3><p class="mut">We check your photos on WhatsApp, then print in 5–7 working days.</p></div></div></section>
 <section id="faq"><div class="hd"><div><span class="eyebrow">Good to know</span><h2>Questions</h2></div></div>
 <details><summary>How does ordering work?</summary><p>Pick a product and size, upload your photos if it is a Customization product, add a short note if you like, and pay by UPI. We check your photos with you on WhatsApp before printing.</p></details>
@@ -188,7 +226,11 @@ footer{flex-direction:column;padding:36px 5vw}}
 <details><summary>Can I return or cancel a custom order?</summary><p>Custom products are non-refundable and non-returnable. If something arrives damaged or wrong, message us on WhatsApp straight away.</p></details>
 <details><summary>Is there a minimum order?</summary><p>Yes, the minimum order is ₹249.</p></details>
 </section>
-<footer id="contact"><div><div class="logo" aria-label="theoneanother">theoneanother</div><p>The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p style="margin-top:10px">15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com · +91 73971 93050</p><p class="cta" style="margin-top:14px"><a class="btn" id="waF" target="_blank" rel="noopener"></a><a class="btn" id="igF" target="_blank" rel="noopener"></a></p></div><div><p><b style="color:var(--ink)">Policies</b><br>Custom products are non-refundable and non-returnable.<br>Minimum order ₹249. Lead time 5–7 working days.<br>Photos are confirmed with you on WhatsApp before printing.</p></div></footer>
+<footer id="contact"><div class="fg"><div><div class="logo" aria-label="theoneanother">theoneanother</div><p style="margin-top:8px">The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p class="cta" style="margin-top:14px"><a class="btn" id="waF" target="_blank" rel="noopener"></a><a class="btn" id="igF" target="_blank" rel="noopener"></a></p></div>
+<div class="fl"><h4>Shop</h4><a href="#custom">Customization</a><a href="#shopgrid">Ready-made</a><a href="#featured">Featured</a><a href="#about">Our story</a></div>
+<div class="fl"><h4>Help</h4><a href="#how">How it works</a><a href="#faq">Questions</a><a href="https://wa.me/917397193050" target="_blank" rel="noopener">WhatsApp support</a></div>
+<div><h4>Contact</h4><p>15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com<br>+91 73971 93050</p><p style="margin-top:10px">Custom products are non-refundable and non-returnable. Minimum order ₹249. Lead time 5–7 working days.</p></div></div>
+<div class="fb"><span>© theoneanother</span><a href="#top">Back to top ↑</a></div></footer>
 <dialog id="dg"></dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
@@ -213,20 +255,49 @@ const saveCk=tot=>{if(!sb)return;const g=i=>$(i)?$(i).value.trim():"";if(g("cp")
 const toast=t=>{const d=document.createElement("div");d.className="toast";d.setAttribute("role","status");d.setAttribute("popover","manual");d.textContent=t;document.body.append(d);try{d.showPopover()}catch(e){}setTimeout(()=>{try{d.hidePopover()}catch(e){}d.remove()},3200)};
 const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
 const art=p=>p.img?`<div class="art" style="background:#f6efe8"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy"></div>`:`<div class="art ${p.t}" style="--a:${p.c[0]};--b:${p.c[1]}"><i></i></div>`;
-const out=p=>p.v.every(v=>v.s<=0),from=p=>inr(Math.min(...p.v.map(v=>v.p)));
+const out=p=>p.v.every(v=>v.s<=0),from=p=>inr(Math.min(...p.v.map(v=>v.p))),minP=p=>Math.min(...p.v.map(v=>v.p));
 let C=[],dg=$("dg"),cur=null,F=[],urls=[];
+/* Listing state: category filter, how many cards are shown, and the saved wishlist (kept in this browser only) */
+const LS=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+let V={cat:"all",n:12,wl:LS("toa-wl",[])};
 $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$("igF").innerHTML=ic("ig")+" Instagram";$("igF").href=IG;
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
 const secs=()=>[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>!p.cu&&(p.cat||null)===c.id)})).filter(x=>x.l.length);
 function hero(){const L=[...S.P.filter(p=>p.cu),...S.P].filter((p,i,a)=>a.indexOf(p)==i).slice(0,3),ph=[{t:"poster",c:CL.poster},{t:"polaroid",c:CL.polaroid},{t:"sticker",c:CL.sticker}];$("stack").innerHTML=(L.length==3?L:ph).map(p=>art(p)).join("")}
 function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
-function shop(){hero();hub();const cats=secs(),hasC=S.P.some(p=>p.cu);
- $("chips").innerHTML=(hasC?'<button class="chip" data-k="custom">Customization</button>':"")+cats.map(x=>`<button class="chip" data-k="${x.id}">${esc(x.name)}</button>`).join("");
- $("grid").innerHTML=cats.map(x=>`<div class="catblk" id="c-${x.id}"><h3 class="ch">${esc(x.name)}</h3><div class="grid">${x.l.map(p=>`<article class="pc">${art(p)}<h3>${esc(p.name)}</h3><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"Add to cart"}</button></article>`).join("")}</div></div>`).join("")||'<p class="mut">Ready-made products are coming soon.</p>';
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll(".pc").forEach((c,i)=>{c.style.transitionDelay=(i%4)*70+"ms";io.observe(c)})}
-$("chips").onclick=e=>{const k=e.target.dataset.k;if(k!=null){const el=$(k=="custom"?"custom":"c-"+k);if(el)el.scrollIntoView({behavior:"smooth"})}};
-$("grid").onclick=e=>{const o=e.target.dataset.o;if(o)openP(+o)};
+const saved=p=>V.wl.includes(p.id);
+const card=p=>`<article class="pc"><div class="pw">${art(p)}<button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"♥":"♡"}</button></div><h3>${esc(p.name)}</h3><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"Add to cart"}</button></article>`;
+/* Category tiles near the top of the page */
+function catnav(cats){const hasC=S.P.filter(p=>p.cu),T=[];if(hasC.length)T.push({k:"custom",n:"Customization",c:hasC.length,a:art(hasC[0])});cats.forEach(x=>T.push({k:x.id??"",n:x.name,c:x.l.length,a:art(x.l[0])}));
+ $("catnav").hidden=T.length<2;$("catg").innerHTML=T.map(t=>`<a class="ct" href="#" data-k="${t.k}">${t.a}<b>${esc(t.n)}</b><small>${t.c} ${t.c==1?"item":"items"}</small></a>`).join("")}
+/* Featured: the first in-stock ready-made products (hidden if fewer than two) */
+function feat(){const L=S.P.filter(p=>!p.cu&&!out(p)).slice(0,4);$("featured").hidden=L.length<2;$("featg").innerHTML=L.map(card).join("")}
+/* Fade cards in as they scroll into view */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
+const reveal=()=>document.querySelectorAll(".pc:not(.in)").forEach((c,i)=>{c.style.transitionDelay=(i%4)*70+"ms";io.observe(c)});
+/* Shop listing: filter by category (or saved items), sort, and load more */
+function listed(){let l=S.P.filter(p=>!p.cu);
+ if(V.cat=="wish")l=l.filter(saved);else if(V.cat!="all")l=l.filter(p=>String(p.cat||"")==V.cat);
+ const f={new:(a,b)=>b.id-a.id,low:(a,b)=>minP(a)-minP(b),high:(a,b)=>minP(b)-minP(a),name:(a,b)=>a.name.localeCompare(b.name)}[$("sort").value]||((a,b)=>b.id-a.id);
+ return l.sort(f)}
+function cards(){const l=listed(),sh=l.slice(0,V.n);
+ $("cnt").textContent=l.length?"Showing "+sh.length+" of "+l.length+(l.length==1?" product":" products"):"";
+ $("grid").innerHTML=sh.length?`<div class="grid">${sh.map(card).join("")}</div>${l.length>sh.length?`<p style="text-align:center;margin-top:28px"><button id="more">Load more (${l.length-sh.length} left)</button></p>`:""}`:`<p class="mut">${V.cat=="wish"?"No saved products yet. Tap the heart on any product to save it here.":S.P.some(p=>!p.cu)?"No products in this category yet.":"Ready-made products are coming soon."}</p>`;reveal()}
+function chipsUI(){const hasC=S.P.some(p=>p.cu),on=k=>V.cat==k?" on":"";
+ $("chips").innerHTML=(hasC?'<button class="chip" data-k="custom">Customization</button>':"")+`<button class="chip${on("all")}" data-f="all">All</button>`+secs().map(x=>`<button class="chip${on(String(x.id??""))}" data-f="${x.id??""}">${esc(x.name)}</button>`).join("")+`<button class="chip${on("wish")}" data-f="wish">♥ Saved (${V.wl.length})</button>`}
+function setCat(k,scroll){V.cat=String(k);V.n=12;chipsUI();cards();if(scroll)$("shopgrid").scrollIntoView({behavior:"smooth"})}
+function shop(){hero();hub();catnav(secs());feat();chipsUI();cards();reveal()}
+const scrollTo_=k=>{const el=$(k);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
+$("chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.k=="custom")return scrollTo_("custom");if(b.dataset.f!=null)setCat(b.dataset.f,false)};
+$("catg").onclick=e=>{const a=e.target.closest("[data-k]");if(!a)return;e.preventDefault();a.dataset.k=="custom"?scrollTo_("custom"):setCat(a.dataset.k,true)};
+$("sort").onchange=()=>{V.n=12;cards()};
+const gridClick=e=>{const t=e.target.closest("button");if(!t)return;
+ if(t.id=="more"){V.n+=12;cards();return}
+ if(t.dataset.w){const id=+t.dataset.w,i=V.wl.indexOf(id);i>=0?V.wl.splice(i,1):V.wl.push(id);try{localStorage.setItem("toa-wl",JSON.stringify(V.wl))}catch(x){}
+  feat();chipsUI();cards();reveal();toast(i>=0?"Removed from saved":"Saved to your wishlist");return}
+ if(t.dataset.o)openP(+t.dataset.o)};
+$("grid").onclick=gridClick;$("featg").onclick=gridClick;
 const hubGo=e=>{const c=e.target.closest("[data-b]");if(c)openB(+c.dataset.b)};
 $("hubgrid").onclick=hubGo;$("hubgrid").onkeydown=e=>{if(e.key=="Enter")hubGo(e)};
 function cleanup(){urls.forEach(u=>URL.revokeObjectURL(u));urls=[]}
@@ -275,8 +346,8 @@ const mm=$("mm"),nb=[...document.querySelectorAll(".nb")],hd=document.querySelec
 const mcol=(h,items)=>`<div class="mc"><h4>${h}</h4>${items.join("")}</div>`;
 const ML=(a,t)=>`<a href="#" data-a="${a}">${t}</a>`,MX=(h,t)=>`<a href="${h}" target="_blank" rel="noopener">${t}</a>`,MT=t=>`<span class="mt">${t}</span>`;
 function mmHTML(k){
- if(k=="home")return mcol("Explore",[ML("go:custom","Customization"),ML("go:shopgrid","Ready-made shop"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
- if(k=="prod"){const g=secs().slice(0,4),lo=S.P.filter(p=>!p.cu).flatMap(p=>p.v.map(v=>v.p));return(g.map(x=>mcol(esc(x.name),[ML("c:"+x.id,"View all"),...x.l.slice(0,5).map(p=>ML("o:"+p.id,`${esc(p.name)} · from ${from(p)}`))])).join("")||mcol("Ready-made",[MT("Coming soon")]))+`<div class="mp"><b>Ready<br>to gift.</b><span>${lo.length?"Starting at "+inr(Math.min(...lo)):"New arrivals soon"}</span></div>`}
+ if(k=="home")return mcol("Explore",[ML("go:custom","Customization"),ML("go:shopgrid","Ready-made shop"),ML("go:about","Our story"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
+ if(k=="prod"){const g=secs().slice(0,4),lo=S.P.filter(p=>!p.cu).flatMap(p=>p.v.map(v=>v.p));return(g.map(x=>mcol(esc(x.name),[ML("c:"+(x.id??""),"View all"),...x.l.slice(0,5).map(p=>ML("o:"+p.id,`${esc(p.name)} · from ${from(p)}`))])).join("")||mcol("Ready-made",[MT("Coming soon")]))+`<div class="mp"><b>Ready<br>to gift.</b><span>${lo.length?"Starting at "+inr(Math.min(...lo)):"New arrivals soon"}</span></div>`}
  const cu=S.P.filter(p=>p.cu);return mcol("Choose a product",cu.slice(0,5).map(p=>ML("b:"+p.id,"Customise "+esc(p.name.replace("Custom ",""))))||[MT("Coming soon")])+mcol("Photo rules",[MT("Up to 10 photos per product"),MT("JPG, JPEG, PNG, WebP or PDF"),MT("50 MB per file"),MT("Add a name or message note")])+mcol("After you order",[MT("We confirm your photos on WhatsApp"),MT("Printed in 5–7 working days")])+`<div class="mp"><b>Upload.<br>We print.</b><span>Your photos, your product.</span></div>`}
 function openMM(k){clearTimeout(mt);mk=k;mm.innerHTML=mmHTML(k);mm.classList.add("open");nb.forEach(b=>b.setAttribute("aria-expanded",String(b.dataset.m==k)))}
 function closeMM(){mk=null;mm.classList.remove("open");nb.forEach(b=>b.setAttribute("aria-expanded","false"))}
@@ -286,7 +357,7 @@ nb.forEach(b=>{b.onmouseenter=()=>{if(hov())openMM(b.dataset.m)};b.onfocus=()=>{
 hd.onmouseleave=()=>{mt=setTimeout(closeMM,220)};hd.onmouseenter=()=>clearTimeout(mt);
 document.addEventListener("click",e=>{if(!e.target.closest("header.top"))closeMM()});
 document.addEventListener("keydown",e=>{if(e.key=="Escape")closeMM()});
-mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.preventDefault();const[x,v]=a.dataset.a.split(":");closeMM();if(x=="go"){const el=$(v);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})}if(x=="c"){const el=$("c-"+v);if(el)el.scrollIntoView({behavior:"smooth"})}if(x=="o")openP(+v);if(x=="b")openB(+v)}else closeMM()};
+mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.preventDefault();const[x,v]=a.dataset.a.split(":");closeMM();if(x=="go"){const el=$(v);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})}if(x=="c")setCat(v,true);if(x=="o")openP(+v);if(x=="b")openB(+v)}else closeMM()};
 async function init(){band();cartBtn();hero();$("grid").innerHTML='<p class="mut">Loading…</p>';try{await loadData()}catch(e){$("grid").innerHTML='<p class="mut">The store could not load right now. Please try again shortly.</p>';return}band();shop()}
 init();
 </script>

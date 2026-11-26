@@ -71,6 +71,21 @@
     res.innerHTML=h},function(){b.disabled=false;say("Tracking is not available right now. Please message us on WhatsApp.")})};
   d.showModal()}
  window.openTrack=openTrack;if(location.hash=="#orders")setTimeout(function(){openTrack()},400);
+
+ /* ---- Your orders (email + phone) ---- */
+ function openOrders(e){if(e)e.preventDefault();var d=$("dg");if(!d)return;d.className="";
+  d.innerHTML='<h3 style="font:500 26px \'Playfair Display\',Georgia,serif">Your orders</h3><p class="mut" style="margin-top:6px">Enter the email and phone number you ordered with.</p><form class="f" id="t5-of"><input id="t5-oe" type="email" placeholder="Email" required maxlength="200"><input id="t5-oph" type="tel" placeholder="Phone number" required pattern="[0-9+ ]{10,15}"><button class="pri" style="font-size:15px">View orders</button><button type="button" id="t5-ox">Close</button></form><div id="t5-ores"></div>';
+  $("t5-ox").onclick=function(){d.close()};
+  $("t5-of").onsubmit=function(ev){ev.preventDefault();var s=db(),res=$("t5-ores");if(!s)return say("Store is not connected yet");var b=ev.target.querySelector(".pri");b.disabled=true;res.innerHTML="";
+   s.rpc("my_orders",{em:$("t5-oe").value.trim(),ph:$("t5-oph").value.trim()}).then(function(r){b.disabled=false;
+    if(r.error)return say("Orders are not available right now. Please message us on WhatsApp.");
+    var L=r.data||[];if(!L.length){res.innerHTML='<p class="mut" style="margin-top:14px">No orders found for these details.</p>';return}
+    var fd=function(t){return t?new Date(t).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):""},S4=["pending","confirmed","shipped","delivered"];
+    res.innerHTML=L.map(function(o){var i=S4.indexOf(o.status);
+     var its=(o.items||[]).map(function(x){return E(x.n)+(x.v&&x.v!="Each"?" – "+E(x.v):"")+" × "+x.q}).join(", ");
+     return'<div style="margin-top:16px;padding-top:14px;border-top:1px solid #eee"><b>'+E(o.number)+'</b> · '+fd(o.placed)+' · '+inr(o.total)+'<p class="mut">'+its+'</p>'+(o.status=="cancelled"?'<p><b>Cancelled</b></p>':'<div class="t5-steps">'+S4.map(function(x,k){return'<span class="'+(k<=i?"on":"")+'">'+x+'</span>'}).join("")+'</div>')+(o.tracking?'<p class="mut">'+(o.courier?E(o.courier)+' · ':"")+'Tracking ID: <b>'+E(o.tracking)+'</b></p>':"")+'</div>'}).join("")},function(){b.disabled=false;say("Orders are not available right now. Please message us on WhatsApp.")})};
+  d.showModal()}
+ window.openOrders=openOrders;
  ["t5-tr1","t5-tr2"].forEach(function(id){var n=$(id);if(n)n.onclick=openTrack});
 
  /* ---- Recently viewed ---- */

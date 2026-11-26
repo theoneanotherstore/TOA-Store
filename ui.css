@@ -248,11 +248,71 @@ h2 {
   border-radius: 10px;
 }
 
-.cust {
-  border-color: #f1e4d8;
-  border-radius: 28px;
-  background: linear-gradient(150deg, #fff4e9, #fffaf5 62%, #fff);
-  box-shadow: 0 16px 44px rgba(48, 34, 22, .045);
+.shop-custom {
+  margin-bottom: 30px;
+  padding: 22px;
+  border: 1px solid #f1e4d8;
+  border-radius: 20px;
+  background: linear-gradient(150deg, #fff7ef, #fffdfb 75%);
+}
+
+.shop-custom__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.shop-custom__head .eyebrow {
+  margin-bottom: 5px;
+}
+
+.shop-custom__head h3 {
+  font: 500 clamp(23px, 3vw, 32px)/1.15 "Playfair Display", Georgia, serif;
+  letter-spacing: -.025em;
+}
+
+.shop-custom__head h3 .sf {
+  color: var(--o2);
+}
+
+.shop-custom__head p {
+  max-width: 38ch;
+  color: var(--mut);
+  font-size: 14px;
+}
+
+.shop-custom .cgrid {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.shop-custom .cc {
+  gap: 8px;
+  padding: 9px;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(48, 34, 22, .04);
+}
+
+.shop-custom .cc:hover {
+  transform: translateY(-3px);
+}
+
+.shop-custom .cc .art {
+  border-radius: 11px;
+}
+
+.shop-custom .cb {
+  padding: 2px 3px 4px;
+}
+
+.shop-custom .cb h3 {
+  font-size: 18px;
+}
+
+.shop-custom .cb p {
+  margin-bottom: 6px;
 }
 
 .cc,
@@ -587,6 +647,30 @@ dialog h2 {
 
   .brand {
     box-shadow: 0 16px 36px rgba(33, 27, 23, .12);
+  }
+
+  .shop-custom {
+    margin-bottom: 22px;
+    padding: 15px;
+    border-radius: 16px;
+  }
+
+  .shop-custom__head {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .shop-custom__head p {
+    margin-top: 5px;
+  }
+
+  .shop-custom .cgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .shop-custom .cb h3 {
+    font-size: 16px;
   }
 
   .k9-act,

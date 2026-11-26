@@ -105,7 +105,6 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-
 .sortbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:-10px 0 22px}
 .sortbar>div{display:flex;gap:10px;align-items:center}
 .sortbar select{width:auto;padding:8px 12px}
-.cust{background:linear-gradient(180deg,var(--peach),#fff);border:1px solid var(--ln);border-radius:32px;margin:0 3vw;padding:64px 2vw}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
 .cc{background:#fff;border:1px solid var(--ln);border-radius:22px;padding:12px;cursor:pointer;transition:transform .3s,box-shadow .3s;display:grid;gap:12px}
 .cc:hover{transform:translateY(-6px);box-shadow:0 26px 50px #ff6a001f}
@@ -234,7 +233,7 @@ section{padding:60px 5vw}
 .hero{padding-top:36px}.hero p{font-size:16px}
 .cta .btn{flex:1 1 40%;text-align:center}
 .trust{gap:14px}
-.cust,.brand{margin:0 2vw;padding:40px 4vw;border-radius:24px}
+.brand{margin:0 2vw;padding:40px 4vw;border-radius:24px}
 .hd{margin-bottom:22px}
 .chips{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:4px}
 .chip{white-space:nowrap}
@@ -340,9 +339,9 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="#top" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customization</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div><button id="cartBtn" aria-label="Cart"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
 <section class="hero"><div><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p><div class="cta"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Start customising</a></div><div class="trust"><span><b>5–7 days</b> delivery</span><span><b>Razorpay</b> secure payment</span><span><b>WhatsApp</b> photo check</span></div></div><div class="stack" id="stack" aria-hidden="true"></div></section>
 <section id="catnav" hidden style="padding-top:20px"><div class="hd"><div><span class="eyebrow">Browse</span><h2>Shop by <span class="sf" style="color:var(--o)">category</span></h2></div></div><div class="ctg" id="catg"></div></section>
-<section class="cust" id="custom" hidden><div class="hd"><div><span class="eyebrow">Customization</span><h2>Your photos, <span class="sf" style="color:var(--o)">printed.</span></h2></div><p>Turn your memories into something you can hold. Pick a product, add your photos, and we take care of the rest.</p></div><div class="cgrid" id="hubgrid"></div></section>
 <section id="featured" hidden><div class="hd"><div><span class="eyebrow">Featured</span><h2>Ready to <span class="sf" style="color:var(--o)">gift</span></h2></div><p>A few ready-made picks that ship straight away.</p></div><div class="grid" id="featg"></div></section>
 <section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div><div class="chips" id="chips"></div></div>
+<div class="shop-custom" id="custom" hidden aria-labelledby="custom-title"><div class="shop-custom__head"><div><span class="eyebrow">Customization</span><h3 id="custom-title">Your photos, <span class="sf">printed.</span></h3></div><p>Choose a product to create something from your own photos.</p></div><div class="cgrid" id="hubgrid"></div></div>
 <div class="sortbar"><span class="mut" id="cnt"></span><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
 <div id="grid"></div></section>
 <section class="brand" id="about"><div><span class="eyebrow" style="color:var(--o)">Our story</span><h2>Made from <span class="sf">your</span> moments</h2><p>theoneanother is a small print studio in Chennai. We turn the photos already on your phone into posters, stickers, polaroids and UNO decks, and we check every photo with you on WhatsApp before anything is printed.</p></div><div class="bst"><div><b>5–7</b><span>working days to your door</span></div><div><b>10</b><span>photos per custom product</span></div><div><b>Secure</b><span>payment by Razorpay</span></div><div><b>100%</b><span>photo check before printing</span></div></div></section>
@@ -407,7 +406,7 @@ function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$(
 const saved=p=>V.wl.includes(p.id);
 const card=p=>`<article class="pc"><div class="pw">${art(p)}<button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"♥":"♡"}</button></div><h3>${esc(p.name)}</h3><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"Add to cart"}</button></article>`;
 /* Category tiles near the top of the page */
-function catnav(cats){const hasC=S.P.filter(p=>p.cu),T=[];if(hasC.length)T.push({k:"custom",n:"Customization",c:hasC.length,a:art(hasC[0])});cats.forEach(x=>T.push({k:x.id??"",n:x.name,c:x.l.length,a:art(x.l[0])}));
+function catnav(cats){const T=[];cats.forEach(x=>T.push({k:x.id??"",n:x.name,c:x.l.length,a:art(x.l[0])}));
  $("catnav").hidden=T.length<2;$("catg").innerHTML=T.map(t=>`<a class="ct" href="#" data-k="${t.k}">${t.a}<b>${esc(t.n)}</b><small>${t.c} ${t.c==1?"item":"items"}</small></a>`).join("")}
 /* Featured: the first in-stock ready-made products (hidden if fewer than two) */
 function feat(){const L=S.P.filter(p=>!p.cu&&!out(p)).slice(0,4);$("featured").hidden=L.length<2;$("featg").innerHTML=L.map(card).join("")}

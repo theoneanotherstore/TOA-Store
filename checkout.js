@@ -4,8 +4,8 @@
    Orders are still created by the existing place_order RPC, so the admin app needs no change.
 
    ============================ RAZORPAY PLACEHOLDER ============================
-   Razorpay is OFF until you finish the steps below. While RZP.enabled is false the
-   "Cards, net banking, wallets" option shows "Coming soon" and UPI/UTR keeps working.
+   Razorpay is the only payment method. Payments are verified automatically; there is no
+   manual verification. Deploy the Edge Functions in /supabase and paste your Key ID below.
 
    The page never sees card data: Razorpay's own window collects it.
    The secret key and the signature check MUST live on a server, never in this file.
@@ -29,7 +29,7 @@
    ============================================================================= */
 (function(){
  "use strict";
- const RZP={enabled:false,keyId:"rzp_test_REPLACE_ME",createFn:"create-razorpay-order",verifyFn:"verify-razorpay-payment"};
+ const RZP={enabled:true,keyId:"rzp_test_REPLACE_ME",createFn:"create-razorpay-order",verifyFn:"verify-razorpay-payment"};
 
  const $=i=>document.getElementById(i),E=s=>esc(s==null?"":s),money=n=>inr(n),say=m=>toast(m);
  const dg=$("dg");
@@ -39,7 +39,7 @@
  const LSK="toa-co";
  let saved=null;try{saved=JSON.parse(localStorage.getItem(LSK)||"null")}catch(e){}
  /* Checkout state lives here so closing and reopening the window does not lose what was typed */
- const K={step:0,method:"upi",amt:"",base:-1,busy:false,upSig:"",up:null,
+ const K={step:0,method:"rzp",amt:"",base:-1,busy:false,upSig:"",up:null,
   d:saved?{cn:saved.cn||"",ce:saved.ce||"",cp:saved.cp||""}:{}};
 
  const prod=id=>S.P.find(p=>p.id==id);
@@ -63,7 +63,7 @@
   "k-ba":v=>$("k-bill").checked||v.trim().length>=10?"":"Enter your billing address",
   "k-cu":v=>/^[A-Za-z0-9]{8,30}$/.test(v.trim())?"":"Enter the UPI transaction ID (8 to 30 letters or digits)"
  };
- const stepFields=s=>s==0?["cn","ce","cp"]:s==1?["k-h","k-s","k-c","k-st","k-pin","k-ba"]:(K.method=="upi"?["k-cu"]:[]);
+ const stepFields=s=>s==0?["cn","ce","cp"]:s==1?["k-h","k-s","k-c","k-st","k-pin","k-ba"]:[];
  function mark(id,msg){const el=$(id),er=$(id+"-er");if(!el)return;el.setAttribute("aria-invalid",msg?"true":"false");if(er)er.textContent=msg}
  function check(s,focus){let first=null;stepFields(s).forEach(id=>{const el=$(id);if(!el)return;const m=RULES[id](el.value);mark(id,m);if(m&&!first)first=el});
   if(s==2){const t=$("k-tc"),m=t&&!t.checked?"Please tick this box to continue":"";if($("k-tc-er"))$("k-tc-er").textContent=m;if(m&&!first)first=t}
@@ -108,10 +108,7 @@ ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomp
 <div class="k9-act"><button type="button" data-goto="0">← Back</button><button class="pri big" type="submit">Continue to payment</button></div></section>
 <section data-p="2" hidden><h3 tabindex="-1">Payment</h3><p class="mut">Total to pay <b>${money(s)}</b>. Shipping is free.</p>
 <div class="k9-pm" role="radiogroup" aria-label="Payment method">
-<label class="k9-opt"><input type="radio" name="k-pm" value="upi" checked><span><b>UPI, pay direct to us</b><small>Google Pay, PhonePe, Paytm or any UPI app. We verify your payment before printing.</small></span></label>
-<label class="k9-opt ${RZP.enabled?"":"off"}"><input type="radio" name="k-pm" value="rzp" ${RZP.enabled?"":"disabled"}><span><b>Cards, net banking, wallets<i class="k9-soon" ${RZP.enabled?"hidden":""}>Coming soon</i></b><small>Secure payment window by Razorpay. We never see or store your card details.</small></span></label></div>
-<div class="k9-box" id="k9-upi"><b>Pay by UPI</b><span class="mut">Pay exactly <b style="color:var(--o2)">₹${K.amt}</b> to <b>${E(S.set.upi)}</b>. The extra paise help us match your payment.</span><span><a class="btn" href="upi://pay?pa=${encodeURIComponent(S.set.upi)}&pn=theoneanother&am=${K.amt}&cu=INR">Open UPI app</a></span>
-${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="utr" autocomplete="off" maxlength="30"',"")}</div>
+<label class="k9-opt"><input type="radio" name="k-pm" value="rzp" checked><span><b>UPI, cards, net banking, wallets</b><small>Secure payment window by Razorpay. Your payment is confirmed automatically. We never see or store your card details.</small></span></label></div>
 <div class="k9-box" id="k9-rz" hidden><b>Pay on Razorpay</b><span class="mut">A secure Razorpay window opens to take your payment. Your order is created once it succeeds.</span></div>
 <div><label class="k9-chk"><input type="checkbox" id="k-tc"> <span>I understand custom products are non-refundable and non-returnable.</span></label><small class="k9-er" id="k-tc-er" role="alert"></small></div>
 <div class="k9-st" id="k9-st" role="status" aria-live="polite" hidden></div>
@@ -122,7 +119,7 @@ ${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="
   if(K.d["k-st"])$("k-st").value=K.d["k-st"];
   sync();pay();show(K.step);if(!dg.open)dg.showModal()}
 
- const pay=()=>{const b=$("k9-pay");if(!b)return;b.textContent=K.method=="rzp"?"Pay "+money(sub())+" securely":"Place order · "+money(sub());$("k9-upi").hidden=K.method!="upi";$("k9-rz").hidden=K.method!="rzp"};
+ const pay=()=>{const b=$("k9-pay");if(!b)return;b.textContent="Pay "+money(sub())+" securely";const z=$("k9-rz");if(z)z.hidden=false};
  function show(n){K.step=n;$("k9-sp").innerHTML=stepper();dg.querySelectorAll("[data-p]").forEach(p=>p.hidden=+p.dataset.p!=n);dg.scrollTop=0;const h=dg.querySelector(`[data-p="${n}"] h3`);if(h)h.focus({preventScroll:true})}
  function status(kind,html){const b=$("k9-st");if(!b)return;b.hidden=!kind;b.className="k9-st "+(kind||"");b.innerHTML=html||""}
 
@@ -133,7 +130,7 @@ ${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="
    const gt=t.closest("[data-goto]");if(gt&&!gt.disabled){status();show(+gt.dataset.goto);return}
    if(t.closest("[data-saved]")){const s=saved;$("k-h").value=s.h||"";$("k-s").value=s.s||"";$("k-c").value=s.c||"";$("k-st").value=s.st||"";$("k-pin").value=s.pin||"";$("k-lm").value=s.lm||"";sync();stepFields(1).forEach(i=>mark(i,""));return}
    if(t.closest("#k9-retry")){submit();return}
-   if(t.closest("#k9-upi-switch")){const r=dg.querySelector('input[value="upi"]');r.checked=true;K.method="upi";status();pay()}});
+   });
   $("k9-x").onclick=()=>dg.close();
   $("k9-f").addEventListener("submit",e=>{e.preventDefault();if(K.busy)return;if(K.step<2){if(check(K.step,true)){status();show(K.step+1)}}else submit()});
   root.addEventListener("input",e=>{const id=e.target.id;if(id&&$(id+"-er")&&e.target.getAttribute("aria-invalid")=="true"&&RULES[id]&&!RULES[id](e.target.value))mark(id,"");if(FIELDS.includes(id)){sync();clearTimeout(ckT);ckT=setTimeout(()=>saveCk(sub()),1500)}});
@@ -150,11 +147,10 @@ ${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="
   if(K.up&&K.upSig==sig)return K.up;
   const items=[];for(const i of C){const v=prod(i.pid).v[i.vi],paths=[];for(const f of i.raw){const path="uploads/"+crypto.randomUUID()+"/"+f.name.replace(/[^\w.\-]/g,"_"),u=await sb.storage.from("order-photos").upload(path,f);if(u.error)throw u.error;paths.push(path)}items.push({variant_id:v.id,qty:i.q,note:i.note||null,photos:paths})}
   K.up=items;K.upSig=sig;return items}
- async function placeUpi(items,c){const r=await sb.rpc("place_order",{p:{name:c.name,phone:c.phone,email:c.email,address:c.address,pay_amount:K.amt,utr:g("k-cu"),items}});if(r.error)throw r.error;return r.data}
  const loadRzp=()=>window.Razorpay?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement("script");s.src="https://checkout.razorpay.com/v1/checkout.js";s.onload=ok;s.onerror=()=>no(new Error("Could not load the payment window. Check your connection."));document.head.appendChild(s)});
  /* RAZORPAY PLACEHOLDER: needs the two Edge Functions described at the top of this file */
  async function placeRzp(items,c){
-  if(!RZP.enabled)throw new Error("Online payment is not switched on yet. Please pay by UPI.");
+  if(!RZP.enabled||/REPLACE_ME/.test(RZP.keyId))throw new Error("Online payment is not set up yet. Please message us on WhatsApp to order.");
   await loadRzp();
   const cr=await sb.functions.invoke(RZP.createFn,{body:{customer:c,items}});
   if(cr.error||!cr.data||!cr.data.order_id)throw new Error("Could not start the payment. Please try again.");
@@ -176,11 +172,11 @@ ${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="
    const total=sub();if(total<S.set.min)throw new Error("Minimum order is "+money(S.set.min));
    for(const i of C){const p=prod(i.pid);if(!p||i.q>p.v[i.vi].s)throw new Error("Stock changed, please review your cart")}
    const c=customer(),items=await uploadItems();
-   const id=K.method=="rzp"?await placeRzp(items,c):await placeUpi(items,c);
+   const id=await placeRzp(items,c);
    done(id,c,total)}
   catch(err){K.busy=false;b.disabled=false;fail(err)}}
  function fail(err){const m=E(err&&err.message||"Could not place your order");
-  status("fail",`<b>Order not completed</b><span>${m}</span>${K.method=="upi"?'<span>If you have already paid by UPI, please do not pay again. Message us on WhatsApp with your transaction ID and we will sort it out.</span>':""}<span class="row"><button type="button" class="pri" id="k9-retry">Try again</button>${K.method=="rzp"&&RZP.enabled?'<button type="button" id="k9-upi-switch">Pay by UPI instead</button>':""}<a class="btn" target="_blank" rel="noopener" href="${wa("Hi theoneanother, I had a problem placing my order on the website.")}">WhatsApp us</a></span>`);
+  status("fail",`<b>Order not completed</b><span>${m}</span><span>If money was deducted, please do not pay again. Message us on WhatsApp and we will sort it out.</span><span class="row"><button type="button" class="pri" id="k9-retry">Try again</button><a class="btn" target="_blank" rel="noopener" href="${wa("Hi theoneanother, I had a problem placing my order on the website.")}">WhatsApp us</a></span>`);
   loadData().then(shop).catch(()=>{})}
 
  /* ---------- order confirmation ---------- */
@@ -191,16 +187,16 @@ ${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="
   saved={cn:g("cn"),ce:g("ce"),cp:g("cp"),h:g("k-h"),s:g("k-s"),c:g("k-c"),st:g("k-st"),pin:g("k-pin"),lm:g("k-lm")};
   K.d={cn:saved.cn,ce:saved.ce,cp:saved.cp};K.step=0;K.busy=false;K.up=null;K.upSig="";K.base=-1;
   C=[];cartBtn();
-  const msg=`Hi theoneanother, I placed order ${id} on the website.${method=="upi"?` Paid ₹${amt} (UTR ${utr}).`:""}`;
+  const msg=`Hi theoneanother, I placed order ${id} on the website and paid online.`;
   dg.dataset.co=1;
-  dg.innerHTML=`<button class="x" id="k9-x" type="button" aria-label="Close">×</button><div class="k9-ok"><div class="k9-tick" aria-hidden="true">✓</div><h2 tabindex="-1" id="k9-h">Order placed</h2><p>Thank you, ${E(c.name.split(" ")[0])}! Your order number is <b style="color:var(--o2)">${E(id)}</b>.</p><p class="mut">Save this number to track your order.</p></div>
+  dg.innerHTML=`<button class="x" id="k9-x" type="button" aria-label="Close">×</button><div class="k9-ok"><div class="k9-tick" aria-hidden="true">✓</div><h2 tabindex="-1" id="k9-h">Order placed</h2><p>Thank you, ${E(c.name.split(" ")[0])}! Your order number is <b style="color:var(--o2)">${E(id)}</b>.</p><p class="mut">Your payment is confirmed. Track your order any time from <b>Orders</b> in the menu, using this order ID and your payment ID or tracking ID. We will also send every update on WhatsApp or email.</p></div>
 <div class="k9-two"><div class="k9-card"><h4>Your items</h4>${snap.map(x=>`<div class="c8-row"><span>${E(x.n)} · ${E(x.v)} × ${x.q}${x.cu?` <span class="mut">(${x.u?"2 PDFs":x.f+" photo"+(x.f==1?"":"s")})</span>`:""}</span><b>${money(x.t)}</b></div>`).join("")}<div class="c8-row"><span>Shipping</span><b class="c8-free">Free</b></div><div class="c8-row c8-tot"><span>Total</span><b>${money(total)}</b></div><p class="mut">${method=="upi"?`Payment: UPI ₹${amt}, waiting for our verification`:"Payment: Razorpay"}</p></div>
 <div class="k9-card"><h4>Delivery</h4><div style="white-space:pre-line">${E(c.name)}\n${E(c.address)}\nPhone: ${E(c.phone)}</div><p><b>Estimated delivery:</b> ${when}<br><span class="mut">Counted from when we confirm your photos and payment.</span></p></div></div>
 <div class="k9-card"><h4>What happens next</h4><ol class="k9-ol"><li>We verify your payment.</li><li>We check your photos with you on WhatsApp before printing.</li><li>We print, pack and ship. Delivery in 5 to 7 working days.</li></ol></div>
-<div class="k9-btns"><a class="btn pri" target="_blank" rel="noopener" href="${wa(msg)}">Message us on WhatsApp</a>${$("t5-tr1")?'<button type="button" id="k9-tr">Track my order</button>':""}<button type="button" id="k9-cs">Continue shopping</button></div>`;
+<div class="k9-btns"><a class="btn pri" target="_blank" rel="noopener" href="${wa(msg)}">Message us on WhatsApp</a><button type="button" id="k9-tr">Track my order</button><button type="button" id="k9-cs">Continue shopping</button></div>`;
   $("k9-x").onclick=()=>dg.close();
   $("k9-cs").onclick=()=>{dg.close();const s=$("shopgrid");if(s)s.scrollIntoView({behavior:"smooth"})};
-  if($("k9-tr"))$("k9-tr").onclick=()=>$("t5-tr1").click();
+  if($("k9-tr"))$("k9-tr").onclick=()=>{if(typeof window.openTrack=="function")window.openTrack()};
   dg.scrollTop=0;$("k9-h").focus({preventScroll:true});
   loadData().then(shop).catch(()=>{})}
 

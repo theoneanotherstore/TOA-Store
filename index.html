@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="theoneanother: custom posters, stickers, polaroids and UNO cards printed from your own photos. Delivered across India in 5–7 working days.">
 <meta name="theme-color" content="#ffffff">
+<meta name="format-detection" content="telephone=yes">
 <meta property="og:title" content="theoneanother – The one you never were">
 <meta property="og:description" content="Custom posters, stickers, polaroids and UNO cards printed from your photos.">
 <meta property="og:type" content="website">
@@ -228,13 +229,89 @@ dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
 .pd{grid-template-columns:1fr}.buybar{bottom:-16px;margin-inline:-16px;padding:12px 16px}.pp{font-size:26px}
 .fg{grid-template-columns:1fr}
 footer{padding:44px 5vw 28px}}
+/* Section 6: mobile responsiveness */
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+html.lock,html:has(dialog[open]){overflow:hidden}
+button,.btn,summary,select,a{-webkit-tap-highlight-color:transparent}
+button,.btn,select,summary{touch-action:manipulation}
+.burger,.dov,.drawer{display:none}
+.zm{touch-action:pan-y}.zm.z{touch-action:none}
+.gt{scroll-snap-type:x proximity;scrollbar-width:none}.gt::-webkit-scrollbar{display:none}.gt button{scroll-snap-align:start}
+@media(hover:none){
+button:hover,.btn:hover{transform:none}
+.pc:hover,.cc:hover,.ct:hover{transform:none;box-shadow:none}
+.pc:hover .art img{transform:none}
+.pc:hover .art i,.cc:hover .art i{rotate:-6deg}
+button:active,.btn:active{transform:scale(.97)}
+}
+@media(pointer:coarse){
+button,.btn,select,input:not([type=checkbox]){min-height:44px}
+summary{min-height:44px;align-items:center}
+.chip{min-height:40px}
+.pc .wl,.th button,.gt button,.dwx{min-height:0}
+.th button{width:30px;height:30px;font-size:17px}
+.qs button{min-width:46px}
+.ci button[data-r]{min-width:44px;min-height:44px}
+.x{width:44px;height:44px}
+}
+@keyframes sheet{from{transform:translateY(60px);opacity:0}}
+@media(max-width:700px){
+html{scroll-padding-top:16px}
+header.top{flex-wrap:nowrap;gap:8px;padding:6px 4vw;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+header.top.away{transform:translateY(-100%)}
+.burger{display:inline-grid;place-items:center;flex:none;width:44px;height:44px;min-height:0;padding:0;border:0;border-radius:12px;margin-left:-10px}
+.burger:active{background:var(--peach)}
+.nbs,.mm{display:none}
+.logo{font-size:20px}
+#cartBtn{order:0;margin-left:auto;min-height:44px;padding:0 16px;font-size:15px}
+section{padding:52px 5vw}
+.hero{padding-top:24px;gap:20px}
+.stack{height:min(76vw,300px)}
+.stack>:nth-child(1){left:0;top:10%;width:44%}
+.stack>:nth-child(2){right:0;top:0;width:42%}
+.stack>:nth-child(3){left:29%;bottom:0;width:40%}
+.cta .btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center}
+.sortbar{margin:0 0 16px}
+.sortbar select{min-height:44px}
+.chips{padding-right:28px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+.chips::-webkit-scrollbar{display:none}
+.chip{scroll-snap-align:start}
+.pc .row .tag:not(.out){display:none}
+.pc .wl{width:40px;height:40px;right:8px;top:8px}
+.pc button.blk{min-height:44px}
+.rg{grid-template-columns:repeat(2,minmax(0,1fr))}
+dialog{inset:auto 0 0 0;margin:0;transform:none;width:100%;max-width:100%;max-height:92dvh;border-radius:22px 22px 0 0;border-width:1px 0 0;padding:18px 16px 16px;overscroll-behavior:contain;animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
+dialog,dialog.wide{width:100%}
+.pd{display:flex;flex-direction:column}.pd>div:nth-child(2){display:contents}.pd .gal{margin-bottom:18px}.pd .qs{align-self:flex-start}.pd .buybar{order:99}
+dialog.wide{height:100dvh;max-height:100dvh;border-radius:0;border:0;padding-top:calc(18px + env(safe-area-inset-top,0px))}
+dialog .x{position:sticky;top:6px;right:auto;display:block;margin:-6px 0 -44px auto;background:#fff;box-shadow:0 4px 14px #17120e2e;z-index:6}
+.buybar{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.bld .buy{position:sticky;bottom:-16px;background:#fff;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--ln);z-index:3}
+footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+.dov{display:block;position:fixed;inset:0;z-index:70;background:#17120e8c;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .28s}
+.dov.show{opacity:1}
+.drawer{display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;width:min(88vw,360px);background:#fff;z-index:71;visibility:hidden;transform:translateX(-104%);transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s;box-shadow:0 0 60px #17120e40;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);overscroll-behavior:contain}
+.drawer.open{visibility:visible;transform:none;transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.dwh{display:flex;align-items:center;justify-content:space-between;flex:none;padding:8px 10px 8px 20px;border-bottom:1px solid var(--ln)}
+.dwlogo{font-weight:700;font-size:21px;letter-spacing:-.05em}
+.dwx{width:44px;height:44px;padding:0;border-radius:50%;font-size:24px;line-height:1;border-color:var(--ln)}
+.dwn{flex:1;overflow-y:auto;padding:4px 0 28px}
+.dwn h5{font:700 11px Roboto;letter-spacing:.16em;text-transform:uppercase;color:var(--o2);padding:20px 20px 6px}
+.dwl{display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 20px;font-size:17px;font-weight:500}
+.dwl small{margin-left:auto;color:var(--mut);font-weight:400;font-size:13px}
+.dwl:active{background:var(--peach)}
+.dwl .ic{width:18px;height:18px;color:var(--mut);flex:none}
+.dwl small+.ic{margin-left:0}.dwl span+.ic{margin-left:auto}
+.dwc{display:grid;gap:10px;padding:22px 20px 0}
+.dwc .btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+}
 </style>
 <link rel="stylesheet" href="animations.css">
 <link rel="stylesheet" href="trust.css">
 </head>
 <body>
 <div class="band"><div id="band"></div></div>
-<header class="top" id="top"><a class="logo" href="#top" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customization</button></div><button id="cartBtn" aria-label="Cart"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
+<header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="#top" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customization</button></div><button id="cartBtn" aria-label="Cart"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
 <section class="hero"><div><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p><div class="cta"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Start customising</a></div><div class="trust"><span><b>5–7 days</b> delivery</span><span><b>UPI</b> direct payment</span><span><b>WhatsApp</b> photo check</span></div></div><div class="stack" id="stack" aria-hidden="true"></div></section>
 <section id="catnav" hidden style="padding-top:20px"><div class="hd"><div><span class="eyebrow">Browse</span><h2>Shop by <span class="sf" style="color:var(--o)">category</span></h2></div></div><div class="ctg" id="catg"></div></section>
 <section class="cust" id="custom" hidden><div class="hd"><div><span class="eyebrow">Customization</span><h2>Your photos, <span class="sf" style="color:var(--o)">printed.</span></h2></div><p>Turn your memories into something you can hold. Pick a product, add your photos, and we take care of the rest.</p></div><div class="cgrid" id="hubgrid"></div></section>
@@ -256,6 +333,8 @@ footer{padding:44px 5vw 28px}}
 <div class="fl"><h4>Help</h4><a href="#how">How it works</a><a href="#faq">Questions</a><a href="https://wa.me/917397193050" target="_blank" rel="noopener">WhatsApp support</a></div>
 <div><h4>Contact</h4><p>15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com<br>+91 73971 93050</p><p style="margin-top:10px">Custom products are non-refundable and non-returnable. Minimum order ₹249. Lead time 5–7 working days.</p></div></div>
 <div class="fb"><span>© theoneanother</span><a href="#top">Back to top ↑</a></div></footer>
+<div class="dov" id="dov" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" inert><div class="dwh"><span class="dwlogo">theoneanother</span><button type="button" class="dwx" id="dwx" aria-label="Close menu">×</button></div><nav class="dwn" id="dwn" aria-label="Mobile"></nav></aside>
 <dialog id="dg"></dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
@@ -281,7 +360,7 @@ const saveCk=tot=>{if(!sb)return;const g=i=>$(i)?$(i).value.trim():"";if(g("cp")
 /* Messages appear in the centre of the screen */
 const toast=t=>{const d=document.createElement("div");d.className="toast";d.setAttribute("role","status");d.setAttribute("popover","manual");d.textContent=t;document.body.append(d);try{d.showPopover()}catch(e){}setTimeout(()=>{try{d.hidePopover()}catch(e){}d.remove()},3200)};
 const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
-const art=p=>p.img?`<div class="art" style="background:#f6efe8"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy"></div>`:`<div class="art ${p.t}" style="--a:${p.c[0]};--b:${p.c[1]}"><i></i></div>`;
+const art=(p,e)=>p.img?`<div class="art" style="background:#f6efe8"><img src="${esc(p.img)}" alt="${esc(p.name)}" ${e?'fetchpriority="high"':'loading="lazy"'} decoding="async"></div>`:`<div class="art ${p.t}" style="--a:${p.c[0]};--b:${p.c[1]}"><i></i></div>`;
 const out=p=>p.v.every(v=>v.s<=0),from=p=>inr(Math.min(...p.v.map(v=>v.p))),minP=p=>Math.min(...p.v.map(v=>v.p));
 let C=[],dg=$("dg"),cur=null,F=[],urls=[];
 /* Listing state: category filter, how many cards are shown, and the saved wishlist (kept in this browser only) */
@@ -291,7 +370,7 @@ $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$(
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
 const secs=()=>[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>!p.cu&&(p.cat||null)===c.id)})).filter(x=>x.l.length);
-function hero(){const L=[...S.P.filter(p=>p.cu),...S.P].filter((p,i,a)=>a.indexOf(p)==i).slice(0,3),ph=[{t:"poster",c:CL.poster},{t:"polaroid",c:CL.polaroid},{t:"sticker",c:CL.sticker}];$("stack").innerHTML=(L.length==3?L:ph).map(p=>art(p)).join("")}
+function hero(){const L=[...S.P.filter(p=>p.cu),...S.P].filter((p,i,a)=>a.indexOf(p)==i).slice(0,3),ph=[{t:"poster",c:CL.poster},{t:"polaroid",c:CL.polaroid},{t:"sticker",c:CL.sticker}];$("stack").innerHTML=(L.length==3?L:ph).map(p=>art(p,1)).join("")}
 function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
 const saved=p=>V.wl.includes(p.id);
 const card=p=>`<article class="pc"><div class="pw">${art(p)}<button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"♥":"♡"}</button></div><h3>${esc(p.name)}</h3><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"Add to cart"}</button></article>`;
@@ -308,10 +387,10 @@ function listed(){let l=S.P.filter(p=>!p.cu);
  if(V.cat=="wish")l=l.filter(saved);else if(V.cat!="all")l=l.filter(p=>String(p.cat||"")==V.cat);
  const f={new:(a,b)=>b.id-a.id,low:(a,b)=>minP(a)-minP(b),high:(a,b)=>minP(b)-minP(a),name:(a,b)=>a.name.localeCompare(b.name)}[$("sort").value]||((a,b)=>b.id-a.id);
  return l.sort(f)}
-function cards(){const l=listed(),sh=l.slice(0,V.n);
+function cards(keep){const l=listed(),sh=l.slice(0,V.n);
  $("cnt").textContent=l.length?"Showing "+sh.length+" of "+l.length+(l.length==1?" product":" products"):"";
- $("grid").innerHTML=sh.length?`<div class="grid">${sh.map(card).join("")}</div>${l.length>sh.length?`<p style="text-align:center;margin-top:28px"><button id="more">Load more (${l.length-sh.length} left)</button></p>`:""}`:`<p class="mut">${V.cat=="wish"?"No saved products yet. Tap the heart on any product to save it here.":S.P.some(p=>!p.cu)?"No products in this category yet.":"Ready-made products are coming soon."}</p>`;reveal()}
-function chipsUI(){const hasC=S.P.some(p=>p.cu),on=k=>V.cat==k?" on":"";
+ $("grid").innerHTML=sh.length?`<div class="grid">${sh.map(card).join("")}</div>${l.length>sh.length?`<p style="text-align:center;margin-top:28px"><button id="more">Load more (${l.length-sh.length} left)</button></p>`:""}`:`<p class="mut">${V.cat=="wish"?"No saved products yet. Tap the heart on any product to save it here.":S.P.some(p=>!p.cu)?"No products in this category yet.":"Ready-made products are coming soon."}</p>`;if(keep)document.querySelectorAll("#grid .pc").forEach((c,i)=>{if(i<keep)c.classList.add("in")});reveal()}
+function chipsRender(){const hasC=S.P.some(p=>p.cu),on=k=>V.cat==k?" on":"";
  $("chips").innerHTML=(hasC?'<button class="chip" data-k="custom">Customization</button>':"")+`<button class="chip${on("all")}" data-f="all">All</button>`+secs().map(x=>`<button class="chip${on(String(x.id??""))}" data-f="${x.id??""}">${esc(x.name)}</button>`).join("")+`<button class="chip${on("wish")}" data-f="wish">♥ Saved (${V.wl.length})</button>`}
 function setCat(k,scroll){V.cat=String(k);V.n=12;chipsUI();cards();if(scroll)$("shopgrid").scrollIntoView({behavior:"smooth"})}
 function shop(){hero();hub();catnav(secs());feat();chipsUI();cards();reveal()}
@@ -320,7 +399,7 @@ $("chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.data
 $("catg").onclick=e=>{const a=e.target.closest("[data-k]");if(!a)return;e.preventDefault();a.dataset.k=="custom"?scrollTo_("custom"):setCat(a.dataset.k,true)};
 $("sort").onchange=()=>{V.n=12;cards()};
 const gridClick=e=>{const t=e.target.closest("button");if(!t)return;
- if(t.id=="more"){V.n+=12;cards();return}
+ if(t.id=="more"){const k=V.n;V.n+=12;cards(k);return}
  if(t.dataset.w){const id=+t.dataset.w,i=V.wl.indexOf(id);i>=0?V.wl.splice(i,1):V.wl.push(id);try{localStorage.setItem("toa-wl",JSON.stringify(V.wl))}catch(x){}
   feat();chipsUI();cards();reveal();toast(i>=0?"Removed from saved":"Saved to your wishlist");return}
  if(t.dataset.o)openP(+t.dataset.o)};
@@ -349,6 +428,9 @@ ${rel.length?`<div class="rel"><h4>You may also like</h4><div class="rg">${rel.m
   $("pa").disabled=v.s<=0;$("pa").textContent="Add to cart · "+inr(v.p*q)};
  const zm=$("zm"),gimg=$("gi");
  zm.onclick=()=>zm.classList.toggle("z");
+ let tx=0,ty=0;zm.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+ zm.addEventListener("touchmove",e=>{if(!zm.classList.contains("z")||!gimg)return;e.preventDefault();const t=e.touches[0],r=zm.getBoundingClientRect();gimg.style.transformOrigin=Math.min(100,Math.max(0,(t.clientX-r.left)/r.width*100))+"% "+Math.min(100,Math.max(0,(t.clientY-r.top)/r.height*100))+"%"},{passive:false});
+ zm.addEventListener("touchend",e=>{if(zm.classList.contains("z")||im.length<2)return;const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4)$("gt").children[(gi+(dx<0?1:-1)+im.length)%im.length].click()});
  zm.onmousemove=e=>{if(!gimg)return;const r=zm.getBoundingClientRect();gimg.style.transformOrigin=((e.clientX-r.left)/r.width*100)+"% "+((e.clientY-r.top)/r.height*100)+"%"};
  if($("gt"))$("gt").onclick=e=>{const b=e.target.closest("[data-g]");if(!b)return;gi=+b.dataset.g;zm.classList.remove("z");gimg.style.opacity=0;setTimeout(()=>{gimg.src=im[gi];gimg.style.opacity=1},200);$("gt").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x==b))};
  $("opts").onclick=e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;vi=+b.dataset.vi;q=1;dg.querySelectorAll(".opt").forEach(x=>x.classList.toggle("on",x==b));upd()};
@@ -409,6 +491,28 @@ hd.onmouseleave=()=>{mt=setTimeout(closeMM,220)};hd.onmouseenter=()=>clearTimeou
 document.addEventListener("click",e=>{if(!e.target.closest("header.top"))closeMM()});
 document.addEventListener("keydown",e=>{if(e.key=="Escape")closeMM()});
 mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.preventDefault();const[x,v]=a.dataset.a.split(":");closeMM();if(x=="go"){const el=$(v);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})}if(x=="c")setCat(v,true);if(x=="o")openP(+v);if(x=="b")openB(+v)}else closeMM()};
+/* Section 6: mobile navigation drawer, hide-on-scroll header, tap outside to close dialogs, filter-chip scroll memory */
+const dr=$("drawer"),dov=$("dov"),bg=$("burger"),DL=(a,t,s)=>`<a href="#" class="dwl" data-a="${a}"><span>${t}</span>${s?`<small>${s}</small>`:""}${ic("arr")}</a>`;
+function drawerHTML(){const cu=S.P.filter(p=>p.cu),cats=secs();
+ return `<h5>Explore</h5>${DL("go:shopgrid","Shop all")}${cu.length?DL("go:custom","Customization"):""}${DL("go:about","Our story")}${DL("go:how","How it works")}${DL("go:faq","Questions")}`
+ +(cats.length?`<h5>Shop by category</h5>${cats.map(x=>DL("c:"+(x.id??""),esc(x.name),x.l.length+(x.l.length==1?" item":" items"))).join("")}${DL("c:wish","♥ Saved",V.wl.length?String(V.wl.length):"")}`:"")
+ +(cu.length?`<h5>Customise</h5>${cu.map(p=>DL("b:"+p.id,esc(p.name),"from "+from(p))).join("")}`:"")
+ +`<div class="dwc"><a class="btn pri" target="_blank" rel="noopener" href="https://wa.me/${WA}">${ic("chat")} WhatsApp us</a><a class="btn" target="_blank" rel="noopener" href="${IG}">${ic("ig")} Instagram</a></div>`}
+function openDr(){hd.classList.remove("away");$("dwn").innerHTML=drawerHTML();dov.hidden=false;dr.inert=false;requestAnimationFrame(()=>requestAnimationFrame(()=>{dr.classList.add("open");dov.classList.add("show")}));document.documentElement.classList.add("lock");bg.setAttribute("aria-expanded","true");setTimeout(()=>$("dwx").focus(),60)}
+function closeDr(back){if(!dr.classList.contains("open"))return;dr.classList.remove("open");dov.classList.remove("show");dr.inert=true;document.documentElement.classList.remove("lock");bg.setAttribute("aria-expanded","false");setTimeout(()=>{if(!dr.classList.contains("open"))dov.hidden=true},300);if(back)bg.focus()}
+bg.onclick=openDr;$("dwx").onclick=()=>closeDr(true);dov.onclick=()=>closeDr(true);
+dr.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.preventDefault();const[x,v]=a.dataset.a.split(":");closeDr(false);setTimeout(()=>{if(x=="go"){const el=$(v);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})}if(x=="c")setCat(v,true);if(x=="o")openP(+v);if(x=="b")openB(+v)},30)}else closeDr(false)};
+dr.addEventListener("keydown",e=>{if(e.key!="Tab")return;const f=[...dr.querySelectorAll("a,button")].filter(x=>x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement==a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement==z){e.preventDefault();a.focus()}});
+document.addEventListener("keydown",e=>{if(e.key=="Escape")closeDr(true)});
+try{matchMedia("(min-width:701px)").addEventListener("change",e=>{if(e.matches)closeDr(false)})}catch(e){}
+/* The header slides away while scrolling down on phones and returns on any upward scroll, leaving more room for products */
+let ly=0,tk=false;const mob=matchMedia("(max-width:700px)");
+addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{const y=scrollY,d=y-ly;if(mob.matches&&!dr.classList.contains("open")){if(y>140&&d>8)hd.classList.add("away");else if(d<-8||y<=140)hd.classList.remove("away")}else hd.classList.remove("away");if(Math.abs(d)>8)ly=y;tk=false})},{passive:true});
+/* Tap outside a dialog to close it (ignored when a text selection drag ends outside) */
+const outside=e=>{const r=dg.getBoundingClientRect();return e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom};
+let bd=false;dg.addEventListener("pointerdown",e=>{bd=e.target===dg&&outside(e)});dg.addEventListener("click",e=>{if(bd&&e.target===dg&&outside(e))dg.close();bd=false});
+/* Filter chips keep their scroll position and bring the chosen chip into view */
+function chipsUI(){const c=$("chips"),sl=c.scrollLeft;chipsRender();c.scrollLeft=sl;const a=c.querySelector(".chip.on");if(a&&c.scrollWidth>c.clientWidth){const cr=c.getBoundingClientRect(),ar=a.getBoundingClientRect();if(ar.left<cr.left+12||ar.right>cr.right-12)c.scrollTo({left:c.scrollLeft+ar.left-cr.left-(cr.width-ar.width)/2,behavior:"smooth"})}}
 async function init(){band();cartBtn();hero();$("grid").innerHTML='<p class="mut">Loading…</p>';try{await loadData()}catch(e){$("grid").innerHTML='<p class="mut">The store could not load right now. Please try again shortly.</p>';return}band();shop()}
 init();
 </script>

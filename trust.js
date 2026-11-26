@@ -9,7 +9,7 @@
  var hero=document.querySelector(".hero"),shopgrid=$("shopgrid"),about=$("about"),faq=$("faq");
 
  /* 1. Trust strip under the hero */
- if(hero)hero.insertAdjacentHTML("afterend",'<section id="trustbar"><div class="t5-row"><span class="t5-chip">🔒 <b>Direct UPI payment</b></span><span class="t5-chip">✔ <b>Payment verified before printing</b></span><span class="t5-chip">📸 <b>Photos checked on WhatsApp</b></span><span class="t5-chip">🚚 <b>5–7 working days</b></span><button type="button" class="t5-chip" id="t5-tr1">Track your order</button></div></section>');
+ if(hero)hero.insertAdjacentHTML("afterend",'<section id="trustbar"><div class="t5-row"><span class="t5-chip">🔒 <b>Secure Razorpay payment</b></span><span class="t5-chip">✔ <b>Payment confirmed instantly</b></span><span class="t5-chip">📸 <b>Photos checked on WhatsApp</b></span><span class="t5-chip">🚚 <b>5–7 working days</b></span><button type="button" class="t5-chip" id="t5-tr1">Track your order</button></div></section>');
 
  /* 2. Recently viewed (under the shop) */
  if(shopgrid)shopgrid.insertAdjacentHTML("afterend",'<section class="t5s" id="t5-recent" hidden><div class="hd"><div><span class="eyebrow">Pick up where you left off</span><h2>Recently viewed</h2></div></div><div class="t5-rv" id="t5-rvg"></div></section>');
@@ -56,20 +56,21 @@
 
  /* ---- Order tracking ---- */
  function openTrack(e){if(e)e.preventDefault();var d=$("dg");if(!d)return;d.className="";
-  d.innerHTML='<h3 style="font:500 26px \'Playfair Display\',Georgia,serif">Track your order</h3><p class="mut" style="margin-top:6px">Enter the order number from your confirmation and the phone number you ordered with.</p><form class="f" id="t5-tf"><input id="t5-on" placeholder="Order number (e.g. TOA-1001)" required><input id="t5-op" type="tel" placeholder="Phone number" required pattern="[0-9+ ]{10,15}"><button class="pri" style="font-size:15px">Track order</button><button type="button" id="t5-x">Close</button></form><div id="t5-res"></div>';
+  d.innerHTML='<h3 style="font:500 26px \'Playfair Display\',Georgia,serif">Track your order</h3><p class="mut" style="margin-top:6px">Enter your order ID and the UTR, payment ID or tracking ID we sent you on WhatsApp or email.</p><form class="f" id="t5-tf"><input id="t5-on" placeholder="Order number (e.g. TOA-1001)" required><input id="t5-op" placeholder="UTR / payment ID / tracking ID" required minlength="6" maxlength="60" autocomplete="off"><button class="pri" style="font-size:15px">Track order</button><button type="button" id="t5-x">Close</button></form><div id="t5-res"></div>';
   $("t5-x").onclick=function(){d.close()};
   $("t5-tf").onsubmit=function(ev){ev.preventDefault();var s=db(),res=$("t5-res");if(!s)return say("Store is not connected yet");var b=ev.target.querySelector(".pri");b.disabled=true;res.innerHTML="";
-   s.rpc("track_order",{num:$("t5-on").value,ph:$("t5-op").value}).then(function(r){b.disabled=false;
+   s.rpc("track_order2",{num:$("t5-on").value.trim(),ref:$("t5-op").value.trim()}).then(function(r){b.disabled=false;
     if(r.error)return say("Tracking is not available right now. Please message us on WhatsApp.");
-    var o=r.data;if(!o){res.innerHTML='<p class="mut" style="margin-top:14px">We could not find that order. Check the order number and phone number, or message us on WhatsApp.</p>';return}
+    var o=r.data;if(!o){res.innerHTML='<p class="mut" style="margin-top:14px">We could not find that order. Check the order ID and your UTR, payment ID or tracking ID, or message us on WhatsApp.</p>';return}
     var fd=function(t){return t?new Date(t).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):""};
     var S4=["pending","confirmed","shipped","delivered"],i=S4.indexOf(o.status);
     var h='<h4 style="margin-top:18px;font-size:17px">'+E(o.number)+' · placed '+fd(o.placed)+'</h4>';
-    h+=o.status=="cancelled"?'<p style="margin-top:8px"><b>This order was cancelled.</b> Message us on WhatsApp if you have questions.</p>':'<div class="t5-steps">'+S4.map(function(x,k){return'<span class="'+(k<=i?"on":"")+'">'+x+'</span>'}).join("")+'</div><p class="mut">Payment: '+(o.paid?"verified":"waiting for our verification")+'</p>'+(o.shipped?'<p class="mut">Shipped '+fd(o.shipped)+'</p>':"")+(o.delivered?'<p class="mut">Delivered '+fd(o.delivered)+'</p>':"");
+    h+=o.status=="cancelled"?'<p style="margin-top:8px"><b>This order was cancelled.</b> Message us on WhatsApp if you have questions.</p>':'<div class="t5-steps">'+S4.map(function(x,k){return'<span class="'+(k<=i?"on":"")+'">'+x+'</span>'}).join("")+'</div><p class="mut">Payment: '+(o.paid?"received":"not received yet")+'</p>'+(o.shipped?'<p class="mut">Shipped '+fd(o.shipped)+'</p>':"")+(o.delivered?'<p class="mut">Delivered '+fd(o.delivered)+'</p>':"");
     if(o.courier||o.tracking)h+='<p style="margin-top:8px">'+(o.courier?'Courier: <b>'+E(o.courier)+'</b><br>':"")+(o.tracking?'Tracking number: <b>'+E(o.tracking)+'</b>':"")+'</p>';
     h+='<p style="margin-top:14px"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='+encodeURIComponent("Hi theoneanother, about my order "+o.number)+'">Message us on WhatsApp</a></p>';
     res.innerHTML=h},function(){b.disabled=false;say("Tracking is not available right now. Please message us on WhatsApp.")})};
   d.showModal()}
+ window.openTrack=openTrack;if(location.hash=="#orders")setTimeout(function(){openTrack()},400);
  ["t5-tr1","t5-tr2"].forEach(function(id){var n=$(id);if(n)n.onclick=openTrack});
 
  /* ---- Recently viewed ---- */

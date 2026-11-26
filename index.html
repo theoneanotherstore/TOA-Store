@@ -86,8 +86,6 @@ section{padding:96px 5vw}
 @keyframes rvu{from{translate:0 108%}}
 .hero p{max-width:46ch;color:var(--mut);font-size:18px;margin:24px 0 30px;font-weight:300}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
-.trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;color:var(--mut);font-size:13px;letter-spacing:.04em}
-.trust b{color:var(--ink);font-weight:500}
 .stack{position:relative;height:460px}
 .stack .art,.stack .im{position:absolute;box-shadow:0 26px 50px #17120e22;border-radius:18px;overflow:hidden;animation:drop .8s cubic-bezier(.2,1.2,.4,1) both}
 .stack>:nth-child(1){left:2%;top:8%;width:46%;rotate:-7deg}
@@ -232,7 +230,6 @@ header nav{display:contents}
 section{padding:60px 5vw}
 .hero{padding-top:36px}.hero p{font-size:16px}
 .cta .btn{flex:1 1 40%;text-align:center}
-.trust{gap:14px}
 .brand{margin:0 2vw;padding:40px 4vw;border-radius:24px}
 .hd{margin-bottom:22px}
 .chips{flex-wrap:nowrap;overflow-x:auto;max-width:100%;padding-bottom:4px}
@@ -336,8 +333,8 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 </head>
 <body>
 <div class="band"><div id="band"></div></div>
-<header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="#top" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customization</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div><button id="cartBtn" aria-label="Cart"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
-<section class="hero"><div><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p><div class="cta"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Start customising</a></div><div class="trust"><span><b>5–7 days</b> delivery</span><span><b>Razorpay</b> secure payment</span><span><b>WhatsApp</b> photo check</span></div></div><div class="stack" id="stack" aria-hidden="true"></div></section>
+<header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customization</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div><button id="cartBtn" aria-label="Cart"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
+<section class="hero"><div><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p><div class="cta"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Start customising</a></div></div><div class="stack" id="stack" aria-hidden="true"></div></section>
 <section id="catnav" hidden style="padding-top:20px"><div class="hd"><div><span class="eyebrow">Browse</span><h2>Shop by <span class="sf" style="color:var(--o)">category</span></h2></div></div><div class="ctg" id="catg"></div></section>
 <section id="featured" hidden><div class="hd"><div><span class="eyebrow">Featured</span><h2>Ready to <span class="sf" style="color:var(--o)">gift</span></h2></div><p>A few ready-made picks that ship straight away.</p></div><div class="grid" id="featg"></div></section>
 <section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div><div class="chips" id="chips"></div></div>
@@ -354,13 +351,13 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <details><summary>How do I track my order?</summary><p>Go to Orders in the navigation bar, then enter your order ID and the UTR, payment ID or tracking ID we sent you on WhatsApp or email. You can also choose Your orders and enter your email and phone number to see all your orders. We send every update on WhatsApp or email.</p></details>
 <details><summary>Is there a minimum order?</summary><p>Yes, the minimum order is ₹249.</p></details>
 </section>
-<footer id="contact"><div class="fg"><div><div class="logo" aria-label="theoneanother">theoneanother</div><p style="margin-top:8px">The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p class="cta" style="margin-top:14px"><a class="btn" id="waF" target="_blank" rel="noopener"></a><a class="btn" id="igF" target="_blank" rel="noopener"></a></p></div>
+<footer id="contact"><div class="fg"><div><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><p style="margin-top:8px">The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p class="cta" style="margin-top:14px"><a class="btn" id="waF" target="_blank" rel="noopener"></a><a class="btn" id="igF" target="_blank" rel="noopener"></a></p></div>
 <div class="fl"><h4>Shop</h4><a href="#custom">Customization</a><a href="#shopgrid">Ready-made</a><a href="#featured">Featured</a><a href="#about">Our story</a></div>
 <div class="fl"><h4>Help</h4><a href="#how">How it works</a><a href="#faq">Questions</a><a href="https://wa.me/917397193050" target="_blank" rel="noopener">WhatsApp support</a></div>
 <div><h4>Contact</h4><p>15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com<br>+91 73971 93050</p><p style="margin-top:10px">Custom products are non-refundable and non-returnable. Minimum order ₹249. Lead time 5–7 working days.</p></div></div>
 <div class="fb"><span>© theoneanother</span><a href="#top">Back to top ↑</a></div></footer>
 <div class="dov" id="dov" hidden></div>
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" inert><div class="dwh"><span class="dwlogo">theoneanother</span><button type="button" class="dwx" id="dwx" aria-label="Close menu">×</button></div><nav class="dwn" id="dwn" aria-label="Mobile"></nav></aside>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" inert><div class="dwh"><a class="dwlogo" href="index.html">theoneanother</a><button type="button" class="dwx" id="dwx" aria-label="Close menu">×</button></div><nav class="dwn" id="dwn" aria-label="Mobile"></nav></aside>
 <dialog id="dg"></dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>

@@ -1,0 +1,30 @@
+/* Section 4: animations and interactions. Load AFTER the main <style> block.
+   Section 7 changes: removed the page-load fade (delayed LCP) and the animated band gradient (repainted every frame). */
+
+/* Scroll-triggered reveal (class added by animations.js) */
+.sr{opacity:0}
+.sr.in2{animation:srIn .75s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--sd,0ms)}
+@keyframes srIn{from{opacity:0;translate:0 28px}to{opacity:1;translate:0 0}}
+
+/* Button hover and click micro-interactions */
+button:not(:disabled):active,.btn:active{transform:scale(.95);transition-duration:.08s}
+.pri{background-size:200% 100%;transition:transform .2s,box-shadow .2s,background-position .4s}
+.pri:hover{background-position:100% 0;box-shadow:0 14px 32px #ff6a004d}
+
+/* Subtle gradient movement: brand section (translate and scale only, so no repaint) */
+.brand{position:relative;overflow:hidden}
+.brand::before{content:"";position:absolute;width:520px;height:520px;right:-140px;top:-180px;background:radial-gradient(circle,#ff6a0059,transparent 65%);animation:drift 14s ease-in-out infinite alternate;pointer-events:none}
+.brand>*{position:relative}
+@keyframes drift{to{translate:-160px 120px;scale:1.25}}
+
+/* Animated cart icon: wiggles and pops when something is added */
+#cartBtn.bump{animation:cpop .5s cubic-bezier(.3,1.6,.5,1)}
+#cartBtn.bump .ic{animation:cwig .6s ease}
+@keyframes cpop{40%{transform:scale(1.14)}}
+@keyframes cwig{20%{rotate:-16deg}45%{rotate:13deg}70%{rotate:-6deg}}
+
+/* Back-to-top button */
+#toTop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:46px;height:46px;padding:0;border:0;border-radius:50%;background:var(--g);color:#17120e;font-size:20px;font-weight:700;line-height:1;box-shadow:0 10px 26px #ff6a0055;z-index:35;opacity:0;translate:0 16px;pointer-events:none;transition:opacity .3s,translate .3s,transform .2s}
+#toTop.show{opacity:1;translate:0 0;pointer-events:auto}
+
+@media(prefers-reduced-motion:reduce){.sr{opacity:1}#toTop{transition:none}}

@@ -9,11 +9,31 @@
 <meta property="og:title" content="theoneanother – The one you never were">
 <meta property="og:description" content="Custom posters, stickers, polaroids and UNO cards printed from your photos.">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://YOUR-DOMAIN/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
+<meta property="og:site_name" content="theoneanother">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://YOUR-DOMAIN/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[
+{"@type":"Store","name":"theoneanother","url":"https://YOUR-DOMAIN/","logo":"https://YOUR-DOMAIN/apple-touch-icon.png","email":"theoneanotherstore@gmail.com","telephone":"+917397193050","sameAs":["https://www.instagram.com/theoneanother.in"],"areaServed":"IN","address":{"@type":"PostalAddress","streetAddress":"15/1/2, Kattabomman Main Street, Kodungaiyur","addressLocality":"Chennai","postalCode":"600118","addressCountry":"IN"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How does ordering work?","acceptedAnswer":{"@type":"Answer","text":"Pick a product and size, upload your photos if it is a Customization product, add a short note if you like, and pay by UPI. We check your photos with you on WhatsApp before printing."}},
+{"@type":"Question","name":"Which photos can I upload?","acceptedAnswer":{"@type":"Answer","text":"JPG, JPEG, PNG, WebP or PDF files, up to 10 per product and 50 MB each."}},
+{"@type":"Question","name":"How long does delivery take?","acceptedAnswer":{"@type":"Answer","text":"Custom orders are printed and delivered in 5–7 working days after we confirm your photos and payment."}},
+{"@type":"Question","name":"Can I return or cancel a custom order?","acceptedAnswer":{"@type":"Answer","text":"Custom products are non-refundable and non-returnable. If something arrives damaged or wrong, message us on WhatsApp straight away."}},
+{"@type":"Question","name":"Is there a minimum order?","acceptedAnswer":{"@type":"Answer","text":"Yes, the minimum order is ₹249."}}]}]}</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317120e'/%3E%3Crect x='10' y='22' width='44' height='13' rx='4' fill='%23ff6a00'/%3E%3Crect x='22' y='7' width='15' height='40' rx='5' fill='%23ff6a00'/%3E%3Cpath d='M29 47c0 8 6 10 16 8' fill='none' stroke='%23ff6a00' stroke-width='13' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>theoneanother – The one you never were</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://eymxrutbkbtglynynokb.supabase.co" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Roboto:wght@300;400;500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Roboto:wght@300;400;500;700;900&display=swap"></noscript>
 <style>
 :root{--bg:#fff;--ink:#17120e;--mut:#6f665e;--ln:#f0e8df;--o:#ff6a00;--o2:#e85d04;--peach:#fff5ec;--g:linear-gradient(135deg,#ff8a1f,#ff5a00);color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0}
@@ -229,6 +249,8 @@ dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
 .pd{grid-template-columns:1fr}.buybar{bottom:-16px;margin-inline:-16px;padding:12px 16px}.pp{font-size:26px}
 .fg{grid-template-columns:1fr}
 footer{padding:44px 5vw 28px}}
+/* Section 7: skip rendering work for below-the-fold sections */
+#about,#how,#faq,#policies,#reviews,footer{content-visibility:auto;contain-intrinsic-size:auto 560px}
 /* Section 6: mobile responsiveness */
 html{-webkit-text-size-adjust:100%;overflow-x:clip}
 html.lock,html:has(dialog[open]){overflow:hidden}
@@ -346,12 +368,12 @@ const CFG={url:"https://eymxrutbkbtglynynokb.supabase.co",key:"sb_publishable_wy
 const sb=CFG.url.includes("YOUR-")?null:supabase.createClient(CFG.url,CFG.key);
 const CL={poster:["#ffc58f","#ff6a00"],sticker:["#fff0e0","#ff8a1f"],polaroid:["#fde5cf","#f2a65a"],uno:["#ff7a18","#17120e"]};
 let S={set:{band:"",upi:"",min:249},P:[],C:[]};
-async function loadData(){if(!sb)throw new Error("Store is not connected yet");const[p,c,t]=await Promise.all([sb.from("products").select("id,name,type,image,category_id,customizable,variants(id,name,price,stock)").order("id"),sb.from("categories").select("*").order("position").order("id"),sb.from("settings").select("*")]);if(p.error||c.error||t.error)throw(p.error||c.error||t.error);
+async function loadData(){if(!sb)throw new Error("Store is not connected yet");const[p,c,t,x]=await Promise.all([sb.from("products").select("id,name,type,image,category_id,customizable,variants(id,name,price,stock)").order("id"),sb.from("categories").select("*").order("position").order("id"),sb.from("settings").select("*"),sb.from("products").select("id,description,images").then(r=>r,()=>({error:1}))]);if(p.error||c.error||t.error)throw(p.error||c.error||t.error);
  S.C=c.data;const cn=id=>((S.C.find(x=>x.id==id)||{}).name||"").toLowerCase(),shape=n=>n.includes("sticker")?"sticker":n.includes("polaroid")?"polaroid":n.includes("uno")?"uno":"poster";
  S.P=p.data.map(x=>{const sh=x.type&&CL[x.type]?x.type:shape(cn(x.category_id));return{id:x.id,name:x.name,cat:x.category_id,cu:!!x.customizable,t:sh,c:CL[sh],img:x.image?sb.storage.from("product-images").getPublicUrl(x.image).data.publicUrl:"",v:x.variants.sort((a,b)=>a.id-b.id).map(v=>({id:v.id,n:v.name,p:v.price,s:v.stock}))}}).filter(x=>x.v.length);
  const m={};t.data.forEach(r=>m[r.key]=r.value);S.set={band:m.band||"",bf:m.band_from||"",bt:m.band_to||"",upi:m.upi||"",min:+m.min_order||249};
- /* Optional product detail fields (description, extra images). Separate query so missing columns never break the shop. */
- try{const x=await sb.from("products").select("id,description,images");if(!x.error)x.data.forEach(r=>{const p=S.P.find(y=>y.id==r.id);if(p){p.desc=r.description||"";p.imgs=(r.images||[]).map(k=>sb.storage.from("product-images").getPublicUrl(k).data.publicUrl)}})}catch(e){}}
+ /* Optional product detail fields (description, extra images), fetched in parallel above so missing columns never break the shop or slow it down. */
+ if(x&&!x.error&&x.data)x.data.forEach(r=>{const p=S.P.find(y=>y.id==r.id);if(p){p.desc=r.description||"";p.imgs=(r.images||[]).map(k=>sb.storage.from("product-images").getPublicUrl(k).data.publicUrl)}});}
 /* Failed-checkout tracking: once a phone number is entered at checkout, the cart and contact details are saved so the shop can follow up if payment is never completed. */
 const ckTok=()=>{try{let t=localStorage.getItem("toa-ck");if(!t){t=crypto.randomUUID();localStorage.setItem("toa-ck",t)}return t}catch(e){return window.__ck||(window.__ck=crypto.randomUUID())}};
 const ckReset=()=>{try{localStorage.removeItem("toa-ck")}catch(e){}window.__ck=null};
@@ -360,7 +382,12 @@ const saveCk=tot=>{if(!sb)return;const g=i=>$(i)?$(i).value.trim():"";if(g("cp")
 /* Messages appear in the centre of the screen */
 const toast=t=>{const d=document.createElement("div");d.className="toast";d.setAttribute("role","status");d.setAttribute("popover","manual");d.textContent=t;document.body.append(d);try{d.showPopover()}catch(e){}setTimeout(()=>{try{d.hidePopover()}catch(e){}d.remove()},3200)};
 const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
-const art=(p,e)=>p.img?`<div class="art" style="background:#f6efe8"><img src="${esc(p.img)}" alt="${esc(p.name)}" ${e?'fetchpriority="high"':'loading="lazy"'} decoding="async"></div>`:`<div class="art ${p.t}" style="--a:${p.c[0]};--b:${p.c[1]}"><i></i></div>`;
+/* Section 7: optimised images. Supabase resizes on the fly (Pro plan); if that is not available the original loads instead, and a broken image is hidden. */
+const SO="/storage/v1/object/public/",SR="/storage/v1/render/image/public/";
+const tu=(u,w)=>u.includes(SO)?u.replace(SO,SR)+"?width="+w+"&quality=75":u;
+const ia=(u,w,s)=>`src="${esc(tu(u,w))}" srcset="${esc(tu(u,w))} ${w}w,${esc(tu(u,w*2))} ${w*2}w" sizes="${s}" data-o="${esc(u)}"`;
+addEventListener("error",e=>{const i=e.target;if(!i||i.tagName!="IMG")return;if(i.dataset.o&&!i.dataset.f){i.dataset.f=1;i.removeAttribute("srcset");i.src=i.dataset.o;return}i.style.visibility="hidden"},true);
+const art=(p,e)=>p.img?`<div class="art" style="background:#f6efe8"><img ${ia(p.img,e?600:400,e?"(max-width:700px) 44vw,40vw":"(max-width:700px) 46vw,260px")} alt="${esc(p.name)}" width="400" height="400" ${e?'fetchpriority="high"':'loading="lazy"'} decoding="async"></div>`:`<div class="art ${p.t}" style="--a:${p.c[0]};--b:${p.c[1]}"><i></i></div>`;
 const out=p=>p.v.every(v=>v.s<=0),from=p=>inr(Math.min(...p.v.map(v=>v.p))),minP=p=>Math.min(...p.v.map(v=>v.p));
 let C=[],dg=$("dg"),cur=null,F=[],urls=[];
 /* Listing state: category filter, how many cards are shown, and the saved wishlist (kept in this browser only) */
@@ -393,7 +420,7 @@ function cards(keep){const l=listed(),sh=l.slice(0,V.n);
 function chipsRender(){const hasC=S.P.some(p=>p.cu),on=k=>V.cat==k?" on":"";
  $("chips").innerHTML=(hasC?'<button class="chip" data-k="custom">Customization</button>':"")+`<button class="chip${on("all")}" data-f="all">All</button>`+secs().map(x=>`<button class="chip${on(String(x.id??""))}" data-f="${x.id??""}">${esc(x.name)}</button>`).join("")+`<button class="chip${on("wish")}" data-f="wish">♥ Saved (${V.wl.length})</button>`}
 function setCat(k,scroll){V.cat=String(k);V.n=12;chipsUI();cards();if(scroll)$("shopgrid").scrollIntoView({behavior:"smooth"})}
-function shop(){hero();hub();catnav(secs());feat();chipsUI();cards();reveal()}
+function shop(){hero();hub();catnav(secs());feat();chipsUI();cards();reveal();ldp()}
 const scrollTo_=k=>{const el=$(k);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
 $("chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.k=="custom")return scrollTo_("custom");if(b.dataset.f!=null)setCat(b.dataset.f,false)};
 $("catg").onclick=e=>{const a=e.target.closest("[data-k]");if(!a)return;e.preventDefault();a.dataset.k=="custom"?scrollTo_("custom"):setCat(a.dataset.k,true)};
@@ -408,14 +435,20 @@ const hubGo=e=>{const c=e.target.closest("[data-b]");if(c)openB(+c.dataset.b)};
 $("hubgrid").onclick=hubGo;$("hubgrid").onkeydown=e=>{if(e.key=="Enter")hubGo(e)};
 function cleanup(){urls.forEach(u=>URL.revokeObjectURL(u));urls=[]}
 dg.addEventListener("close",cleanup);
+/* Section 7: per-product page title and description while a product is open, and Product structured data for the whole catalogue */
+const T0=document.title,MD=document.querySelector('meta[name=description]'),D0=MD.content;
+const seo=p=>{document.title=p.name+" – theoneanother";MD.content=(p.desc||"Buy "+p.name+" from theoneanother, from "+from(p)+". Delivered across India in 5–7 working days.").slice(0,155)};
+dg.addEventListener("close",()=>{document.title=T0;MD.content=D0});
+function ldp(){let el=$("ldp");if(!el){el=document.createElement("script");el.type="application/ld+json";el.id="ldp";document.head.appendChild(el)}
+ el.textContent=JSON.stringify({"@context":"https://schema.org","@graph":S.P.map(p=>{const pr=p.v.map(v=>v.p);return{"@type":"Product",name:p.name,...(p.img?{image:[p.img]}:{}),description:p.desc||p.name+" by theoneanother",brand:{"@type":"Brand",name:"theoneanother"},offers:{"@type":"AggregateOffer",priceCurrency:"INR",lowPrice:Math.min(...pr),highPrice:Math.max(...pr),offerCount:pr.length,availability:"https://schema.org/"+(out(p)?"OutOfStock":"InStock")}}})})}
 /* Ready-made product detail: gallery with zoom, size, quantity, stock, delivery estimate, related products, sticky add to cart */
-function openP(id){cur=S.P.find(p=>p.id==id);cleanup();dg.className="wide";
+function openP(id){cur=S.P.find(p=>p.id==id);seo(cur);cleanup();dg.className="wide";
  let vi=Math.max(0,cur.v.findIndex(v=>v.s>0)),q=1,gi=0;
  const im=cur.imgs&&cur.imgs.length?cur.imgs:cur.img?[cur.img]:[],cat=(S.C.find(c=>c.id==cur.cat)||{}).name||"";
  const eta=()=>{const f=n=>{let d=new Date();while(n>0){d.setDate(d.getDate()+1);if(d.getDay()!=0)n--}return d},o={day:"numeric",month:"short"};return f(5).toLocaleDateString("en-IN",o)+" – "+f(7).toLocaleDateString("en-IN",o)};
  let rel=S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&x.cat==cur.cat);if(rel.length<4)rel=rel.concat(S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&!rel.includes(x))).slice(0,4);else rel=rel.slice(0,4);
  const desc=(cur.desc||"").split(/\n+/).filter(Boolean).map(l=>`<p>${esc(l)}</p>`).join("")||"<p>Ready-made, no photo upload needed.</p>";
- dg.innerHTML=`<button class="x" id="px" aria-label="Close">×</button><div class="pd"><div class="gal"><div class="zm" id="zm">${im.length?`<img id="gi" src="${esc(im[0])}" alt="${esc(cur.name)}">`:art(cur)}</div>${im.length>1?`<div class="gt" id="gt">${im.map((u,i)=>`<button type="button" class="${i==0?"on":""}" data-g="${i}" aria-label="Image ${i+1}"><img src="${esc(u)}" alt=""></button>`).join("")}</div>`:""}</div>
+ dg.innerHTML=`<button class="x" id="px" aria-label="Close">×</button><div class="pd"><div class="gal"><div class="zm" id="zm">${im.length?`<img id="gi" ${ia(im[0],900,"(max-width:700px) 92vw,480px")} alt="${esc(cur.name)}" width="900" height="900">`:art(cur)}</div>${im.length>1?`<div class="gt" id="gt">${im.map((u,i)=>`<button type="button" class="${i==0?"on":""}" data-g="${i}" aria-label="Image ${i+1}"><img src="${esc(tu(u,128))}" data-o="${esc(u)}" loading="lazy" alt="${esc(cur.name)} view ${i+1}"></button>`).join("")}</div>`:""}</div>
 <div><span class="eyebrow">${esc(cat||"Ready-made")}</span><h3 style="font:500 30px/1.1 'Playfair Display',Georgia,serif">${esc(cur.name)}</h3><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
 <span class="lb">Size</span><div class="opts" id="opts">${cur.v.map((v,i)=>`<button type="button" class="opt ${i==vi?"on":""}" data-vi="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)}<small>${inr(v.p)}${v.s<=0?" · sold out":""}</small></button>`).join("")}</div>
 <div class="eta">🚚 <span>Estimated delivery <b>${eta()}</b></span></div>
@@ -432,7 +465,7 @@ ${rel.length?`<div class="rel"><h4>You may also like</h4><div class="rg">${rel.m
  zm.addEventListener("touchmove",e=>{if(!zm.classList.contains("z")||!gimg)return;e.preventDefault();const t=e.touches[0],r=zm.getBoundingClientRect();gimg.style.transformOrigin=Math.min(100,Math.max(0,(t.clientX-r.left)/r.width*100))+"% "+Math.min(100,Math.max(0,(t.clientY-r.top)/r.height*100))+"%"},{passive:false});
  zm.addEventListener("touchend",e=>{if(zm.classList.contains("z")||im.length<2)return;const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4)$("gt").children[(gi+(dx<0?1:-1)+im.length)%im.length].click()});
  zm.onmousemove=e=>{if(!gimg)return;const r=zm.getBoundingClientRect();gimg.style.transformOrigin=((e.clientX-r.left)/r.width*100)+"% "+((e.clientY-r.top)/r.height*100)+"%"};
- if($("gt"))$("gt").onclick=e=>{const b=e.target.closest("[data-g]");if(!b)return;gi=+b.dataset.g;zm.classList.remove("z");gimg.style.opacity=0;setTimeout(()=>{gimg.src=im[gi];gimg.style.opacity=1},200);$("gt").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x==b))};
+ if($("gt"))$("gt").onclick=e=>{const b=e.target.closest("[data-g]");if(!b)return;gi=+b.dataset.g;zm.classList.remove("z");gimg.style.opacity=0;setTimeout(()=>{gimg.removeAttribute("srcset");gimg.dataset.f="";gimg.dataset.o=im[gi];gimg.src=tu(im[gi],900);gimg.style.opacity=1},200);$("gt").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x==b))};
  $("opts").onclick=e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;vi=+b.dataset.vi;q=1;dg.querySelectorAll(".opt").forEach(x=>x.classList.toggle("on",x==b));upd()};
  $("qm").onclick=()=>{q--;upd()};$("qp").onclick=()=>{q++;upd()};
  dg.querySelectorAll("[data-rp]").forEach(a=>a.onclick=()=>{openP(+a.dataset.rp);dg.scrollTo(0,0)});
@@ -440,7 +473,7 @@ ${rel.length?`<div class="rel"><h4>You may also like</h4><div class="rg">${rel.m
  $("pa").onclick=()=>{const v=cur.v[vi];if(!v||q>v.s)return toast("Only "+(v?v.s:0)+" in stock");C.push({pid:cur.id,vi,q,files:[],raw:[],note:""});cartBtn();dg.close();toast("Added to cart")};
  upd();if(!dg.open)dg.showModal()}
 /* Customization: size, photos and a note, in the style of a print studio */
-function openB(id){cur=S.P.find(p=>p.id==id);cleanup();F=[];const MAX=10;let vi=Math.max(0,cur.v.findIndex(v=>v.s>0));
+function openB(id){cur=S.P.find(p=>p.id==id);seo(cur);cleanup();F=[];const MAX=10;let vi=Math.max(0,cur.v.findIndex(v=>v.s>0));
  dg.className="wide";dg.innerHTML=`<button class="x" id="px" aria-label="Close">×</button><div class="bld"><div class="bl">${art(cur)}<ul class="how2"><li><b>1</b>Choose your size</li><li><b>2</b>Add your photos</li><li><b>3</b>We confirm on WhatsApp, then print</li></ul></div><div class="br"><span class="eyebrow">Customization</span><h3>${esc(cur.name)}</h3><p class="mut">Printed from your own photos and delivered in 5–7 working days.</p>
 <span class="lb">Size and pack</span><div class="opts" id="opts">${cur.v.map((v,i)=>`<button type="button" class="opt ${i==vi?"on":""}" data-vi="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)}<small>${inr(v.p)}${v.s<=0?" · sold out":""}</small></button>`).join("")}</div>
 <span class="lb">Your photos</span><label class="drop" for="pf">${ic("up")}<span>Tap to add your photos</span><small>JPG, JPEG, PNG, WebP or PDF · up to ${MAX} files · select many at once · 50 MB each</small></label><input id="pf" type="file" multiple accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf" hidden><div class="thumbs" id="th"></div><p class="mut" id="fl">No photos added yet</p>

@@ -1,8 +1,5 @@
-/* Section 4: animations and interactions. Load AFTER the main <style> block. */
-
-/* Smooth page load */
-body{animation:pageIn .6s ease both}
-@keyframes pageIn{from{opacity:0}}
+/* Section 4: animations and interactions. Load AFTER the main <style> block.
+   Section 7 changes: removed the page-load fade (delayed LCP) and the animated band gradient (repainted every frame). */
 
 /* Scroll-triggered reveal (class added by animations.js) */
 .sr{opacity:0}
@@ -14,9 +11,7 @@ button:not(:disabled):active,.btn:active{transform:scale(.95);transition-duratio
 .pri{background-size:200% 100%;transition:transform .2s,box-shadow .2s,background-position .4s}
 .pri:hover{background-position:100% 0;box-shadow:0 14px 32px #ff6a004d}
 
-/* Subtle gradient movement: announcement band and brand section */
-.band{background:linear-gradient(100deg,#ff8a1f,#ff5a00,#ffa24d,#ff7a18,#ff8a1f);background-size:300% 100%;animation:gshift 14s ease-in-out infinite}
-@keyframes gshift{50%{background-position:100% 50%}}
+/* Subtle gradient movement: brand section (translate and scale only, so no repaint) */
 .brand{position:relative;overflow:hidden}
 .brand::before{content:"";position:absolute;width:520px;height:520px;right:-140px;top:-180px;background:radial-gradient(circle,#ff6a0059,transparent 65%);animation:drift 14s ease-in-out infinite alternate;pointer-events:none}
 .brand>*{position:relative}

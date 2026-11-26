@@ -62,6 +62,7 @@
   const ex=C.find(i=>i.pid==s.pid&&i.vi==s.vi);if(ex)ex.q=Math.min(v.s,ex.q+s.q);else C.push({pid:s.pid,vi:s.vi,q:Math.min(s.q,v.s),files:[],raw:[],note:""});
   SL.splice(n,1);keep();quiet();refresh()}
  function checkout(){if(!C.length)return;if(tot().s<S.set.min)return say("Minimum order is "+money(S.set.min));closeDr();delete dg.dataset.cv;
+  if(typeof window.openCheckout=="function"){window.openCheckout();return}
   try{origCheckout()}catch(e){}
   dg.insertAdjacentHTML("afterbegin",'<button type="button" class="c8-lk c8-bk" id="c8-bk">← Back to cart</button>');$("c8-bk").onclick=()=>view()}
  function go(a){if(a=="shop"){closeDr();if(dg.open)dg.close();$("shopgrid").scrollIntoView({behavior:"smooth"})}else if(a=="view")openView();else if(a=="co")checkout()}

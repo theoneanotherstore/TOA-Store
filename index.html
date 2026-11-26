@@ -229,6 +229,7 @@ dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
 .fg{grid-template-columns:1fr}
 footer{padding:44px 5vw 28px}}
 </style>
+<link rel="stylesheet" href="animations.css">
 </head>
 <body>
 <div class="band"><div id="band"></div></div>
@@ -410,5 +411,6 @@ mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.prev
 async function init(){band();cartBtn();hero();$("grid").innerHTML='<p class="mut">Loading…</p>';try{await loadData()}catch(e){$("grid").innerHTML='<p class="mut">The store could not load right now. Please try again shortly.</p>';return}band();shop()}
 init();
 </script>
+<script src="animations.js" defer></script>
 </body>
 </html>

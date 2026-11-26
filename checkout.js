@@ -47,6 +47,8 @@
  const fmt=d=>d.toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
  const eta=()=>{const t=new Date();return fmt(addWD(t,5))+" – "+fmt(addWD(t,7))};
  const okPh=v=>{let d=String(v).replace(/\D/g,"");if(d.length==12&&d.startsWith("91"))d=d.slice(2);else if(d.length==11&&d[0]=="0")d=d.slice(1);return/^[6-9]\d{9}$/.test(d)};
+ const paymentReady=()=>RZP.enabled&&!/REPLACE_ME/.test(RZP.keyId);
+ const orderOnWhatsApp=()=>wa("Hi theoneanother, I would like to place an order: "+lines().map(l=>l.p.name+" · "+l.v.n+" × "+l.i.q).join(", ")+". Total: "+money(sub())+".");
 
  /* ---------- validation ---------- */
  const RULES={
@@ -116,7 +118,7 @@ ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomp
   if(K.d["k-st"])$("k-st").value=K.d["k-st"];
   sync();pay();show(K.step);if(!dg.open)dg.showModal()}
 
- const pay=()=>{const b=$("k9-pay");if(!b)return;b.textContent="Pay "+money(sub())+" securely";const z=$("k9-rz");if(z)z.hidden=false};
+ const pay=()=>{const b=$("k9-pay");if(!b)return;const ready=paymentReady();b.textContent=ready?"Pay "+money(sub())+" securely":"Online payment unavailable";b.disabled=!ready;const z=$("k9-rz");if(z){z.hidden=false;if(!ready)z.innerHTML=`<b>Online payment is not set up yet.</b><span class="mut">You can contact us to place your order on WhatsApp instead.</span><a class="btn pri" target="_blank" rel="noopener" href="${orderOnWhatsApp()}">Order on WhatsApp</a>`}};
  function show(n){K.step=n;$("k9-sp").innerHTML=stepper();dg.querySelectorAll("[data-p]").forEach(p=>p.hidden=+p.dataset.p!=n);dg.scrollTop=0;const h=dg.querySelector(`[data-p="${n}"] h3`);if(h)h.focus({preventScroll:true})}
  function status(kind,html){const b=$("k9-st");if(!b)return;b.hidden=!kind;b.className="k9-st "+(kind||"");b.innerHTML=html||""}
 
@@ -188,6 +190,7 @@ ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomp
  async function submit(){
   for(const s of [0,1]){if(!check(s,false)){show(s);check(s,true);return}}
   if(!check(2,true))return;
+  if(!paymentReady()){status("fail",`<b>Online payment is unavailable</b><span>Contact us on WhatsApp to place your order instead.</span><span class="row"><a class="btn pri" target="_blank" rel="noopener" href="${orderOnWhatsApp()}">Order on WhatsApp</a></span>`);return}
   K.busy=true;const b=$("k9-pay");b.disabled=true;status("work","⏳ Placing your order. Please do not close this window.");
   try{
    if(!sb)throw new Error("Store is not connected yet");

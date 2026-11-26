@@ -15,7 +15,7 @@
  const quiet=()=>{Q=1;cartBtn();Q=0};
 
  /* ---------- markup ---------- */
- const line=(r,full)=>{const cu=r.p.cu,q=r.i.q;return`<div class="c8-it" data-k="${r.k}"><div class="c8-th">${art(r.p)}</div><div class="c8-in"><b>${E(r.p.name)}</b><span class="mut">${E(r.v.n)} · ${money(r.v.p)}${cu?" · "+r.i.files.length+" photo(s)":""}</span>${cu&&r.i.note?`<span class="mut">Note: ${E(r.i.note)}</span>`:""}<div class="c8-q"><div class="c8-qs"><button type="button" data-a="dec" aria-label="Decrease quantity" ${q<2?"disabled":""}>−</button><span aria-live="polite">${q}</span><button type="button" data-a="inc" aria-label="Increase quantity">+</button></div><b>${money(r.v.p*q)}</b></div><div class="c8-ac"><button type="button" class="c8-lk" data-a="rm">Remove</button>${!cu&&full?'<button type="button" class="c8-lk" data-a="sv">Save for later</button>':""}</div></div></div>`};
+ const line=(r,full)=>{const cu=r.p.cu,q=r.i.q;return`<div class="c8-it" data-k="${r.k}"><div class="c8-th">${art(r.p)}</div><div class="c8-in"><b>${E(r.p.name)}</b><span class="mut">${E(r.v.n)} · ${money(r.v.p)}${cu?" · "+(r.p.t=="uno"?"2 PDFs":r.i.files.length+" photo(s)"):""}</span>${cu&&r.i.note?`<span class="mut">Note: ${E(r.i.note)}</span>`:""}<div class="c8-q"><div class="c8-qs"><button type="button" data-a="dec" aria-label="Decrease quantity" ${q<=(r.v.m||1)?"disabled":""}>−</button><span aria-live="polite">${q}</span><button type="button" data-a="inc" aria-label="Increase quantity">+</button></div><b>${money(r.v.p*q)}</b></div><div class="c8-ac"><button type="button" class="c8-lk" data-a="rm">Remove</button>${!cu&&full?'<button type="button" class="c8-lk" data-a="sv">Save for later</button>':""}</div></div></div>`};
  const meter=s=>{const m=S.set.min,ok=s>=m;return`<div class="c8-mt"><div class="c8-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${m}" aria-valuenow="${Math.min(s,m)}"><i style="width:${Math.min(100,Math.round(s/m*100))}%"></i></div><p>${ok?"✓ You have reached the minimum order of "+money(m):"Add "+money(m-s)+" more to reach the minimum order of "+money(m)}</p></div>`};
  const sum=t=>`<div class="c8-row"><span>Subtotal</span><b>${money(t.s)}</b></div><div class="c8-row"><span>Delivery</span><b class="c8-free">Free</b></div>${t.off?`<div class="c8-row"><span>Discount${D.code?" ("+E(D.code)+")":""}</span><b>−${money(t.off)}</b></div>`:""}<div class="c8-row c8-tot"><span>Total</span><b>${money(t.t)}</b></div>`;
  const coupon=()=>COUPONS?`<form class="c8-cp" data-cp><input name="code" placeholder="Discount code" maxlength="30" value="${E(D.code)}" aria-label="Discount code"><button class="c8-ap">Apply</button></form>`:"";
@@ -52,7 +52,7 @@
  function itemAct(e){const b=e.target.closest("[data-a]");if(!b)return false;const it=b.closest("[data-k]");if(!it)return false;
   const k=+it.dataset.k,i=C[k];if(!i)return true;const p=prod(i.pid),v=p&&p.v[i.vi],a=b.dataset.a;let sel="";
   if(a=="inc"){if(!v||i.q+1>v.s){say("Only "+(v?v.s:0)+" in stock");return true}i.q++;sel=`[data-k="${k}"] [data-a="inc"]`}
-  else if(a=="dec"){if(i.q<2)return true;i.q--;sel=`[data-k="${k}"] [data-a="dec"]`}
+  else if(a=="dec"){const mn=(v&&v.m)||1;if(i.q<=mn){if(mn>1)say("Minimum "+mn+" pieces for this item");return true}i.q--;sel=`[data-k="${k}"] [data-a="dec"]`}
   else if(a=="rm")C.splice(k,1);
   else if(a=="sv"&&p&&!p.cu){SL=SL.filter(s=>!(s.pid==i.pid&&s.vi==i.vi));SL.push({pid:i.pid,vi:i.vi,q:i.q});keep();C.splice(k,1)}
   quiet();refresh(sel);return true}

@@ -185,7 +185,7 @@ ${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="
 
  /* ---------- order confirmation ---------- */
  function done(id,c,total){
-  const snap=lines().map(l=>({n:l.p.name,v:l.v.n,q:l.i.q,t:l.v.p*l.i.q,cu:l.p.cu,f:l.i.files.length})),method=K.method,amt=K.amt,utr=g("k-cu"),when=eta();
+  const snap=lines().map(l=>({n:l.p.name,v:l.v.n,q:l.i.q,t:l.v.p*l.i.q,cu:l.p.cu,u:l.p.t=="uno",f:l.i.files.length})),method=K.method,amt=K.amt,utr=g("k-cu"),when=eta();
   sb.rpc("complete_checkout",{tok:ckTok()}).then(()=>{},()=>{});clearTimeout(ckT);ckReset();
   try{localStorage.setItem(LSK,JSON.stringify({cn:g("cn"),ce:g("ce"),cp:g("cp"),h:g("k-h"),s:g("k-s"),c:g("k-c"),st:g("k-st"),pin:g("k-pin"),lm:g("k-lm")}))}catch(e){}
   saved={cn:g("cn"),ce:g("ce"),cp:g("cp"),h:g("k-h"),s:g("k-s"),c:g("k-c"),st:g("k-st"),pin:g("k-pin"),lm:g("k-lm")};
@@ -194,7 +194,7 @@ ${fld("k-cu","UPI transaction ID (UTR) after paying","input",'type="text" name="
   const msg=`Hi theoneanother, I placed order ${id} on the website.${method=="upi"?` Paid ₹${amt} (UTR ${utr}).`:""}`;
   dg.dataset.co=1;
   dg.innerHTML=`<button class="x" id="k9-x" type="button" aria-label="Close">×</button><div class="k9-ok"><div class="k9-tick" aria-hidden="true">✓</div><h2 tabindex="-1" id="k9-h">Order placed</h2><p>Thank you, ${E(c.name.split(" ")[0])}! Your order number is <b style="color:var(--o2)">${E(id)}</b>.</p><p class="mut">Save this number to track your order.</p></div>
-<div class="k9-two"><div class="k9-card"><h4>Your items</h4>${snap.map(x=>`<div class="c8-row"><span>${E(x.n)} · ${E(x.v)} × ${x.q}${x.cu?` <span class="mut">(${x.f} photo${x.f==1?"":"s"})</span>`:""}</span><b>${money(x.t)}</b></div>`).join("")}<div class="c8-row"><span>Shipping</span><b class="c8-free">Free</b></div><div class="c8-row c8-tot"><span>Total</span><b>${money(total)}</b></div><p class="mut">${method=="upi"?`Payment: UPI ₹${amt}, waiting for our verification`:"Payment: Razorpay"}</p></div>
+<div class="k9-two"><div class="k9-card"><h4>Your items</h4>${snap.map(x=>`<div class="c8-row"><span>${E(x.n)} · ${E(x.v)} × ${x.q}${x.cu?` <span class="mut">(${x.u?"2 PDFs":x.f+" photo"+(x.f==1?"":"s")})</span>`:""}</span><b>${money(x.t)}</b></div>`).join("")}<div class="c8-row"><span>Shipping</span><b class="c8-free">Free</b></div><div class="c8-row c8-tot"><span>Total</span><b>${money(total)}</b></div><p class="mut">${method=="upi"?`Payment: UPI ₹${amt}, waiting for our verification`:"Payment: Razorpay"}</p></div>
 <div class="k9-card"><h4>Delivery</h4><div style="white-space:pre-line">${E(c.name)}\n${E(c.address)}\nPhone: ${E(c.phone)}</div><p><b>Estimated delivery:</b> ${when}<br><span class="mut">Counted from when we confirm your photos and payment.</span></p></div></div>
 <div class="k9-card"><h4>What happens next</h4><ol class="k9-ol"><li>We verify your payment.</li><li>We check your photos with you on WhatsApp before printing.</li><li>We print, pack and ship. Delivery in 5 to 7 working days.</li></ol></div>
 <div class="k9-btns"><a class="btn pri" target="_blank" rel="noopener" href="${wa(msg)}">Message us on WhatsApp</a>${$("t5-tr1")?'<button type="button" id="k9-tr">Track my order</button>':""}<button type="button" id="k9-cs">Continue shopping</button></div>`;

@@ -36,11 +36,9 @@
  const STEPS=["Information","Delivery","Payment"];
  const STATES=["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli and Daman and Diu","Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry"];
  const FIELDS=["cn","ce","cp","k-h","k-s","k-c","k-st","k-pin","k-lm","k-ba"];
- const LSK="toa-co";
- let saved=null;try{saved=JSON.parse(localStorage.getItem(LSK)||"null")}catch(e){}
+ try{localStorage.removeItem("toa-co")}catch(e){}
  /* Checkout state lives here so closing and reopening the window does not lose what was typed */
- const K={step:0,method:"rzp",amt:"",base:-1,busy:false,upSig:"",up:null,
-  d:saved?{cn:saved.cn||"",ce:saved.ce||"",cp:saved.cp||""}:{}};
+ const K={step:0,method:"rzp",amt:"",base:-1,busy:false,upSig:"",up:null,uploaded:Object.create(null),d:{}};
 
  const prod=id=>S.P.find(p=>p.id==id);
  const lines=()=>C.map(i=>{const p=prod(i.pid);return p&&p.v[i.vi]?{i,p,v:p.v[i.vi]}:null}).filter(Boolean);
@@ -84,7 +82,7 @@
 
  function open(){cleanup();if(!C.length){window.openCart();return}
   const s=sub();if(K.base!==s){K.base=s;K.amt=(s+(1+Math.floor(Math.random()*99))/100).toFixed(2)}
-  const d=K.d,sv=saved&&saved.h?saved:null;
+  const d=K.d;
   dg.className="wide";dg.dataset.co=1;
   dg.innerHTML=`<button class="x" id="k9-x" type="button" aria-label="Close checkout">×</button><div id="k9">
 <div class="k9-top"><span class="k9-brand">Checkout</span><button type="button" class="c8-lk" id="k9-bc">← Back to cart</button></div>
@@ -97,7 +95,6 @@ ${fld("ce","Email","input",'type="email" name="email" autocomplete="email" input
 ${fld("cp","Mobile number","input",'type="tel" name="tel" autocomplete="tel" inputmode="tel" required maxlength="16" placeholder="10-digit mobile number"',d.cp)}
 <div class="k9-act"><span></span><button class="pri big" type="submit">Continue to delivery</button></div></section>
 <section data-p="1" hidden><h3 tabindex="-1">Delivery address</h3><p class="mut">Where should we send your order?</p>
-${sv?`<button type="button" class="k9-saved" data-saved="1">Use my last address: ${E(sv.h)}, ${E(sv.c)} ${E(sv.pin)}</button>`:""}
 ${fld("k-h","House / Flat / Building no.","input",'type="text" name="address-line1" autocomplete="shipping address-line1" required maxlength="100"',d["k-h"])}
 ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomplete="shipping address-line2" required maxlength="150"',d["k-s"])}
 <div class="k9-2 k9-keep">${fld("k-c","City","input",'type="text" name="city" autocomplete="shipping address-level2" required maxlength="60"',d["k-c"])}${fld("k-pin","PIN code","input",'type="text" name="zip" autocomplete="shipping postal-code" inputmode="numeric" maxlength="6" required',d["k-pin"])}</div>
@@ -128,7 +125,6 @@ ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomp
   root.addEventListener("click",e=>{const t=e.target;
    if(t.closest("#k9-bc")){window.openCart();return}
    const gt=t.closest("[data-goto]");if(gt&&!gt.disabled){status();show(+gt.dataset.goto);return}
-   if(t.closest("[data-saved]")){const s=saved;$("k-h").value=s.h||"";$("k-s").value=s.s||"";$("k-c").value=s.c||"";$("k-st").value=s.st||"";$("k-pin").value=s.pin||"";$("k-lm").value=s.lm||"";sync();stepFields(1).forEach(i=>mark(i,""));return}
    if(t.closest("#k9-retry")){submit();return}
    });
   $("k9-x").onclick=()=>dg.close();
@@ -143,10 +139,34 @@ ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomp
   $("k-pin").addEventListener("input",e=>{e.target.value=e.target.value.replace(/\D/g,"").slice(0,6)})}
 
  /* ---------- placing the order ---------- */
- async function uploadItems(){const sig=JSON.stringify(C.map(i=>[i.pid,i.vi,i.q,i.note,i.raw.map(f=>f.name+f.size)]));
+ async function uploadFile(path,file,onProgress){
+  const session=await sb.auth.getSession(),token=session.data&&session.data.session?session.data.session.access_token:CFG.key;
+  const url=CFG.url+"/storage/v1/object/order-photos/"+path.split("/").map(encodeURIComponent).join("/");
+  return new Promise((resolve,reject)=>{const xhr=new XMLHttpRequest();xhr.open("POST",url);xhr.setRequestHeader("apikey",CFG.key);xhr.setRequestHeader("Authorization","Bearer "+token);xhr.setRequestHeader("Content-Type",file.type||"application/octet-stream");xhr.setRequestHeader("x-upsert","false");
+   xhr.upload.onprogress=e=>{if(e.lengthComputable)onProgress(e.loaded,e.total)};
+   xhr.onload=()=>{if(xhr.status>=200&&xhr.status<300){resolve(path);return}let message="The connection failed while uploading. Check your connection and try again.";try{const d=JSON.parse(xhr.responseText);if(d.message)message=d.message}catch(e){}reject(new Error("Could not upload "+file.name+": "+message))};
+   xhr.onerror=()=>reject(new Error("Connection lost while uploading "+file.name+". Your cart is safe; try again when your connection is back."));
+   xhr.onabort=()=>reject(new Error("Upload was interrupted for "+file.name+". Try again to resume."));
+   xhr.send(file)});
+ }
+ async function uploadItems(){
+  const sig=JSON.stringify(C.map(i=>[i.pid,i.vi,i.q,i.note,(i.raw||[]).map(f=>[f.name,f.size,f.lastModified])]));
   if(K.up&&K.upSig==sig)return K.up;
-  const items=[];for(const i of C){const v=prod(i.pid).v[i.vi],paths=[];for(const f of i.raw){const path="uploads/"+crypto.randomUUID()+"/"+f.name.replace(/[^\w.\-]/g,"_"),u=await sb.storage.from("order-photos").upload(path,f);if(u.error)throw u.error;paths.push(path)}items.push({variant_id:v.id,qty:i.q,note:i.note||null,photos:paths})}
-  K.up=items;K.upSig=sig;return items}
+  const uploads=C.flatMap(i=>i.raw||[]),totalBytes=uploads.reduce((n,f)=>n+f.size,0);let completedBytes=0,fileNo=0;
+  const items=[];for(const i of C){const p=prod(i.pid),v=p&&p.v[i.vi],files=i.raw||[];
+   if(p&&p.cu&&(!files.length||files.length!==(i.files||[]).length))throw new Error("The photo files for "+p.name+" are missing. Remove this cart item, add it again, and select the photos before checkout.");
+   const paths=[];for(let n=0;n<files.length;n++){const f=files[n],key=(i.fileKeys||[])[n]||[i.pid,i.vi,n,f.name,f.size,f.lastModified].join(":");fileNo++;
+    if(K.uploaded[key]){paths.push(K.uploaded[key]);completedBytes+=f.size;continue}
+    const before=totalBytes?Math.round(completedBytes/totalBytes*100):0;
+    status("work",`<b>Uploading customer photos</b><span>Photo ${fileNo} of ${uploads.length} · ${before}% uploaded</span><progress value="${before}" max="100" aria-label="Upload progress"></progress><span class="mut">Keep this window open. If the connection drops, choose Try again.</span>`);
+    const path="uploads/"+crypto.randomUUID()+"/"+f.name.replace(/[^\w.\-]/g,"_");
+    const uploaded=await uploadFile(path,f,loaded=>{const pct=totalBytes?Math.floor((completedBytes+loaded)/totalBytes*100):100;status("work",`<b>Uploading customer photos</b><span>Photo ${fileNo} of ${uploads.length} · ${pct}% uploaded</span><progress value="${pct}" max="100" aria-label="Upload progress"></progress><span class="mut">Keep this window open. If the connection drops, choose Try again.</span>`)});
+    K.uploaded[key]=uploaded;paths.push(uploaded);completedBytes+=f.size;
+   }
+   items.push({variant_id:v.id,qty:i.q,note:i.note||null,photos:paths});
+  }
+  K.up=items;K.upSig=sig;return items
+ }
  const loadRzp=()=>window.Razorpay?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement("script");s.src="https://checkout.razorpay.com/v1/checkout.js";s.onload=ok;s.onerror=()=>no(new Error("Could not load the payment window. Check your connection."));document.head.appendChild(s)});
  /* RAZORPAY PLACEHOLDER: needs the two Edge Functions described at the top of this file */
  const emit=(state,order_id)=>dispatchEvent(new CustomEvent("toa:pay",{detail:{state,order_id}}));
@@ -186,9 +206,7 @@ ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomp
  function done(id,c,total){
   const snap=lines().map(l=>({n:l.p.name,v:l.v.n,q:l.i.q,t:l.v.p*l.i.q,cu:l.p.cu,u:l.p.t=="uno",f:l.i.files.length})),method=K.method,amt=K.amt,utr=g("k-cu"),when=eta();
   sb.rpc("complete_checkout",{tok:ckTok()}).then(()=>{},()=>{});clearTimeout(ckT);ckReset();
-  try{localStorage.setItem(LSK,JSON.stringify({cn:g("cn"),ce:g("ce"),cp:g("cp"),h:g("k-h"),s:g("k-s"),c:g("k-c"),st:g("k-st"),pin:g("k-pin"),lm:g("k-lm")}))}catch(e){}
-  saved={cn:g("cn"),ce:g("ce"),cp:g("cp"),h:g("k-h"),s:g("k-s"),c:g("k-c"),st:g("k-st"),pin:g("k-pin"),lm:g("k-lm")};
-  K.d={cn:saved.cn,ce:saved.ce,cp:saved.cp};K.step=0;K.busy=false;K.up=null;K.upSig="";K.base=-1;
+  K.d={};K.step=0;K.busy=false;K.up=null;K.upSig="";K.uploaded=Object.create(null);K.base=-1;
   C=[];cartBtn();
   const msg=`Hi theoneanother, I placed order ${id} on the website and paid online.`;
   dg.dataset.co=1;

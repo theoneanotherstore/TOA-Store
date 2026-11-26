@@ -59,8 +59,9 @@
   d.innerHTML='<h3 style="font:500 26px \'Playfair Display\',Georgia,serif">Track your order</h3><p class="mut" style="margin-top:6px">Enter your order ID and the UTR, payment ID or tracking ID we sent you on WhatsApp or email.</p><form class="f" id="t5-tf"><input id="t5-on" placeholder="Order number (e.g. TOA-1001)" required><input id="t5-op" placeholder="UTR / payment ID / tracking ID" required minlength="6" maxlength="60" autocomplete="off"><button class="pri" style="font-size:15px">Track order</button><button type="button" id="t5-x">Close</button></form><div id="t5-res"></div>';
   $("t5-x").onclick=function(){d.close()};
   $("t5-tf").onsubmit=function(ev){ev.preventDefault();var s=db(),res=$("t5-res");if(!s)return say("Store is not connected yet");var b=ev.target.querySelector(".pri");b.disabled=true;res.innerHTML="";
+   var trackError=function(){res.innerHTML='<p class="mut" style="margin-top:14px">We could not retrieve tracking right now. Check your connection and try again, or <a target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='+encodeURIComponent("Hi theoneanother, I need help tracking my order.")+'">message us on WhatsApp</a>.</p>'};
    s.rpc("track_order2",{num:$("t5-on").value.trim(),ref:$("t5-op").value.trim()}).then(function(r){b.disabled=false;
-    if(r.error)return say("Tracking is not available right now. Please message us on WhatsApp.");
+    if(r.error){trackError();return}
     var o=r.data;if(!o){res.innerHTML='<p class="mut" style="margin-top:14px">We could not find that order. Check the order ID and your UTR, payment ID or tracking ID, or message us on WhatsApp.</p>';return}
     var fd=function(t){return t?new Date(t).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):""};
     var S4=["pending","confirmed","shipped","delivered"],i=S4.indexOf(o.status);
@@ -68,7 +69,7 @@
     h+=o.status=="cancelled"?'<p style="margin-top:8px"><b>This order was cancelled.</b> Message us on WhatsApp if you have questions.</p>':'<div class="t5-steps">'+S4.map(function(x,k){return'<span class="'+(k<=i?"on":"")+'">'+x+'</span>'}).join("")+'</div><p class="mut">Payment: '+(o.paid?"received":"not received yet")+'</p>'+(o.shipped?'<p class="mut">Shipped '+fd(o.shipped)+'</p>':"")+(o.delivered?'<p class="mut">Delivered '+fd(o.delivered)+'</p>':"");
     if(o.courier||o.tracking)h+='<p style="margin-top:8px">'+(o.courier?'Courier: <b>'+E(o.courier)+'</b><br>':"")+(o.tracking?'Tracking number: <b>'+E(o.tracking)+'</b>':"")+'</p>';
     h+='<p style="margin-top:14px"><a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='+encodeURIComponent("Hi theoneanother, about my order "+o.number)+'">Message us on WhatsApp</a></p>';
-    res.innerHTML=h},function(){b.disabled=false;say("Tracking is not available right now. Please message us on WhatsApp.")})};
+    res.innerHTML=h},function(){b.disabled=false;trackError()})};
   d.showModal()}
  window.openTrack=openTrack;if(location.hash=="#orders")setTimeout(function(){openTrack()},400);
 

@@ -357,7 +357,7 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <div class="band"><div id="band"></div></div>
 <header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Shop</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div></nav><div class="hacts"><button type="button" class="hb" id="acctBtn" aria-haspopup="dialog" aria-label="Sign in or create account" title="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></button><button type="button" class="hb" id="wishBtn" aria-label="Wishlist" title="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.7 5.3 4.2 8.8 9.5 9.5-5.3.7-8.8 4.2-9.5 9.5-.7-5.3-4.2-8.8-9.5-9.5 5.3-.7 8.8-4.2 9.5-9.5z"/></svg></button><button id="cartBtn" aria-label="Cart"></button></div><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
 <main id="productPage" hidden></main>
-<section class="hmhero" id="hmhero" aria-label="Featured"><div class="hm-bg" id="hmbg"></div><div class="hm-actions" id="hmactions"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a></div><div class="hm-dots" id="hmdots"></div></section>
+<section class="hmhero" id="hmhero" aria-label="Featured"><div class="hm-bg" id="hmbg"></div><div class="hm-actions" id="hmactions"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#shopgrid" id="homeCustomise">Customise</a></div><div class="hm-dots" id="hmdots"></div></section>
 <section class="intro" id="intro"><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p></section>
 <section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div></div>
 <div class="sortbar"><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
@@ -460,12 +460,12 @@ function setCat(k,scroll){k=String(k);if(CQ!=null){location.href=k=="all"?"index
 function shop(){hero();cards();reveal();ldp()}
 const scrollTo_=k=>{const el=$(k);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
 $("sort").onchange=()=>cards(true);
+$("homeCustomise").onclick=e=>{const c=S.C.find(x=>x.name.toLowerCase()=="customizations");if(c){e.preventDefault();setCat(c.id,true)}};
 const gridClick=e=>{const t=e.target.closest("button");if(!t)return;
  if(t.dataset.w){const id=+t.dataset.w,i=V.wl.indexOf(id);i>=0?V.wl.splice(i,1):V.wl.push(id);try{localStorage.setItem("toa-wl",JSON.stringify(V.wl))}catch(x){}
   cards(true);toast(i>=0?"Removed from saved":"Saved to your wishlist");return}
  if(t.dataset.o)openP(+t.dataset.o)};
 $("grid").onclick=gridClick;
-const hubGo=e=>{const c=e.target.closest("[data-b]");if(c)openB(+c.dataset.b)};
 function cleanup(){urls.forEach(u=>URL.revokeObjectURL(u));urls=[]}
 dg.addEventListener("close",cleanup);
 /* Section 7: per-product page title and description while a product is open, and Product structured data for the whole catalogue */

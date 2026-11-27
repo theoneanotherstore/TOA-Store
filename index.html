@@ -33,8 +33,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://eymxrutbkbtglynynokb.supabase.co" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Roboto:wght@300;400;500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Roboto:wght@300;400;500;700;900&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"></noscript>
 <style>
 :root{--bg:#fff;--ink:#17120e;--mut:#6f665e;--ln:#f0e8df;--o:#ff6a00;--o2:#e85d04;--peach:#fff5ec;--g:linear-gradient(135deg,#ff8a1f,#ff5a00);color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0}
@@ -50,9 +50,9 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none}
 .big{padding:15px 34px;font-size:16px}
 .blk{background:var(--ink);color:#fff}
 :focus-visible{outline:3px solid #ffb27a;outline-offset:2px}
-.sf{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:500}
+.sf{font-family:Roboto,sans-serif;font-style:normal;font-weight:300}
 .eyebrow{display:block;color:var(--o2);font:700 12px Roboto;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
-.band{background:var(--g);color:#17120e;overflow:hidden;white-space:nowrap;font-weight:500;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.band{background:#ff6a00;color:#17120e;overflow:hidden;white-space:nowrap;font-weight:500;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
 .band div{display:inline-block;padding:9px 0;animation:mq 42s linear infinite}
 .band span{padding:0 30px}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -75,7 +75,7 @@ header nav{margin-left:auto;display:flex;gap:6px;align-items:center}
 .mt{color:var(--mut);font-size:14px}
 .mc a:hover{color:var(--o2)}
 .mp{flex:0 0 220px;border-radius:18px;padding:18px;background:var(--peach);display:grid;gap:8px;align-content:end;min-height:150px;font-size:14px;color:var(--mut)}
-.mp b{font:500 24px/1.1 "Playfair Display",Georgia,serif;font-style:italic;color:var(--ink)}
+.mp b{font:500 24px/1.1 Roboto,sans-serif;font-style:italic;color:var(--ink)}
 .mp .art{max-width:140px}
 section{padding:96px 5vw}
 .hero{min-height:82vh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative}
@@ -93,7 +93,7 @@ section{padding:96px 5vw}
 .stack>:nth-child(3){left:20%;bottom:0;width:42%;rotate:3deg;animation-delay:.24s}
 @keyframes drop{from{transform:translateY(-40px) scale(.9);opacity:0}}
 @keyframes bgm{50%{background-position:100% 50%}}
-h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-spacing:-.01em}
+h2{font:500 clamp(32px,4.6vw,54px)/1.08 Roboto,sans-serif;letter-spacing:-.01em}
 .hd{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:36px}
 .hd p{color:var(--mut);max-width:48ch}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
@@ -108,7 +108,7 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-
 .cc:hover{transform:translateY(-6px);box-shadow:0 26px 50px #ff6a001f}
 .cc .art{border-radius:14px}
 .cb{padding:4px 8px 10px}
-.cb h3{font:500 22px/1.2 "Playfair Display",Georgia,serif}
+.cb h3{font:500 22px/1.2 Roboto,sans-serif}
 .cb p{margin:2px 0 10px;color:var(--mut);font-size:14px}.cb p b{color:var(--o2);font-weight:700}
 .go{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .cc:hover .go{color:var(--o2)}
@@ -116,14 +116,14 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-
 .ct{display:grid;gap:10px;background:#fff;border:1px solid var(--ln);border-radius:20px;padding:10px;transition:transform .3s,box-shadow .3s,border-color .3s}
 .ct:hover{transform:translateY(-5px);border-color:var(--o);box-shadow:0 22px 44px #ff6a001a}
 .ct .art{border-radius:14px}
-.ct b{font:500 18px "Playfair Display",Georgia,serif;padding:0 6px}
+.ct b{font:500 18px Roboto,sans-serif;padding:0 6px}
 .ct small{color:var(--mut);padding:0 6px 6px;margin-top:-8px}
 .brand{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;background:var(--ink);color:#fff;border-radius:32px;margin:0 3vw}
 .brand h2{color:#fff}.brand h2 .sf{color:var(--o)}
 .brand p{color:#d9cfc6;font-weight:300;font-size:17px;margin-top:16px;max-width:52ch}
 .bst{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .bst div{background:#ffffff0f;border:1px solid #ffffff1f;border-radius:20px;padding:22px}
-.bst b{display:block;font:500 34px/1 "Playfair Display",Georgia,serif;font-style:italic;color:var(--o);margin-bottom:6px}
+.bst b{display:block;font:500 34px/1 Roboto,sans-serif;font-style:italic;color:var(--o);margin-bottom:6px}
 .bst span{font-size:13px;color:#d9cfc6}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
 .pc{background:#fff;border:1px solid var(--ln);border-radius:20px;padding:12px;display:grid;gap:10px;align-content:start;transition:transform .3s,box-shadow .3s,opacity .6s;opacity:0;translate:0 20px}
@@ -137,7 +137,7 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 "Playfair Display",Georgia,serif;letter-
 .pc .art img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .pc:hover .art img{transform:scale(1.07)}
 .pc .wl{position:absolute;right:10px;top:10px;width:36px;height:36px;padding:0;border-radius:50%;border:0;background:#ffffffeb;color:var(--mut);font-size:19px;line-height:1;z-index:2;box-shadow:0 4px 12px #17120e22}
-.pc .wl.on{color:#e11d48}
+.pc .wl.on{color:var(--o)}
 .art{aspect-ratio:1;border-radius:14px;background:linear-gradient(145deg,var(--a),var(--b));display:grid;place-items:center;overflow:hidden}
 .art img{width:100%;height:100%;object-fit:cover}
 .art i{display:block;width:44%;aspect-ratio:3/4;background:#fff;border-radius:6px;rotate:-6deg;box-shadow:0 14px 30px #17120e33;transition:rotate .4s}
@@ -160,7 +160,7 @@ dialog::backdrop{background:#17120e8c;backdrop-filter:blur(4px)}
 .bl .art{border-radius:20px}
 .how2{list-style:none;padding:0;margin-top:16px;display:grid;gap:10px;color:var(--mut);font-size:14px}
 .how2 b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--peach);color:var(--o2);margin-right:10px;font-size:13px}
-.br h3{font:500 30px/1.1 "Playfair Display",Georgia,serif;margin:2px 0 6px}
+.br h3{font:500 30px/1.1 Roboto,sans-serif;margin:2px 0 6px}
 .lb{display:block;margin:18px 0 8px;font:700 12px Roboto;letter-spacing:.14em;text-transform:uppercase}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
 .opt{border-color:#e6dccf;border-radius:14px;padding:10px 16px;text-align:left;line-height:1.25}
@@ -177,7 +177,7 @@ dialog::backdrop{background:#17120e8c;backdrop-filter:blur(4px)}
 .sm2{margin-top:8px;font-size:12.5px}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
 .steps div{background:#fff;border:1px solid var(--ln);border-radius:22px;padding:26px}
-.steps b{display:block;font:500 44px/1 "Playfair Display",Georgia,serif;font-style:italic;color:var(--o);margin-bottom:12px}
+.steps b{display:block;font:500 44px/1 Roboto,sans-serif;font-style:italic;color:var(--o);margin-bottom:12px}
 .steps h3{font-size:17px;font-weight:500;margin-bottom:4px}
 details{border-bottom:1px solid var(--ln);padding:18px 0}
 summary{cursor:pointer;font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
@@ -213,7 +213,7 @@ footer .fl a:hover{color:var(--o2)}
 .buybar{position:sticky;bottom:-16px;display:flex;gap:10px;align-items:center;background:#fff;padding:12px 0;margin-top:14px;border-top:1px solid var(--ln);z-index:3}
 .buybar .pri{flex:1}
 .rel{margin-top:26px;grid-column:1/-1}
-.rel h4{font:500 22px "Playfair Display",Georgia,serif;margin-bottom:12px}
+.rel h4{font:500 22px Roboto,sans-serif;margin-bottom:12px}
 .rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
 .rg a{display:grid;gap:6px;font-size:13px;cursor:pointer}.rg a b{font-weight:500}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.pc{opacity:1;translate:0 0}}
@@ -333,8 +333,8 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 </head>
 <body>
 <div class="band"><div id="band"></div></div>
-<header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="home" aria-expanded="false" aria-haspopup="true">Home</button><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Products</button><button class="nb" data-m="cust" aria-expanded="false" aria-haspopup="true">Customization</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div><button id="cartBtn" aria-label="Cart"></button></nav><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
-<section class="hero"><div><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p><div class="cta"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Start customising</a></div></div><div class="stack" id="stack" aria-hidden="true"></div></section>
+<header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Shop</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div></nav><div class="hacts"><button type="button" class="hb" id="acctBtn" aria-haspopup="dialog" aria-label="Sign in or create account" title="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></button><button type="button" class="hb" id="wishBtn" aria-label="Wishlist" title="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.7 5.3 4.2 8.8 9.5 9.5-5.3.7-8.8 4.2-9.5 9.5-.7-5.3-4.2-8.8-9.5-9.5 5.3-.7 8.8-4.2 9.5-9.5z"/></svg></button><button id="cartBtn" aria-label="Cart"></button></div><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
+<section class="hmhero" id="hmhero" aria-label="Featured"><div class="hm-bg" id="hmbg"></div><div class="hm-cta"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Customization</a></div><div class="hm-dots" id="hmdots"></div></section><section class="intro" id="intro"><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p></section>
 <section id="catnav" hidden style="padding-top:20px"><div class="hd"><div><span class="eyebrow">Browse</span><h2>Shop by <span class="sf" style="color:var(--o)">category</span></h2></div></div><div class="ctg" id="catg"></div></section>
 <section id="featured" hidden><div class="hd"><div><span class="eyebrow">Featured</span><h2>Ready to <span class="sf" style="color:var(--o)">gift</span></h2></div><p>A few ready-made picks that ship straight away.</p></div><div class="grid" id="featg"></div></section>
 <section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div><div class="chips" id="chips"></div></div>
@@ -398,10 +398,25 @@ $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$(
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
 const secs=()=>[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>!p.cu&&(p.cat||null)===c.id)})).filter(x=>x.l.length);
-function hero(){const L=[...S.P.filter(p=>p.cu),...S.P].filter((p,i,a)=>a.indexOf(p)==i).slice(0,3),ph=[{t:"poster",c:CL.poster},{t:"polaroid",c:CL.polaroid},{t:"sticker",c:CL.sticker}];$("stack").innerHTML=(L.length==3?L:ph).map(p=>art(p,1)).join("")}
+function hero(){const box=$("hmbg");if(!box||box.dataset.ready||!sb)return;box.dataset.ready="1";
+ sb.from("home_content").select("media_path,media_type,caption").eq("active",true).order("position").order("id").limit(12).then(r=>{
+  const L=r.error?[]:(r.data||[]);if(!L.length)return;
+  const url=x=>/^https?:\/\//i.test(x.media_path)?x.media_path:sb.storage.from("product-images").getPublicUrl(x.media_path).data.publicUrl,
+   isV=x=>x.media_type=="video"||/\.(mp4|webm|mov|m4v)$/i.test(x.media_path||""),
+   calm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  box.innerHTML=L.map((x,i)=>`<div class="hm-s">${isV(x)?`<video src="${esc(url(x))}" muted playsinline preload="${i?"none":"auto"}" ${L.length==1?"loop":""} aria-label="${esc(x.caption||"theoneanother")}"></video>`:`<img src="${esc(url(x))}" alt="${esc(x.caption||"theoneanother")}" ${i?'loading="lazy"':'fetchpriority="high"'}>`}</div>`).join("");
+  const sl=[...box.children],dots=$("hmdots");let cur=-1,tm;
+  if(L.length>1)dots.innerHTML=L.map((_,i)=>`<button type="button" class="hm-d" aria-label="Show item ${i+1}"></button>`).join("");
+  const show=n=>{clearTimeout(tm);if(cur>=0){sl[cur].classList.remove("on");const o=sl[cur].querySelector("video");if(o)o.pause()}
+   cur=(n+sl.length)%sl.length;sl[cur].classList.add("on");[...dots.children].forEach((d,i)=>d.classList.toggle("on",i==cur));
+   const v=sl[cur].querySelector("video");
+   if(v){v.currentTime=0;if(!calm)v.play().catch(()=>{});if(sl.length>1)v.onended=()=>show(cur+1)}
+   else if(sl.length>1&&!calm)tm=setTimeout(()=>show(cur+1),6000)};
+  dots.onclick=e=>{const d=e.target.closest(".hm-d");if(d)show([...dots.children].indexOf(d))};
+  show(0)},()=>{})}
 function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
 const saved=p=>V.wl.includes(p.id);
-const card=p=>`<article class="pc"><div class="pw">${art(p)}<button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"♥":"♡"}</button></div><h3>${esc(p.name)}</h3><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"Add to cart"}</button></article>`;
+const card=p=>`<article class="pc"><div class="pw">${art(p)}<button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"✦":"✧"}</button></div><h3>${esc(p.name)}</h3><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"Add to cart"}</button></article>`;
 /* Category tiles near the top of the page */
 function catnav(cats){const T=[];cats.forEach(x=>T.push({k:x.id??"",n:x.name,c:x.l.length,a:art(x.l[0])}));
  $("catnav").hidden=T.length<2;$("catg").innerHTML=T.map(t=>`<a class="ct" href="#" data-k="${t.k}">${t.a}<b>${esc(t.n)}</b><small>${t.c} ${t.c==1?"item":"items"}</small></a>`).join("")}
@@ -417,9 +432,9 @@ function listed(){let l=S.P.filter(p=>!p.cu);
  return l.sort(f)}
 function cards(keep){const l=listed(),sh=l.slice(0,V.n);
  $("cnt").textContent=l.length?"Showing "+sh.length+" of "+l.length+(l.length==1?" product":" products"):"";
- $("grid").innerHTML=sh.length?`<div class="grid">${sh.map(card).join("")}</div>${l.length>sh.length?`<p style="text-align:center;margin-top:28px"><button id="more">Load more (${l.length-sh.length} left)</button></p>`:""}`:`<p class="mut">${V.cat=="wish"?"No saved products yet. Tap the heart on any product to save it here.":S.P.some(p=>!p.cu)?"No products in this category yet.":"Ready-made products are coming soon."}</p>`;if(keep)document.querySelectorAll("#grid .pc").forEach((c,i)=>{if(i<keep)c.classList.add("in")});reveal()}
+ $("grid").innerHTML=sh.length?`<div class="grid">${sh.map(card).join("")}</div>${l.length>sh.length?`<p style="text-align:center;margin-top:28px"><button id="more">Load more (${l.length-sh.length} left)</button></p>`:""}`:`<p class="mut">${V.cat=="wish"?"No saved products yet. Tap the star on any product to save it here.":S.P.some(p=>!p.cu)?"No products in this category yet.":"Ready-made products are coming soon."}</p>`;if(keep)document.querySelectorAll("#grid .pc").forEach((c,i)=>{if(i<keep)c.classList.add("in")});reveal()}
 function chipsRender(){const hasC=S.P.some(p=>p.cu),on=k=>V.cat==k?" on":"";
- $("chips").innerHTML=(hasC?'<button class="chip" data-k="custom">Customization</button>':"")+`<button class="chip${on("all")}" data-f="all">All</button>`+secs().map(x=>`<button class="chip${on(String(x.id??""))}" data-f="${x.id??""}">${esc(x.name)}</button>`).join("")+`<button class="chip${on("wish")}" data-f="wish">♥ Saved (${V.wl.length})</button>`}
+ $("chips").innerHTML=(hasC?'<button class="chip" data-k="custom">Customization</button>':"")+`<button class="chip${on("all")}" data-f="all">All</button>`+secs().map(x=>`<button class="chip${on(String(x.id??""))}" data-f="${x.id??""}">${esc(x.name)}</button>`).join("")+`<button class="chip${on("wish")}" data-f="wish">✦ Saved (${V.wl.length})</button>`}
 function setCat(k,scroll){V.cat=String(k);V.n=12;chipsUI();cards();if(scroll)$("shopgrid").scrollIntoView({behavior:"smooth"})}
 function shop(){hero();hub();catnav(secs());feat();chipsUI();cards();reveal();ldp()}
 const scrollTo_=k=>{const el=$(k);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
@@ -450,7 +465,7 @@ function openP(id){cur=S.P.find(p=>p.id==id);seo(cur);cleanup();dg.className="wi
  let rel=S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&x.cat==cur.cat);if(rel.length<4)rel=rel.concat(S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&!rel.includes(x))).slice(0,4);else rel=rel.slice(0,4);
  const desc=(cur.desc||"").split(/\n+/).filter(Boolean).map(l=>`<p>${esc(l)}</p>`).join("")||"<p>Ready-made, no photo upload needed.</p>";
  dg.innerHTML=`<button class="x" id="px" aria-label="Close">×</button><div class="pd"><div class="gal"><div class="zm" id="zm">${im.length?`<img id="gi" ${ia(im[0],900,"(max-width:700px) 92vw,480px")} alt="${esc(cur.name)}" width="900" height="900">`:art(cur)}</div>${im.length>1?`<div class="gt" id="gt">${im.map((u,i)=>`<button type="button" class="${i==0?"on":""}" data-g="${i}" aria-label="Image ${i+1}"><img src="${esc(tu(u,128))}" data-o="${esc(u)}" loading="lazy" alt="${esc(cur.name)} view ${i+1}"></button>`).join("")}</div>`:""}</div>
-<div><span class="eyebrow">${esc(cat||"Ready-made")}</span><h3 style="font:500 30px/1.1 'Playfair Display',Georgia,serif">${esc(cur.name)}</h3><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
+<div><span class="eyebrow">${esc(cat||"Ready-made")}</span><h3 style="font:500 30px/1.1 Roboto,sans-serif">${esc(cur.name)}</h3><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
 <span class="lb">Size</span><div class="opts" id="opts">${cur.v.map((v,i)=>`<button type="button" class="opt ${i==vi?"on":""}" data-vi="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)}<small>${inr(v.p)}${v.s<=0?" · sold out":""}</small></button>`).join("")}</div>
 <div class="eta">🚚 <span>Estimated delivery <b>${eta()}</b></span></div>
 <span class="lb">Quantity</span><div class="qs"><button type="button" id="qm" aria-label="Decrease">−</button><span id="qv">1</span><button type="button" id="qp" aria-label="Increase">+</button></div>
@@ -492,9 +507,9 @@ ${uno?`<span class="lb">1. Card designs PDF</span><label class="drop" for="u1">$
  $("pa").onclick=()=>{const v=cur.v[vi],q=qty();if(!v||q>v.s)return toast("Only "+(v?v.s:0)+" in stock");if(uno){if(!U1||!U2)return toast("Please add both PDFs: your card designs and the packaging");F=[U1,U2]}else if(F.length<need())return toast("Please upload at least "+need()+" design"+(need()>1?"s":"")+" for this product");C.push({pid:cur.id,vi,q,files:F.map(f=>f.name),raw:[...F],fileKeys:[],note:$("pn").value.trim()});cartBtn();dg.close();toast("Added to cart")};
  price();dg.showModal()}
 const sub=()=>C.reduce((a,i)=>{const p=S.P.find(x=>x.id==i.pid);return a+(p?p.v[i.vi].p*i.q:0)},0);
-function openCart(){cleanup();dg.className="";if(!C.length){dg.innerHTML='<h3 style="font:500 24px \'Playfair Display\',Georgia,serif">Your cart</h3><p class="mut" style="margin:10px 0 16px">Your cart is empty.</p><button id="px">Close</button>';$("px").onclick=()=>dg.close();return dg.showModal()}
+function openCart(){cleanup();dg.className="";if(!C.length){dg.innerHTML='<h3 style="font:500 24px Roboto,sans-serif">Your cart</h3><p class="mut" style="margin:10px 0 16px">Your cart is empty.</p><button id="px">Close</button>';$("px").onclick=()=>dg.close();return dg.showModal()}
 const t=sub(),amt=(t+(1+Math.floor(Math.random()*99))/100).toFixed(2);
-dg.innerHTML=`<h3 style="font:500 26px 'Playfair Display',Georgia,serif;margin-bottom:6px">Your cart</h3>${C.map((i,k)=>{const p=S.P.find(x=>x.id==i.pid);return`<div class="ci"><span>${esc(p.name)} · ${esc(p.v[i.vi].n)} × ${i.q}${p.cu?`<br><span class="mut">${i.files.length} photo(s)${i.note?" · "+esc(i.note):""}</span>`:""}</span><span>${inr(p.v[i.vi].p*i.q)} <button data-r="${k}" style="padding:2px 10px" aria-label="Remove">×</button></span></div>`}).join("")}<p style="margin:12px 0"><b>Total ${inr(t)}</b> <span class="mut">(minimum order ${inr(S.set.min)})</span></p>
+dg.innerHTML=`<h3 style="font:500 26px Roboto,sans-serif;margin-bottom:6px">Your cart</h3>${C.map((i,k)=>{const p=S.P.find(x=>x.id==i.pid);return`<div class="ci"><span>${esc(p.name)} · ${esc(p.v[i.vi].n)} × ${i.q}${p.cu?`<br><span class="mut">${i.files.length} photo(s)${i.note?" · "+esc(i.note):""}</span>`:""}</span><span>${inr(p.v[i.vi].p*i.q)} <button data-r="${k}" style="padding:2px 10px" aria-label="Remove">×</button></span></div>`}).join("")}<p style="margin:12px 0"><b>Total ${inr(t)}</b> <span class="mut">(minimum order ${inr(S.set.min)})</span></p>
 <form class="f" id="co"><input id="cn" placeholder="Full name" required><input id="cp" type="tel" placeholder="10-digit Indian mobile number" required pattern="(\+91|91|0)?[6-9][0-9]{9}" maxlength="16"><input id="ce" type="email" placeholder="Email" required><textarea id="ca" rows="3" placeholder="Full delivery address with pincode" required></textarea>
 <div class="ci" style="flex-direction:column;background:var(--peach);border:0;border-radius:16px;padding:14px"><b>Pay by UPI (direct to us)</b><span class="mut">Pay exactly <b style="color:var(--o2)">₹${amt}</b> to <b>${esc(S.set.upi)}</b>. The extra paise help us match your payment.</span><span class="cta"><a class="btn" href="upi://pay?pa=${encodeURIComponent(S.set.upi)}&pn=theoneanother&am=${amt}&cu=INR">Open UPI app</a></span></div>
 <input id="cu" placeholder="UPI transaction ID (UTR)" required pattern="[A-Za-z0-9]{8,30}"><label class="mut"><input type="checkbox" id="cg" required style="width:auto"> I understand custom products are non-refundable and non-returnable.</label><p class="mut">We save your name, phone and address while you check out so we can help if something goes wrong.</p><button class="pri" style="font-size:16px">Place order</button><button type="button" id="px">Keep shopping</button></form>`;
@@ -507,7 +522,7 @@ const btn=e.target.querySelector(".pri");btn.disabled=true;
 try{const items=[];for(const i of C){const v=S.P.find(x=>x.id==i.pid).v[i.vi],paths=[];for(const f of i.raw){const path="uploads/"+crypto.randomUUID()+"/"+f.name.replace(/[^\w.\-]/g,"_"),u=await sb.storage.from("order-photos").upload(path,f);if(u.error)throw u.error;paths.push(path)}items.push({variant_id:v.id,qty:i.q,note:i.note||null,photos:paths})}
 const r=await sb.rpc("place_order",{p:{name:$("cn").value.trim(),phone:$("cp").value.trim(),email:$("ce").value.trim(),address:$("ca").value.trim(),pay_amount:amt,utr:$("cu").value.trim(),items}});if(r.error)throw r.error;
 const tk=ckTok();sb.rpc("complete_checkout",{tok:tk}).then(()=>{},()=>{});clearTimeout(ckT);ckReset();const id=r.data,msg=`Hi theoneanother, I placed order ${id} and uploaded my photos on the website. Paid ₹${amt} (UTR ${$("cu").value.trim()}).`;C=[];cartBtn();
-dg.innerHTML=`<h3 style="font:500 26px 'Playfair Display',Georgia,serif">Order placed</h3><p style="margin:10px 0 16px">Your order number is <b style="color:var(--o2)">${id}</b>. We will verify your payment and confirm your photos with you on WhatsApp before printing. Delivery in 5–7 working days.</p><a class="btn pri" target="_blank" rel="noopener" href="${wa(msg)}">Message us on WhatsApp</a> <button id="px">Close</button>`;$("px").onclick=()=>dg.close();loadData().then(shop).catch(()=>{})}
+dg.innerHTML=`<h3 style="font:500 26px Roboto,sans-serif">Order placed</h3><p style="margin:10px 0 16px">Your order number is <b style="color:var(--o2)">${id}</b>. We will verify your payment and confirm your photos with you on WhatsApp before printing. Delivery in 5–7 working days.</p><a class="btn pri" target="_blank" rel="noopener" href="${wa(msg)}">Message us on WhatsApp</a> <button id="px">Close</button>`;$("px").onclick=()=>dg.close();loadData().then(shop).catch(()=>{})}
 catch(err){btn.disabled=false;toast(err.message||"Could not place order");loadData().then(shop).catch(()=>{})}};dg.showModal()}
 $("cartBtn").onclick=openCart;
 document.querySelectorAll(".logo").forEach(l=>{const t=l.textContent;l.innerHTML=[...t].map((c,i)=>`<span aria-hidden="true" style="--i:${i}">${c}</span>`).join("")});
@@ -517,7 +532,7 @@ const ML=(a,t)=>`<a href="#" data-a="${a}">${t}</a>`,MX=(h,t)=>`<a href="${h}" t
 function mmHTML(k){
  if(k=="orders")return mcol("Orders",[ML("t:orders","Your orders"),ML("t:track","Track an order")]);
  if(k=="home")return mcol("Explore",[ML("go:custom","Customization"),ML("go:shopgrid","Ready-made shop"),ML("t:track","Track your order"),ML("go:about","Our story"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
- if(k=="prod"){const g=secs().slice(0,4),lo=S.P.filter(p=>!p.cu).flatMap(p=>p.v.map(v=>v.p));return(g.map(x=>mcol(esc(x.name),[ML("c:"+(x.id??""),"View all"),...x.l.slice(0,5).map(p=>ML("o:"+p.id,`${esc(p.name)} · from ${from(p)}`))])).join("")||mcol("Ready-made",[MT("Coming soon")]))+`<div class="mp"><b>Ready<br>to gift.</b><span>${lo.length?"Starting at "+inr(Math.min(...lo)):"New arrivals soon"}</span></div>`}
+ if(k=="prod"){const g=secs();return `<div class="mc mshop"><h4>Products</h4><span class="msub">Categories</span>${ML("c:all","All products")}${g.map(x=>ML("c:"+(x.id??""),esc(x.name)+`<small>${x.l.length}</small>`)).join("")}${ML("c:wish","✦ Saved")}</div>`}
  const cu=S.P.filter(p=>p.cu);return mcol("Choose a product",cu.slice(0,5).map(p=>ML("b:"+p.id,"Customise "+esc(p.name.replace("Custom ",""))))||[MT("Coming soon")])+mcol("Photo rules",[MT("Up to 10 photos per product"),MT("Polaroids: min 5 · Stickers: min 10"),MT("UNO: designs PDF + packaging PDF"),MT("JPG, JPEG, PNG, WebP or PDF"),MT("50 MB per file"),MT("Add a name or message note")])+mcol("After you order",[MT("We confirm your photos on WhatsApp"),MT("Printed in 5–7 working days")])+`<div class="mp"><b>Upload.<br>We print.</b><span>Your photos, your product.</span></div>`}
 function openMM(k){clearTimeout(mt);mk=k;mm.innerHTML=mmHTML(k);mm.classList.add("open");nb.forEach(b=>b.setAttribute("aria-expanded",String(b.dataset.m==k)))}
 function closeMM(){mk=null;mm.classList.remove("open");nb.forEach(b=>b.setAttribute("aria-expanded","false"))}
@@ -532,7 +547,7 @@ mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.prev
 const dr=$("drawer"),dov=$("dov"),bg=$("burger"),DL=(a,t,s)=>`<a href="#" class="dwl" data-a="${a}"><span>${t}</span>${s?`<small>${s}</small>`:""}${ic("arr")}</a>`;
 function drawerHTML(){const cu=S.P.filter(p=>p.cu),cats=secs();
  return `<h5>Explore</h5>${DL("go:shopgrid","Shop all")}${cu.length?DL("go:custom","Customization"):""}${DL("t:orders","Your orders")}${DL("t:track","Track an order")}${DL("go:about","Our story")}${DL("go:how","How it works")}${DL("go:faq","Questions")}`
- +(cats.length?`<h5>Shop by category</h5>${cats.map(x=>DL("c:"+(x.id??""),esc(x.name),x.l.length+(x.l.length==1?" item":" items"))).join("")}${DL("c:wish","♥ Saved",V.wl.length?String(V.wl.length):"")}`:"")
+ +(cats.length?`<h5>Shop by category</h5>${cats.map(x=>DL("c:"+(x.id??""),esc(x.name),x.l.length+(x.l.length==1?" item":" items"))).join("")}${DL("c:wish","✦ Saved",V.wl.length?String(V.wl.length):"")}`:"")
  +(cu.length?`<h5>Customise</h5>${cu.map(p=>DL("b:"+p.id,esc(p.name),"from "+from(p))).join("")}`:"")
  +`<div class="dwc"><a class="btn pri" target="_blank" rel="noopener" href="https://wa.me/${WA}">${ic("chat")} WhatsApp us</a><a class="btn" target="_blank" rel="noopener" href="${IG}">${ic("ig")} Instagram</a></div>`}
 function openDr(){hd.classList.remove("away");$("dwn").innerHTML=drawerHTML();dov.hidden=false;dr.inert=false;requestAnimationFrame(()=>requestAnimationFrame(()=>{dr.classList.add("open");dov.classList.add("show")}));document.documentElement.classList.add("lock");bg.setAttribute("aria-expanded","true");setTimeout(()=>$("dwx").focus(),60)}
@@ -558,6 +573,7 @@ document.addEventListener("DOMContentLoaded",init,{once:true});
 <script src="cart.js" defer></script>
 <script src="checkout.js" defer></script>
 <script src="recovery.js" defer></script>
+<script src="header.js" defer></script>
 <script src="account.js" defer></script>
 </body>
 </html>

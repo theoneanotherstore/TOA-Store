@@ -250,7 +250,7 @@ h2 {
 }
 
 .shop-custom__head h3 {
-  font: 500 clamp(23px, 3vw, 32px)/1.15 "Playfair Display", Georgia, serif;
+  font: 500 clamp(23px, 3vw, 32px)/1.15 Roboto, sans-serif;
   letter-spacing: -.025em;
 }
 
@@ -655,3 +655,77 @@ dialog h2 {
     scroll-behavior: auto;
   }
 }
+
+/* Header: page links beside the logo; account, wishlist star and cart at the top right */
+header nav{margin-left:10px}
+.hacts{margin-left:auto;display:flex;align-items:center;gap:6px}
+.hb{position:relative;display:inline-grid;place-items:center;width:42px;height:42px;min-height:0;padding:0;border:0;border-radius:50%;background:none;color:var(--ink)}
+.hb:hover{background:var(--peach);transform:none}
+.hb svg{width:22px;height:22px}
+.hb .cnt{position:absolute;top:2px;right:0;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--o);color:#fff;font:700 10px/17px Roboto,sans-serif;text-align:center}
+#wishBtn.has svg{fill:var(--o);stroke:var(--o)}
+#acctBtn .av{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--o);color:#fff;font:700 14px/1 Roboto,sans-serif;text-transform:uppercase}
+.hacts #cartBtn{margin:0}
+@media(max-width:700px){
+ .hacts{order:2;margin-left:auto;gap:0}
+ .hb{width:40px;height:40px}
+ .hacts #cartBtn{margin-left:2px}
+}
+
+/* Roboto on the whole site */
+html,body,button,input,select,textarea,dialog{font-family:Roboto,sans-serif}
+
+/* Offer band stays solid orange */
+.band{background:#ff6a00}
+
+/* Logo animation runs in a loop */
+.logo span{animation:lgl 2.8s ease-in-out infinite;animation-delay:calc(var(--i)*110ms)}
+.logo:hover span{animation:lgl 1.2s ease-in-out infinite;animation-delay:calc(var(--i)*60ms)}
+@keyframes lgl{0%,55%,100%{translate:0 0;color:inherit}28%{translate:0 -3px;color:var(--o)}}
+
+/* Shop dropdown */
+.mshop{min-width:240px}
+.msub{display:block;font:500 13px Roboto,sans-serif;color:var(--mut);margin:-4px 0 6px}
+.mshop a{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mshop a small{color:var(--mut);font-size:12px}
+
+/* Home banner: the owner's photo, GIF, animation or video, with the two buttons in the centre */
+.hmhero{position:relative;isolation:isolate;display:grid;place-items:center;height:clamp(380px,76vh,700px);overflow:hidden;background:linear-gradient(135deg,#ffb066,#ff6a00 55%,#e85d04)}
+.hm-bg,.hm-s{position:absolute;inset:0}
+.hm-s{opacity:0;transition:opacity .8s ease}
+.hm-s.on{opacity:1}
+.hm-s img,.hm-s video{width:100%;height:100%;object-fit:cover;display:block}
+.hmhero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(rgba(0,0,0,.10),rgba(0,0,0,.30))}
+.hm-cta{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:0 5vw}
+.hm-cta .btn{min-height:54px;padding:0 36px;font-size:17px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center}
+.hm-cta .btn:not(.pri){background:#ffffffeb;color:var(--ink);border-color:transparent}
+.hm-dots{position:absolute;z-index:2;left:0;right:0;bottom:16px;display:flex;justify-content:center;gap:8px}
+.hm-d{width:9px;height:9px;min-height:0;padding:0;border:0;border-radius:5px;background:#ffffff99}
+.hm-d.on{width:24px;background:#fff}
+
+/* Tagline under the banner */
+.intro{text-align:center;padding:64px 5vw 8px}
+.intro h1{font-weight:900;font-size:clamp(40px,7.4vw,96px);line-height:.98;letter-spacing:-.035em;text-transform:uppercase}
+.intro h1 em{display:block;text-transform:none;font-style:normal;font-weight:300;color:var(--o);letter-spacing:-.02em;font-size:.86em;margin-top:.06em}
+.intro p{max-width:56ch;margin:22px auto 0;color:var(--mut);font-size:18px;font-weight:300}
+@media(max-width:700px){
+ .hmhero{height:min(72vh,520px)}
+ .hm-cta .btn{flex:1 1 40%;padding:0 16px;min-height:50px;font-size:16px}
+ .intro{padding:44px 5vw 4px}.intro p{font-size:16px}
+}
+
+/* Banner fills the first screen so Shop now / Customization sit in the exact centre of the screen */
+.hmhero{box-sizing:border-box;height:clamp(420px,calc(100vh - 108px),980px);height:clamp(420px,calc(100svh - 108px),980px);padding:0 0 108px}
+@media(max-width:700px){.hmhero{height:clamp(420px,calc(100vh - 94px),900px);height:clamp(420px,calc(100svh - 94px),900px);padding:0 0 94px}}
+
+/* Header: plain icons with no backgrounds at the top right; Shop and Orders right beside the logo */
+header.top{gap:6px}
+header nav{margin-left:0}
+.nbs{gap:0}
+.nb{padding:8px 10px}
+.nb:hover,.nb[aria-expanded="true"]{background:none;color:var(--o2)}
+.hb,.hb:hover,.hb:active{background:none;box-shadow:none}
+.hb:hover{color:var(--o)}
+.hacts #cartBtn,.hacts #cartBtn:hover,.hacts #cartBtn:active{border:0;background:none;box-shadow:none;min-height:42px;padding:0 6px;gap:6px}
+.hacts #cartBtn:hover{color:var(--o)}
+@media(max-width:700px){.hacts #cartBtn{padding:0 6px;margin-left:0}}

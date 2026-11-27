@@ -33,10 +33,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://eymxrutbkbtglynynokb.supabase.co" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Roboto:wght@300;400;500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Roboto:wght@300;400;500;700;900&display=swap"></noscript>
 <style>
-:root{--bg:#fff;--ink:#17120e;--mut:#6f665e;--ln:#f0e8df;--o:#ff6a00;--o2:#e85d04;--peach:#fff5ec;--g:linear-gradient(135deg,#ff8a1f,#ff5a00);color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#fff;--ink:#17120e;--mut:#6f665e;--ln:#f0e8df;--o:#ff6a00;--o2:#b54708;--peach:#fff5ec;--g:linear-gradient(135deg,#ff8a1f,#ff5a00);--display:"Playfair Display",Georgia,serif;color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:74px}
 body{background:#fff;color:var(--ink);font:400 16px/1.6 Roboto,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -50,7 +50,7 @@ button:disabled{opacity:.45;cursor:not-allowed;transform:none}
 .big{padding:15px 34px;font-size:16px}
 .blk{background:var(--ink);color:#fff}
 :focus-visible{outline:3px solid #ffb27a;outline-offset:2px}
-.sf{font-family:Roboto,sans-serif;font-style:normal;font-weight:300}
+.sf{font-family:var(--display);font-style:italic;font-weight:500;letter-spacing:-.03em}
 .eyebrow{display:block;color:var(--o2);font:700 12px Roboto;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
 .band{background:#ff6a00;color:#17120e;overflow:hidden;white-space:nowrap;font-weight:500;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
 .band div{display:inline-block;padding:9px 0;animation:mq 42s linear infinite}
@@ -61,7 +61,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:f
 .logo span{display:inline-block;animation:lg .7s cubic-bezier(.2,.9,.3,1.15) both;animation-delay:calc(var(--i)*40ms)}
 .logo:hover span{animation:wv .55s ease both;animation-delay:calc(var(--i)*28ms)}
 @keyframes lg{from{translate:0 110%;opacity:0}}
-@keyframes wv{45%{translate:0 -4px;color:var(--o)}}
+@keyframes wv{45%{translate:0 -4px;color:var(--o2)}}
 header nav{margin-left:auto;display:flex;gap:6px;align-items:center}
 .nbs{display:flex;gap:2px}
 .nb{background:none;border:0;color:var(--ink);font:500 15px Roboto,sans-serif;padding:8px 14px;border-radius:10px}
@@ -80,7 +80,7 @@ header nav{margin-left:auto;display:flex;gap:6px;align-items:center}
 section{padding:96px 5vw}
 .hero{min-height:82vh;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative}
 .hero h1{font-weight:900;font-size:clamp(46px,8.6vw,118px);line-height:.94;letter-spacing:-.035em;text-transform:uppercase}
-.hero h1 em{display:block;text-transform:none;letter-spacing:-.02em;font-size:.86em;color:var(--o);margin-top:.08em}
+.hero h1 em{display:block;text-transform:none;letter-spacing:-.02em;font-size:.86em;color:var(--o2);margin-top:.08em}
 .rv{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}
 .rv>span{display:inline-block;animation:rvu .85s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--w)*110ms + 150ms)}
 @keyframes rvu{from{translate:0 108%}}
@@ -119,7 +119,7 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 Roboto,sans-serif;letter-spacing:-.01em}
 .ct b{font:500 18px Roboto,sans-serif;padding:0 6px}
 .ct small{color:var(--mut);padding:0 6px 6px;margin-top:-8px}
 .brand{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;background:var(--ink);color:#fff;border-radius:32px;margin:0 3vw}
-.brand h2{color:#fff}.brand h2 .sf{color:var(--o)}
+.brand h2{color:#fff}.brand .eyebrow,.brand h2 .sf{color:#ffb27a}
 .brand p{color:#d9cfc6;font-weight:300;font-size:17px;margin-top:16px;max-width:52ch}
 .bst{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .bst div{background:#ffffff0f;border:1px solid #ffffff1f;border-radius:20px;padding:22px}
@@ -490,7 +490,7 @@ function productPage(id){
  let rel=S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&x.cat==cur.cat);if(rel.length<4)rel=rel.concat(S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&!rel.includes(x))).slice(0,4);else rel=rel.slice(0,4);
  const desc=(cur.desc||"").split(/\n+/).filter(Boolean).map(l=>`<p>${esc(l)}</p>`).join("")||"<p>Ready-made, no photo upload needed.</p>";
  page.innerHTML=`<a class="pd-back" href="index.html#shopgrid">← Back to shop</a><div class="pd"><div class="gal"><div class="zm" id="zm">${im.length?`<div class="mockstage m0" id="mockstage"><img id="gi" ${ia(im[0],900,"(max-width:700px) 92vw,560px")} alt="${esc(cur.name)} - ${labels[0]}" width="900" height="900"><span class="mock-label">${labels[0]}</span></div>`:art(cur)}</div>${im.length?`<div class="gt" id="gt">${im.map((u,i)=>`<button type="button" class="${i==0?"on":""}" data-g="${i}" aria-label="${labels[i]}"><img src="${esc(tu(u,128))}" data-o="${esc(u)}" loading="lazy" alt=""><small>${labels[i]}</small></button>`).join("")}</div>`:""}</div>
-<div><span class="eyebrow">${esc(cat||"Ready-made")}</span><div class="pd-title"><h1 style="font:500 clamp(26px,3vw,34px)/1.1 Roboto,sans-serif">${esc(cur.name)}</h1><button type="button" class="pd-wish ${saved(cur)?"on":""}" id="pdWish" aria-label="${saved(cur)?"Remove from":"Add to"} wishlist" aria-pressed="${saved(cur)}">${saved(cur)?"♥":"♡"}</button></div><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
+<div><span class="eyebrow">${esc(cat||"Ready-made")}</span><div class="pd-title"><h1>${esc(cur.name)}</h1><button type="button" class="pd-wish ${saved(cur)?"on":""}" id="pdWish" aria-label="${saved(cur)?"Remove from":"Add to"} wishlist" aria-pressed="${saved(cur)}">${saved(cur)?"♥":"♡"}</button></div><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
 <span class="lb">Size</span><div class="opts" id="opts">${cur.v.map((v,i)=>`<button type="button" class="opt ${i==vi?"on":""}" data-vi="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)}<small>${inr(v.p)}${v.s<=0?" · sold out":""}</small></button>`).join("")}</div>
 <div class="eta">🚚 <span>Estimated delivery: <b>4–7 days</b> <small>(${eta()})</small></span></div>
 <span class="lb">Quantity</span><div class="qs"><button type="button" id="qm" aria-label="Decrease">−</button><span id="qv">1</span><button type="button" id="qp" aria-label="Increase">+</button></div>

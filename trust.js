@@ -6,7 +6,7 @@
  var say=function(m){typeof toast=="function"?toast(m):alert(m)};
  var db=function(){return typeof sb!="undefined"&&sb?sb:null};
  var stars=function(n){return"★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)};
- var hero=document.querySelector(".hero"),shopgrid=$("shopgrid"),about=$("about"),faq=$("faq");
+ var hero=document.getElementById("intro")||document.querySelector(".hero"),shopgrid=$("shopgrid"),about=$("about"),faq=$("faq");
 
  /* 1. Trust strip under the hero */
  if(hero)hero.insertAdjacentHTML("afterend",'<section id="trustbar"><div class="t5-row"><span class="t5-chip">🔒 <b>Secure Razorpay payment</b></span><span class="t5-chip">✔ <b>Payment confirmed instantly</b></span><span class="t5-chip">📸 <b>Photos checked on WhatsApp</b></span><span class="t5-chip">🚚 <b>5–7 working days</b></span><button type="button" class="t5-chip" id="t5-tr1">Track your order</button></div></section>');
@@ -56,7 +56,7 @@
 
  /* ---- Order tracking ---- */
  function openTrack(e){if(e)e.preventDefault();var d=$("dg");if(!d)return;d.className="";
-  d.innerHTML='<h3 style="font:500 26px \'Playfair Display\',Georgia,serif">Track your order</h3><p class="mut" style="margin-top:6px">Enter your order ID and the UTR, payment ID or tracking ID we sent you on WhatsApp or email.</p><form class="f" id="t5-tf"><input id="t5-on" placeholder="Order number (e.g. TOA-1001)" required><input id="t5-op" placeholder="UTR / payment ID / tracking ID" required minlength="6" maxlength="60" autocomplete="off"><button class="pri" style="font-size:15px">Track order</button><button type="button" id="t5-x">Close</button></form><div id="t5-res"></div>';
+  d.innerHTML='<h3 style="font:500 26px Roboto,sans-serif">Track your order</h3><p class="mut" style="margin-top:6px">Enter your order ID and the UTR, payment ID or tracking ID we sent you on WhatsApp or email.</p><form class="f" id="t5-tf"><input id="t5-on" placeholder="Order number (e.g. TOA-1001)" required><input id="t5-op" placeholder="UTR / payment ID / tracking ID" required minlength="6" maxlength="60" autocomplete="off"><button class="pri" style="font-size:15px">Track order</button><button type="button" id="t5-x">Close</button></form><div id="t5-res"></div>';
   $("t5-x").onclick=function(){d.close()};
   $("t5-tf").onsubmit=function(ev){ev.preventDefault();var s=db(),res=$("t5-res");if(!s)return say("Store is not connected yet");var b=ev.target.querySelector(".pri");b.disabled=true;res.innerHTML="";
    var trackError=function(){res.innerHTML='<p class="mut" style="margin-top:14px">We could not retrieve tracking right now. Check your connection and try again, or <a target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='+encodeURIComponent("Hi theoneanother, I need help tracking my order.")+'">message us on WhatsApp</a>.</p>'};
@@ -75,7 +75,7 @@
 
  /* ---- Your orders (email + phone) ---- */
  function openOrders(e){if(e)e.preventDefault();var d=$("dg");if(!d)return;d.className="";
-  d.innerHTML='<h3 style="font:500 26px \'Playfair Display\',Georgia,serif">Your orders</h3><p class="mut" style="margin-top:6px">Enter the email and phone number you ordered with.</p><form class="f" id="t5-of"><input id="t5-oe" type="email" placeholder="Email" required maxlength="200"><input id="t5-oph" type="tel" placeholder="Phone number" required pattern="[0-9+ ]{10,15}"><button class="pri" style="font-size:15px">View orders</button><button type="button" id="t5-ox">Close</button></form><div id="t5-ores"></div>';
+  d.innerHTML='<h3 style="font:500 26px Roboto,sans-serif">Your orders</h3><p class="mut" style="margin-top:6px">Enter the email and phone number you ordered with.</p><form class="f" id="t5-of"><input id="t5-oe" type="email" placeholder="Email" required maxlength="200"><input id="t5-oph" type="tel" placeholder="Phone number" required pattern="[0-9+ ]{10,15}"><button class="pri" style="font-size:15px">View orders</button><button type="button" id="t5-ox">Close</button></form><div id="t5-ores"></div>';
   $("t5-ox").onclick=function(){d.close()};
   $("t5-of").onsubmit=function(ev){ev.preventDefault();var s=db(),res=$("t5-ores");if(!s)return say("Store is not connected yet");var b=ev.target.querySelector(".pri");b.disabled=true;res.innerHTML="";
    s.rpc("my_orders",{em:$("t5-oe").value.trim(),ph:$("t5-oph").value.trim()}).then(function(r){b.disabled=false;

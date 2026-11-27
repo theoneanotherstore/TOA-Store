@@ -2,8 +2,8 @@
    Section 7 changes: removed the page-load fade (delayed LCP) and the animated band gradient (repainted every frame). */
 
 /* Scroll-triggered reveal (class added by animations.js) */
-.sr{opacity:0}
-.sr.in2{animation:srIn .75s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--sd,0ms)}
+.scroll-reveal{opacity:0}
+.scroll-reveal.in2{animation:srIn .75s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--sd,0ms)}
 @keyframes srIn{from{opacity:0;translate:0 28px}to{opacity:1;translate:0 0}}
 
 /* Button hover and click micro-interactions */
@@ -27,4 +27,4 @@ button:not(:disabled):active,.btn:active{transform:scale(.95);transition-duratio
 #toTop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:46px;height:46px;padding:0;border:0;border-radius:50%;background:var(--g);color:#17120e;font-size:20px;font-weight:700;line-height:1;box-shadow:0 10px 26px #ff6a0055;z-index:35;opacity:0;translate:0 16px;pointer-events:none;transition:opacity .3s,translate .3s,transform .2s}
 #toTop.show{opacity:1;translate:0 0;pointer-events:auto}
 
-@media(prefers-reduced-motion:reduce){.sr{opacity:1}#toTop{transition:none}}
+@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1}#toTop{transition:none}}

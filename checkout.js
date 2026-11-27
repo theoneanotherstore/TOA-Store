@@ -84,7 +84,7 @@
 
  function open(){cleanup();if(!C.length){window.openCart();return}
   const s=sub();if(K.base!==s){K.base=s;K.amt=(s+(1+Math.floor(Math.random()*99))/100).toFixed(2)}
-  const d=K.d;
+  const d=K.d,A=window.TOA_ACCOUNT;if(A){if(d.cn==null)d.cn=A.name||"";if(d.ce==null)d.ce=A.email||"";if(d.cp==null)d.cp=A.phone||""}
   dg.className="wide";dg.dataset.co=1;
   dg.innerHTML=`<button class="x" id="k9-x" type="button" aria-label="Close checkout">×</button><div id="k9">
 <div class="k9-top"><span class="k9-brand">Checkout</span><button type="button" class="c8-lk" id="k9-bc">← Back to cart</button></div>

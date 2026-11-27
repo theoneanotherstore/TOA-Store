@@ -268,7 +268,7 @@ dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
 .fg{grid-template-columns:1fr}
 footer{padding:44px 5vw 28px}}
 /* Section 7: skip rendering work for below-the-fold sections */
-#custom,#how,#faq,#policies,#reviews,footer{content-visibility:auto;contain-intrinsic-size:auto 560px}
+#how,#faq,#policies,#reviews,footer{content-visibility:auto;contain-intrinsic-size:auto 560px}
 /* Section 6: mobile responsiveness */
 html{-webkit-text-size-adjust:100%;overflow-x:clip}
 html.lock,html:has(dialog[open]){overflow:hidden}
@@ -357,12 +357,11 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <div class="band"><div id="band"></div></div>
 <header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Shop</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div></nav><div class="hacts"><button type="button" class="hb" id="acctBtn" aria-haspopup="dialog" aria-label="Sign in or create account" title="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></button><button type="button" class="hb" id="wishBtn" aria-label="Wishlist" title="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.7 5.3 4.2 8.8 9.5 9.5-5.3.7-8.8 4.2-9.5 9.5-.7-5.3-4.2-8.8-9.5-9.5 5.3-.7 8.8-4.2 9.5-9.5z"/></svg></button><button id="cartBtn" aria-label="Cart"></button></div><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
 <main id="productPage" hidden></main>
-<section class="hmhero" id="hmhero" aria-label="Featured"><div class="hm-bg" id="hmbg"></div><div class="hm-actions" id="hmactions"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Customization</a></div><div class="hm-dots" id="hmdots"></div></section>
+<section class="hmhero" id="hmhero" aria-label="Featured"><div class="hm-bg" id="hmbg"></div><div class="hm-actions" id="hmactions"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a></div><div class="hm-dots" id="hmdots"></div></section>
 <section class="intro" id="intro"><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p></section>
 <section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div></div>
 <div class="sortbar"><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
 <div id="grid"></div></section>
-<section class="shop-custom" id="custom" hidden aria-labelledby="custom-title"><div class="shop-custom__head"><div><span class="eyebrow">Customization</span><h3 id="custom-title">Your photos, <span class="sf">printed.</span></h3></div><p>Choose a product to create something from your own photos.</p></div><div class="cgrid" id="hubgrid"></div></section>
 <section class="shop-custom" id="how" aria-labelledby="how-title"><div class="hd"><div><span class="eyebrow">How it works</span><h2 id="how-title">Simple, from photo to doorstep</h2></div></div><div class="steps"><div><b>01</b><h3>Pick</h3><p class="mut">Choose a product and a size.</p></div><div><b>02</b><h3>Upload</h3><p class="mut">On Customization products, add up to 10 photos and a note.</p></div><div><b>03</b><h3>Pay securely</h3><p class="mut">UPI, cards or net banking through Razorpay.</p></div><div><b>04</b><h3>We confirm</h3><p class="mut">We check your photos on WhatsApp, then print in 5–7 working days.</p></div></div></section>
 <section id="faq"><div class="hd"><div><span class="eyebrow">Good to know</span><h2>Questions</h2></div></div>
 <details><summary>How does ordering work?</summary><p>Pick a product and size, upload your photos if it is a Customization product, add a short note if you like, and pay securely with Razorpay (UPI, cards, net banking). We check your photos with you on WhatsApp before printing.</p></details>
@@ -374,7 +373,7 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 </section>
 <section class="brand thanks" id="thanks"><div><span class="eyebrow">A note from us</span><h2>Thank you for <span class="sf">choosing us.</span></h2><p>Every order supports our small print studio in Chennai and helps us turn your favorite memories into something you can hold on to. Thank you for being part of our story.</p></div></section>
 <footer id="contact"><div class="fg"><div><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><p style="margin-top:8px">The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p class="cta" style="margin-top:14px"><a class="btn" id="waF" target="_blank" rel="noopener"></a><a class="btn" id="igF" target="_blank" rel="noopener"></a></p></div>
-<div class="fl"><h4>Shop</h4><a href="#custom">Customization</a><a href="#shopgrid">Ready-made</a><a href="#reviews">Reviews</a></div>
+<div class="fl"><h4>Shop</h4><a href="#shopgrid">Customizations</a><a href="#shopgrid">Ready-made</a><a href="#reviews">Reviews</a></div>
 <div class="fl"><h4>Help</h4><a href="#how">How it works</a><a href="#faq">Questions</a><a href="https://wa.me/917397193050" target="_blank" rel="noopener">WhatsApp support</a></div>
 <div><h4>Contact</h4><p>15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com<br>+91 73971 93050</p><p style="margin-top:10px">Custom products are non-refundable and non-returnable. Minimum order ₹249. Lead time 5–7 working days.</p></div></div>
 <div class="fb"><span>© theoneanother</span><a href="#top">Back to top ↑</a></div></footer>
@@ -423,7 +422,7 @@ $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$(
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
 const isSeparateUno=p=>p.t=="uno"&&p.name.toLowerCase()=="thalapathy uno cards",customProducts=()=>S.P.filter(p=>p.cu&&!isSeparateUno(p));
-const secs=()=>[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>(!p.cu||isSeparateUno(p))&&(p.cat||null)===c.id)})).filter(x=>x.l.length);
+const secs=()=>{const cu=customProducts();return[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>((p.cat||null)===c.id&&(!p.cu||isSeparateUno(p)))||(c.name.toLowerCase()=="customizations"&&cu.includes(p)))})).filter(x=>x.l.length)};
 function hero(){const box=$("hmbg");if(CQ!=null||PQ!=null||!box||box.dataset.ready||!sb)return;box.dataset.ready="1";
  sb.from("home_content").select("media_path,media_type,caption").eq("active",true).order("position").order("id").limit(12).then(r=>{
   const L=r.error?[]:(r.data||[]);if(!L.length)return;
@@ -441,7 +440,6 @@ function hero(){const box=$("hmbg");if(CQ!=null||PQ!=null||!box||box.dataset.rea
   dots.onclick=e=>{const d=e.target.closest(".hm-d");if(d)show([...dots.children].indexOf(d))};
   show(0)},()=>{})}
 const saved=p=>V.wl.includes(p.id);
-function hub(){const L=customProducts(),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
 const card=p=>`<article class="pc"><div class="pw"><a class="pc-link" href="index.html?product=${encodeURIComponent(p.id)}" aria-label="View ${esc(p.name)}">${art(p)}</a><button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"✦":"✧"}</button></div><a class="pc-name" href="index.html?product=${encodeURIComponent(p.id)}"><h3>${esc(p.name)}</h3></a><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"View product"}</button></article>`;
 /* Fade cards in as they scroll into view */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
@@ -459,7 +457,7 @@ function cards(keepAll){const f={new:(a,b)=>b.id-a.id,low:(a,b)=>minP(a)-minP(b)
   $("grid").innerHTML=G.length?G.map(x=>`<section class="catsec" id="${catId(x.k)}" aria-label="${esc(x.name)}"><div class="catsec-hd"><h3>${esc(x.name)}</h3></div><div class="grid">${x.l.slice(0,LIM).map(card).join("")}</div>${x.l.length>LIM?`<p class="vm"><a class="btn" href="index.html?cat=${encodeURIComponent(x.k)}">View more <span aria-hidden="true">→</span><span class="sr"> ${esc(x.name)} products</span></a></p>`:""}</section>`).join(""):`<p class="mut">Ready-made products are coming soon.</p>`}
  if(keepAll)document.querySelectorAll("#grid .pc").forEach(c=>c.classList.add("in"));reveal()}
 function setCat(k,scroll){k=String(k);if(CQ!=null){location.href=k=="all"?"index.html#shopgrid":"index.html?cat="+encodeURIComponent(k=="wish"?"wish":catKey(k));return}const el=$(k=="wish"?"cat-wish":k=="all"?"shopgrid":catId(k));if(!el){if(k=="wish")toast("No saved products yet. Tap the star on any product to save it here.");return}if(scroll)el.scrollIntoView({behavior:"smooth"})}
-function shop(){hero();hub();cards();reveal();ldp()}
+function shop(){hero();cards();reveal();ldp()}
 const scrollTo_=k=>{const el=$(k);if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
 $("sort").onchange=()=>cards(true);
 const gridClick=e=>{const t=e.target.closest("button");if(!t)return;
@@ -468,7 +466,6 @@ const gridClick=e=>{const t=e.target.closest("button");if(!t)return;
  if(t.dataset.o)openP(+t.dataset.o)};
 $("grid").onclick=gridClick;
 const hubGo=e=>{const c=e.target.closest("[data-b]");if(c)openB(+c.dataset.b)};
-$("hubgrid").onclick=hubGo;$("hubgrid").onkeydown=e=>{if(e.key=="Enter")hubGo(e)};
 function cleanup(){urls.forEach(u=>URL.revokeObjectURL(u));urls=[]}
 dg.addEventListener("close",cleanup);
 /* Section 7: per-product page title and description while a product is open, and Product structured data for the whole catalogue */
@@ -560,12 +557,12 @@ const mcol=(h,items)=>`<div class="mc"><h4>${h}</h4>${items.join("")}</div>`;
 const ML=(a,t)=>`<a href="#" data-a="${a}">${t}</a>`,MX=(h,t)=>`<a href="${h}" target="_blank" rel="noopener">${t}</a>`,MT=t=>`<span class="mt">${t}</span>`;
 function mmHTML(k){
  if(k=="orders")return mcol("Orders",[ML("t:orders","Your orders"),ML("t:track","Track an order")]);
- if(k=="home")return mcol("Explore",[ML("go:custom","Customization"),ML("go:shopgrid","Ready-made shop"),ML("t:track","Track your order"),ML("go:reviews","Reviews"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
+ if(k=="home")return mcol("Explore",[ML("go:shopgrid","Ready-made shop"),ML("t:track","Track your order"),ML("go:reviews","Reviews"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
  if(k=="prod"){const g=secs();return `<div class="mc mshop"><h4>Products</h4><span class="msub">Categories</span>${ML("c:all","All products")}${g.map(x=>ML("c:"+(x.id??""),esc(x.name))).join("")}${ML("c:wish","✦ Saved")}</div>`}
  const cu=customProducts();return mcol("Choose a product",cu.slice(0,5).map(p=>ML("b:"+p.id,"Customise "+esc(p.name.replace("Custom ",""))))||[MT("Coming soon")])+mcol("Photo rules",[MT("Up to 10 photos per product"),MT("Polaroids: min 5 · Stickers: min 10"),MT("UNO: designs PDF + packaging PDF"),MT("JPG, JPEG, PNG, WebP or PDF"),MT("50 MB per file"),MT("Add a name or message note")])+mcol("After you order",[MT("We confirm your photos on WhatsApp"),MT("Printed in 5–7 working days")])+`<div class="mp"><b>Upload.<br>We print.</b><span>Your photos, your product.</span></div>`}
 function openMM(k){clearTimeout(mt);mk=k;mm.innerHTML=mmHTML(k);mm.classList.add("open");nb.forEach(b=>b.setAttribute("aria-expanded",String(b.dataset.m==k)))}
 function closeMM(){mk=null;mm.classList.remove("open");nb.forEach(b=>b.setAttribute("aria-expanded","false"))}
-const hov=()=>matchMedia("(hover:hover)").matches,NAVTO={home:"top",prod:"shopgrid",cust:"custom",orders:""};
+const hov=()=>matchMedia("(hover:hover)").matches,NAVTO={home:"top",prod:"shopgrid",orders:""};
 nb.forEach(b=>{b.onmouseenter=()=>{if(hov())openMM(b.dataset.m)};b.onfocus=()=>{if(hov())openMM(b.dataset.m)};
  b.onclick=e=>{e.stopPropagation();if(hov()){closeMM();if(b.dataset.m=="orders"){openMM("orders");return}goTo(NAVTO[b.dataset.m])}else mk==b.dataset.m?closeMM():openMM(b.dataset.m)}});
 hd.onmouseleave=()=>{mt=setTimeout(closeMM,220)};hd.onmouseenter=()=>clearTimeout(mt);
@@ -575,7 +572,7 @@ mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.prev
 /* Section 6: mobile navigation drawer, hide-on-scroll header, tap outside to close dialogs, filter-chip scroll memory */
 const dr=$("drawer"),dov=$("dov"),bg=$("burger"),DL=(a,t,s)=>`<a href="#" class="dwl" data-a="${a}"><span>${t}</span>${s?`<small>${s}</small>`:""}${ic("arr")}</a>`;
 function drawerHTML(){const cu=customProducts(),cats=secs();
- return `<h5>Explore</h5>${DL("go:shopgrid","Shop all")}${cu.length?DL("go:custom","Customization"):""}${DL("t:orders","Your orders")}${DL("t:track","Track an order")}${DL("go:reviews","Reviews")}${DL("go:how","How it works")}${DL("go:faq","Questions")}`
+ return `<h5>Explore</h5>${DL("go:shopgrid","Shop all")}${DL("t:orders","Your orders")}${DL("t:track","Track an order")}${DL("go:reviews","Reviews")}${DL("go:how","How it works")}${DL("go:faq","Questions")}`
  +(cats.length?`<h5>Shop by category</h5>${cats.map(x=>DL("c:"+(x.id??""),esc(x.name))).join("")}${DL("c:wish","✦ Saved",V.wl.length?String(V.wl.length):"")}`:"")
  +(cu.length?`<h5>Customise</h5>${cu.map(p=>DL("b:"+p.id,esc(p.name),"from "+from(p))).join("")}`:"")
  +`<div class="dwc"><a class="btn pri" target="_blank" rel="noopener" href="https://wa.me/${WA}">${ic("chat")} WhatsApp us</a><a class="btn" target="_blank" rel="noopener" href="${IG}">${ic("ig")} Instagram</a></div>`}

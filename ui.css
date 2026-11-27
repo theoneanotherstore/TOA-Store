@@ -829,6 +829,6 @@ header nav{margin-left:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .backlink{display:inline-block;font-weight:500;font-size:15px;color:var(--mut);margin-bottom:6px}
 .backlink:hover{color:var(--o2)}
-.catpage .hmhero,.catpage #custom,.catpage #how,.catpage .intro,.catpage .brand,.catpage #faq,.catpage #shopgrid>.hd{display:none!important}
+.catpage .hmhero,.catpage #how,.catpage .intro,.catpage .brand,.catpage #faq,.catpage #shopgrid>.hd{display:none!important}
 .catpage #shopgrid{padding-top:36px}
 .catpage .catsec:first-of-type{margin-top:14px}

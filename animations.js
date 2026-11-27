@@ -9,7 +9,7 @@
   var i=Array.prototype.indexOf.call(el.parentElement.children,el);el.style.setProperty("--sd",Math.min(i,6)*70+"ms");el.classList.add("scroll-reveal");io.observe(el)})}
  scan();
  /* Tiles and cards are drawn after the data loads, so watch their containers */
- ["catg","hubgrid","featg","grid"].forEach(function(id){var n=document.getElementById(id);if(n&&"MutationObserver" in window)new MutationObserver(scan).observe(n,{childList:true})});
+ ["catg","featg","grid"].forEach(function(id){var n=document.getElementById(id);if(n&&"MutationObserver" in window)new MutationObserver(scan).observe(n,{childList:true})});
 
  /* 2. Cart icon bump when the item count goes up */
  var cb=document.getElementById("cartBtn"),last=0;

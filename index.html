@@ -377,6 +377,7 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <div class="fl"><h4>Help</h4><a href="#how">How it works</a><a href="#faq">Questions</a><a href="https://wa.me/917397193050" target="_blank" rel="noopener">WhatsApp support</a></div>
 <div><h4>Contact</h4><p>15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com<br>+91 73971 93050</p><p style="margin-top:10px">Custom products are non-refundable and non-returnable. Minimum order ₹249. Lead time 5–7 working days.</p></div></div>
 <div class="fb"><span>© theoneanother</span><a href="#top">Back to top ↑</a></div></footer>
+<div class="band"><div id="band-bottom"></div></div>
 <div class="dov" id="dov" hidden></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" inert><div class="dwh"><a class="dwlogo" href="index.html">theoneanother</a><button type="button" class="dwx" id="dwx" aria-label="Close menu">×</button></div><nav class="dwn" id="dwn" aria-label="Mobile"></nav></aside>
 <dialog id="dg"></dialog>
@@ -420,7 +421,7 @@ let V={cat:"all",n:12,wl:LS("toa-wl",[])};
 const CQ=new URLSearchParams(location.search).get("cat"),PQ=new URLSearchParams(location.search).get("product");if(CQ!=null)document.body.classList.add("catpage");if(PQ!=null){document.body.classList.add("productpage");document.querySelectorAll("#contact a[href^='#']").forEach(a=>a.href="index.html"+a.getAttribute("href"))}
 const goTo=id=>{const el=$(id);if((CQ!=null||PQ!=null)&&(!el||el.offsetParent===null)){location.href="index.html#"+id;return}if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
 $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$("igF").innerHTML=ic("ig")+" Instagram";$("igF").href=IG;
-function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
+function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";["band","band-bottom"].forEach(id=>{const el=$(id);el.parentElement.hidden=!on;el.innerHTML=t+t})}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
 const isSeparateUno=p=>p.t=="uno"&&p.name.toLowerCase()=="thalapathy uno cards",customProducts=()=>S.P.filter(p=>p.cu&&!isSeparateUno(p));
 const secs=()=>{const cu=customProducts();return[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>((p.cat||null)===c.id&&(!p.cu||isSeparateUno(p)))||(c.name.toLowerCase()=="customizations"&&cu.includes(p)))})).filter(x=>x.l.length)};

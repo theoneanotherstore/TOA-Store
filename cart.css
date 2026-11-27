@@ -3,7 +3,7 @@
 /* Mini cart drawer (slides in from the right when something is added) */
 #c8-ov{position:fixed;inset:0;z-index:80;background:#17120e8c;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .3s}
 #c8-ov.show{opacity:1}
-#c8-dr{position:fixed;top:0;right:0;bottom:0;width:min(100vw,420px);z-index:81;background:#fff;display:flex;flex-direction:column;box-shadow:-20px 0 60px #17120e40;visibility:hidden;transform:translateX(104%);transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s;padding-top:env(safe-area-inset-top,0px);overscroll-behavior:contain}
+#c8-dr{position:fixed;top:0;right:0;bottom:0;width:min(100vw,420px);z-index:81;background:#fff;display:flex;flex-direction:column;border-radius:24px 0 0 24px;box-shadow:-20px 0 60px #17120e40;visibility:hidden;transform:translateX(104%);transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s;padding-top:env(safe-area-inset-top,0px);overscroll-behavior:contain}
 #c8-dr.open{visibility:visible;transform:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s}
 .c8-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 12px 12px 18px;border-bottom:1px solid var(--ln);flex:none}
 .c8-h h3{font:500 22px Roboto,sans-serif}

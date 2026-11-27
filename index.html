@@ -39,7 +39,7 @@
 :root{--bg:#fff;--ink:#17120e;--mut:#6f665e;--ln:#f0e8df;--o:#ff6a00;--o2:#e85d04;--peach:#fff5ec;--g:linear-gradient(135deg,#ff8a1f,#ff5a00);color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;scroll-padding-top:74px}
-body{background:radial-gradient(900px 540px at 100% -6%,#ffe8d4,transparent),radial-gradient(760px 520px at -8% 34%,#fff2e6,transparent),#fff;color:var(--ink);font:400 16px/1.6 Roboto,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#fff;color:var(--ink);font:400 16px/1.6 Roboto,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#fff;z-index:60}
 a{color:inherit;text-decoration:none}
 .ic{width:20px;height:20px;vertical-align:-4px}
@@ -216,6 +216,27 @@ footer .fl a:hover{color:var(--o2)}
 .rel h4{font:500 22px Roboto,sans-serif;margin-bottom:12px}
 .rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
 .rg a{display:grid;gap:6px;font-size:13px;cursor:pointer}.rg a b{font-weight:500}
+body.productpage{background:#fff}
+body.productpage>.band,body.productpage>section,body.productpage>footer{display:none!important}
+body.productpage #productPage{display:block;max-width:1280px;margin:0 auto;padding:32px 5vw 72px}
+.pd-back{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;color:var(--mut);font-weight:500}
+.pd-back:hover{color:var(--o2)}
+.pd-title{display:flex;justify-content:space-between;align-items:start;gap:14px}
+.pd-wish{width:46px;height:46px;min-height:46px;flex:none;padding:0;border-color:var(--ln);border-radius:50%;font-size:23px}
+.pd-wish.on{color:var(--o);border-color:#f5c5a0;background:#fff5ec}
+.mockstage{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;background:#fff}
+.mockstage img{width:86%;height:84%;object-fit:contain;transition:opacity .2s,transform .3s}
+.mockstage.m1{background:#f4ede5}.mockstage.m1 img{width:70%;height:78%;padding:12px;background:#fff;box-shadow:0 16px 36px #17120e36}
+.mockstage.m2{background:linear-gradient(145deg,#eee4d8,#d9c8b4)}.mockstage.m2 img{width:72%;height:76%;transform:rotate(-5deg);box-shadow:0 20px 30px #17120e40}
+.mockstage.m3{background:#f3f1ee}.mockstage.m3 img{width:78%;height:78%;object-fit:cover;border-radius:20px;box-shadow:0 12px 28px #17120e2b}
+.mockstage.m4{background:#e8e4de}.mockstage.m4 img{width:68%;height:82%;padding:10px;background:#fff;transform:rotate(4deg);box-shadow:0 18px 34px #17120e38}
+.mock-label{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);padding:4px 11px;border-radius:999px;background:#fffE;color:var(--mut);font-size:11px;white-space:nowrap;box-shadow:0 4px 14px #17120e16}
+.gt button{position:relative;width:78px;height:78px;padding:5px;border-radius:12px;background:#fff}
+.gt button img{height:54px;border-radius:7px;object-fit:contain}
+.gt button small{display:block;font-size:9px;line-height:1.2;color:var(--mut);white-space:nowrap}
+.pd .buybar{bottom:0}
+.pd .rel .art{border-radius:12px}
+body.productpage .top{background:#fff}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.pc{opacity:1;translate:0 0}}
 @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.stack{height:340px}.bld{grid-template-columns:1fr}.brand{grid-template-columns:1fr;gap:28px}.fg{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){
@@ -247,7 +268,7 @@ dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
 .fg{grid-template-columns:1fr}
 footer{padding:44px 5vw 28px}}
 /* Section 7: skip rendering work for below-the-fold sections */
-#about,#how,#faq,#policies,#reviews,footer{content-visibility:auto;contain-intrinsic-size:auto 560px}
+#how,#faq,#policies,#reviews,footer{content-visibility:auto;contain-intrinsic-size:auto 560px}
 /* Section 6: mobile responsiveness */
 html{-webkit-text-size-adjust:100%;overflow-x:clip}
 html.lock,html:has(dialog[open]){overflow:hidden}
@@ -302,6 +323,7 @@ section{padding:52px 5vw}
 dialog{inset:auto 0 0 0;margin:0;transform:none;width:100%;max-width:100%;max-height:92dvh;border-radius:22px 22px 0 0;border-width:1px 0 0;padding:18px 16px 16px;overscroll-behavior:contain;animation:sheet .32s cubic-bezier(.2,.8,.2,1)}
 dialog,dialog.wide{width:100%}
 .pd{display:flex;flex-direction:column}.pd>div:nth-child(2){display:contents}.pd .gal{margin-bottom:18px}.pd .qs{align-self:flex-start}.pd .buybar{order:99}
+body.productpage #productPage{padding:24px 5vw 48px}
 dialog.wide{height:100dvh;max-height:100dvh;border-radius:0;border:0;padding-top:calc(18px + env(safe-area-inset-top,0px))}
 dialog .x{position:sticky;top:6px;right:auto;display:block;margin:-6px 0 -44px auto;background:#fff;box-shadow:0 4px 14px #17120e2e;z-index:6}
 .buybar{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
@@ -309,7 +331,7 @@ dialog .x{position:sticky;top:6px;right:auto;display:block;margin:-6px 0 -44px a
 footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 .dov{display:block;position:fixed;inset:0;z-index:70;background:#17120e8c;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .28s}
 .dov.show{opacity:1}
-.drawer{display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;width:min(88vw,360px);background:#fff;z-index:71;visibility:hidden;transform:translateX(-104%);transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s;box-shadow:0 0 60px #17120e40;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);overscroll-behavior:contain}
+.drawer{display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;width:min(88vw,360px);background:#fff;z-index:71;border-radius:0 24px 24px 0;visibility:hidden;transform:translateX(-104%);transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s;box-shadow:0 0 60px #17120e40;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);overscroll-behavior:contain}
 .drawer.open{visibility:visible;transform:none;transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s}
 .dwh{display:flex;align-items:center;justify-content:space-between;flex:none;padding:8px 10px 8px 20px;border-bottom:1px solid var(--ln)}
 .dwlogo{font-weight:700;font-size:21px;letter-spacing:-.05em}
@@ -334,13 +356,13 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <body>
 <div class="band"><div id="band"></div></div>
 <header class="top" id="top"><button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><nav id="nav" aria-label="Main"><div class="nbs"><button class="nb" data-m="prod" aria-expanded="false" aria-haspopup="true">Shop</button><button class="nb" data-m="orders" aria-expanded="false" aria-haspopup="true">Orders</button></div></nav><div class="hacts"><button type="button" class="hb" id="acctBtn" aria-haspopup="dialog" aria-label="Sign in or create account" title="Account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></button><button type="button" class="hb" id="wishBtn" aria-label="Wishlist" title="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5c.7 5.3 4.2 8.8 9.5 9.5-5.3.7-8.8 4.2-9.5 9.5-.7-5.3-4.2-8.8-9.5-9.5 5.3-.7 8.8-4.2 9.5-9.5z"/></svg></button><button id="cartBtn" aria-label="Cart"></button></div><div class="mm" id="mm" role="region" aria-label="Menu"></div></header>
+<main id="productPage" hidden></main>
 <section class="hmhero" id="hmhero" aria-label="Featured"><div class="hm-bg" id="hmbg"></div><div class="hm-actions" id="hmactions"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Customization</a></div><div class="hm-dots" id="hmdots"></div></section>
+<section class="intro" id="intro"><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p></section>
 <section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div></div>
-<div class="shop-custom" id="custom" hidden aria-labelledby="custom-title"><div class="shop-custom__head"><div><span class="eyebrow">Customization</span><h3 id="custom-title">Your photos, <span class="sf">printed.</span></h3></div><p>Choose a product to create something from your own photos.</p></div><div class="cgrid" id="hubgrid"></div></div>
 <div class="sortbar"><span class="mut" id="cnt"></span><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
 <div id="grid"></div></section>
-<section class="intro" id="intro"><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p></section>
-<section class="brand" id="about"><div><span class="eyebrow" style="color:var(--o)">Our story</span><h2>Made from <span class="sf">your</span> moments</h2><p>theoneanother is a small print studio in Chennai. We turn the photos already on your phone into posters, stickers, polaroids and UNO decks, and we check every photo with you on WhatsApp before anything is printed.</p></div><div class="bst"><div><b>5–7</b><span>working days to your door</span></div><div><b>10</b><span>photos per custom product</span></div><div><b>Secure</b><span>payment by Razorpay</span></div><div><b>100%</b><span>photo check before printing</span></div></div></section>
+<section class="shop-custom" id="custom" hidden aria-labelledby="custom-title"><div class="shop-custom__head"><div><span class="eyebrow">Customization</span><h3 id="custom-title">Your photos, <span class="sf">printed.</span></h3></div><p>Choose a product to create something from your own photos.</p></div><div class="cgrid" id="hubgrid"></div></section>
 <section id="how"><div class="hd"><div><span class="eyebrow">How it works</span><h2>Simple, from photo to doorstep</h2></div></div><div class="steps"><div><b>01</b><h3>Pick</h3><p class="mut">Choose a product and a size.</p></div><div><b>02</b><h3>Upload</h3><p class="mut">On Customization products, add up to 10 photos and a note.</p></div><div><b>03</b><h3>Pay securely</h3><p class="mut">UPI, cards or net banking through Razorpay.</p></div><div><b>04</b><h3>We confirm</h3><p class="mut">We check your photos on WhatsApp, then print in 5–7 working days.</p></div></div></section>
 <section id="faq"><div class="hd"><div><span class="eyebrow">Good to know</span><h2>Questions</h2></div></div>
 <details><summary>How does ordering work?</summary><p>Pick a product and size, upload your photos if it is a Customization product, add a short note if you like, and pay securely with Razorpay (UPI, cards, net banking). We check your photos with you on WhatsApp before printing.</p></details>
@@ -350,8 +372,9 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <details><summary>How do I track my order?</summary><p>Go to Orders in the navigation bar, then enter your order ID and the UTR, payment ID or tracking ID we sent you on WhatsApp or email. You can also choose Your orders and enter your email and phone number to see all your orders. We send every update on WhatsApp or email.</p></details>
 <details><summary>Is there a minimum order?</summary><p>Yes, the minimum order is ₹249.</p></details>
 </section>
+<section class="brand thanks" id="thanks"><div><span class="eyebrow">A note from us</span><h2>Thank you for <span class="sf">choosing us.</span></h2><p>Every order supports our small print studio in Chennai and helps us turn your favorite memories into something you can hold on to. Thank you for being part of our story.</p></div></section>
 <footer id="contact"><div class="fg"><div><a class="logo" href="index.html" aria-label="theoneanother">theoneanother</a><p style="margin-top:8px">The one you never were. Custom posters, stickers, polaroids and UNO cards.</p><p class="cta" style="margin-top:14px"><a class="btn" id="waF" target="_blank" rel="noopener"></a><a class="btn" id="igF" target="_blank" rel="noopener"></a></p></div>
-<div class="fl"><h4>Shop</h4><a href="#custom">Customization</a><a href="#shopgrid">Ready-made</a><a href="#about">Our story</a></div>
+<div class="fl"><h4>Shop</h4><a href="#custom">Customization</a><a href="#shopgrid">Ready-made</a><a href="#reviews">Reviews</a></div>
 <div class="fl"><h4>Help</h4><a href="#how">How it works</a><a href="#faq">Questions</a><a href="https://wa.me/917397193050" target="_blank" rel="noopener">WhatsApp support</a></div>
 <div><h4>Contact</h4><p>15/1/2, Kattabomman Main Street, Kodungaiyur, Chennai – 118<br>theoneanotherstore@gmail.com<br>+91 73971 93050</p><p style="margin-top:10px">Custom products are non-refundable and non-returnable. Minimum order ₹249. Lead time 5–7 working days.</p></div></div>
 <div class="fb"><span>© theoneanother</span><a href="#top">Back to top ↑</a></div></footer>
@@ -394,13 +417,13 @@ let C=[],dg=$("dg"),cur=null,F=[],urls=[];
 const LS=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
 let V={cat:"all",n:12,wl:LS("toa-wl",[])};
 /* ?cat=<id> opens a category page that lists every product of that category */
-const CQ=new URLSearchParams(location.search).get("cat");if(CQ!=null)document.body.classList.add("catpage");
+const CQ=new URLSearchParams(location.search).get("cat"),PQ=new URLSearchParams(location.search).get("product");if(CQ!=null)document.body.classList.add("catpage");if(PQ!=null)document.body.classList.add("productpage");
 const goTo=id=>{const el=$(id);if(CQ!=null&&(!el||el.offsetParent===null)){location.href="index.html#"+id;return}if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
 $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$("igF").innerHTML=ic("ig")+" Instagram";$("igF").href=IG;
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
 const secs=()=>[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>!p.cu&&(p.cat||null)===c.id)})).filter(x=>x.l.length);
-function hero(){const box=$("hmbg");if(CQ!=null||!box||box.dataset.ready||!sb)return;box.dataset.ready="1";
+function hero(){const box=$("hmbg");if(CQ!=null||PQ!=null||!box||box.dataset.ready||!sb)return;box.dataset.ready="1";
  sb.from("home_content").select("media_path,media_type,caption").eq("active",true).order("position").order("id").limit(12).then(r=>{
   const L=r.error?[]:(r.data||[]);if(!L.length)return;
   const url=x=>/^https?:\/\//i.test(x.media_path)?x.media_path:sb.storage.from("product-images").getPublicUrl(x.media_path).data.publicUrl,
@@ -418,7 +441,7 @@ function hero(){const box=$("hmbg");if(CQ!=null||!box||box.dataset.ready||!sb)re
   show(0)},()=>{})}
 function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
 const saved=p=>V.wl.includes(p.id);
-const card=p=>`<article class="pc"><div class="pw">${art(p)}<button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"✦":"✧"}</button></div><h3>${esc(p.name)}</h3><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"Add to cart"}</button></article>`;
+const card=p=>`<article class="pc"><div class="pw"><a class="pc-link" href="index.html?product=${encodeURIComponent(p.id)}" aria-label="View ${esc(p.name)}">${art(p)}</a><button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"✦":"✧"}</button></div><a class="pc-name" href="index.html?product=${encodeURIComponent(p.id)}"><h3>${esc(p.name)}</h3></a><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"View product"}</button></article>`;
 /* Fade cards in as they scroll into view */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
 const reveal=()=>document.querySelectorAll(".pc:not(.in)").forEach((c,i)=>{c.style.transitionDelay=(i%4)*70+"ms";io.observe(c)});
@@ -451,40 +474,49 @@ dg.addEventListener("close",cleanup);
 /* Section 7: per-product page title and description while a product is open, and Product structured data for the whole catalogue */
 const T0=document.title,MD=document.querySelector('meta[name=description]'),D0=MD.content;
 const seo=p=>{document.title=p.name+" – theoneanother";MD.content=(p.desc||"Buy "+p.name+" from theoneanother, from "+from(p)+". Delivered across India in 5–7 working days.").slice(0,155)};
-dg.addEventListener("close",()=>{document.title=T0;MD.content=D0});
+dg.addEventListener("close",()=>{if(!document.body.classList.contains("productpage")){document.title=T0;MD.content=D0}});
 function ldp(){let el=$("ldp");if(!el){el=document.createElement("script");el.type="application/ld+json";el.id="ldp";document.head.appendChild(el)}
  el.textContent=JSON.stringify({"@context":"https://schema.org","@graph":S.P.map(p=>{const pr=p.v.map(v=>v.p);return{"@type":"Product",name:p.name,...(p.img?{image:[p.img]}:{}),description:p.desc||p.name+" by theoneanother",brand:{"@type":"Brand",name:"theoneanother"},offers:{"@type":"AggregateOffer",priceCurrency:"INR",lowPrice:Math.min(...pr),highPrice:Math.max(...pr),offerCount:pr.length,availability:"https://schema.org/"+(out(p)?"OutOfStock":"InStock")}}})})}
-/* Ready-made product detail: gallery with zoom, size, quantity, stock, delivery estimate, related products, sticky add to cart */
-function openP(id){cur=S.P.find(p=>p.id==id);seo(cur);cleanup();dg.className="wide";
+/* Ready-made products use a shareable page URL instead of the quick-view dialog. */
+function openP(id){location.href="index.html?product="+encodeURIComponent(id)}
+function productPage(id){
+ cur=S.P.find(p=>p.id==id);
+ const page=$("productPage");
+ page.hidden=false;
+ if(!cur){page.innerHTML='<a class="pd-back" href="index.html#shopgrid">← Back to shop</a><h2>Product not found</h2><p class="mut">This product may no longer be available.</p>';return}
+ seo(cur);cleanup();
  let vi=Math.max(0,cur.v.findIndex(v=>v.s>0)),q=1,gi=0;
- const im=cur.imgs&&cur.imgs.length?cur.imgs:cur.img?[cur.img]:[],cat=(S.C.find(c=>c.id==cur.cat)||{}).name||"";
- const eta=()=>{const f=n=>{let d=new Date();while(n>0){d.setDate(d.getDate()+1);if(d.getDay()!=0)n--}return d},o={day:"numeric",month:"short"};return f(5).toLocaleDateString("en-IN",o)+" – "+f(7).toLocaleDateString("en-IN",o)};
+ const source=cur.imgs&&cur.imgs.length?cur.imgs:cur.img?[cur.img]:[],im=source.slice(0,5),labels=["Original image","Framed mockup","Lifestyle mockup","Detail mockup","Gift mockup"],cat=(S.C.find(c=>c.id==cur.cat)||{}).name||"";
+ while(im.length&&im.length<5)im.push(source[im.length%source.length]);
+ const eta=()=>{const f=n=>{let d=new Date();while(n>0){d.setDate(d.getDate()+1);if(d.getDay()!=0)n--}return d},o={day:"numeric",month:"short"};return f(4).toLocaleDateString("en-IN",o)+" – "+f(7).toLocaleDateString("en-IN",o)};
  let rel=S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&x.cat==cur.cat);if(rel.length<4)rel=rel.concat(S.P.filter(x=>!x.cu&&x.id!=cur.id&&!out(x)&&!rel.includes(x))).slice(0,4);else rel=rel.slice(0,4);
  const desc=(cur.desc||"").split(/\n+/).filter(Boolean).map(l=>`<p>${esc(l)}</p>`).join("")||"<p>Ready-made, no photo upload needed.</p>";
- dg.innerHTML=`<button class="x" id="px" aria-label="Close">×</button><div class="pd"><div class="gal"><div class="zm" id="zm">${im.length?`<img id="gi" ${ia(im[0],900,"(max-width:700px) 92vw,480px")} alt="${esc(cur.name)}" width="900" height="900">`:art(cur)}</div>${im.length>1?`<div class="gt" id="gt">${im.map((u,i)=>`<button type="button" class="${i==0?"on":""}" data-g="${i}" aria-label="Image ${i+1}"><img src="${esc(tu(u,128))}" data-o="${esc(u)}" loading="lazy" alt="${esc(cur.name)} view ${i+1}"></button>`).join("")}</div>`:""}</div>
-<div><span class="eyebrow">${esc(cat||"Ready-made")}</span><h3 style="font:500 30px/1.1 Roboto,sans-serif">${esc(cur.name)}</h3><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
+ page.innerHTML=`<a class="pd-back" href="index.html#shopgrid">← Back to shop</a><div class="pd"><div class="gal"><div class="zm" id="zm">${im.length?`<div class="mockstage m0" id="mockstage"><img id="gi" ${ia(im[0],900,"(max-width:700px) 92vw,560px")} alt="${esc(cur.name)} - ${labels[0]}" width="900" height="900"><span class="mock-label">${labels[0]}</span></div>`:art(cur)}</div>${im.length?`<div class="gt" id="gt">${im.map((u,i)=>`<button type="button" class="${i==0?"on":""}" data-g="${i}" aria-label="${labels[i]}"><img src="${esc(tu(u,128))}" data-o="${esc(u)}" loading="lazy" alt=""><small>${labels[i]}</small></button>`).join("")}</div>`:""}</div>
+<div><span class="eyebrow">${esc(cat||"Ready-made")}</span><div class="pd-title"><h1 style="font:500 clamp(26px,3vw,34px)/1.1 Roboto,sans-serif">${esc(cur.name)}</h1><button type="button" class="pd-wish ${saved(cur)?"on":""}" id="pdWish" aria-label="${saved(cur)?"Remove from":"Add to"} wishlist" aria-pressed="${saved(cur)}">${saved(cur)?"♥":"♡"}</button></div><div class="pp" id="pp"></div><div class="stk" id="sk"></div><div class="dsc">${desc}</div>
 <span class="lb">Size</span><div class="opts" id="opts">${cur.v.map((v,i)=>`<button type="button" class="opt ${i==vi?"on":""}" data-vi="${i}" ${v.s<=0?"disabled":""}>${esc(v.n)}<small>${inr(v.p)}${v.s<=0?" · sold out":""}</small></button>`).join("")}</div>
-<div class="eta">🚚 <span>Estimated delivery <b>${eta()}</b></span></div>
+<div class="eta">🚚 <span>Estimated delivery: <b>4–7 days</b> <small>(${eta()})</small></span></div>
 <span class="lb">Quantity</span><div class="qs"><button type="button" id="qm" aria-label="Decrease">−</button><span id="qv">1</span><button type="button" id="qp" aria-label="Increase">+</button></div>
 <div class="buybar"><button class="pri big" id="pa"></button></div></div>
-${rel.length?`<div class="rel"><h4>You may also like</h4><div class="rg">${rel.map(p=>`<a data-rp="${p.id}">${art(p)}<b>${esc(p.name)}</b><span class="mut">From ${from(p)}</span></a>`).join("")}</div></div>`:""}</div>`;
- const upd=()=>{const v=cur.v[vi];if(!v){$("pa").disabled=true;$("pa").textContent="Out of stock";$("pp").textContent="";$("sk").className="stk no";$("sk").textContent="Out of stock";return}
-  q=Math.min(Math.max(1,q),Math.max(1,v.s));$("qv").textContent=q;$("pp").textContent=inr(v.p*q);
+${rel.length?`<div class="rel"><h4>You may also like</h4><div class="rg">${rel.map(p=>`<a href="index.html?product=${encodeURIComponent(p.id)}">${art(p)}<b>${esc(p.name)}</b><span class="mut">From ${from(p)}</span></a>`).join("")}</div></div>`:""}</div>`;
+ const upd=()=>{const v=cur.v[vi];if(!v||v.s<=0){$("pa").disabled=true;$("pa").textContent="Out of stock";$("pp").textContent=v?inr(v.p):"";$("sk").className="stk no";$("sk").textContent="Out of stock";$("qv").textContent="0";return}
+  q=Math.min(Math.max(1,q),v.s);$("qv").textContent=q;$("pp").textContent=inr(v.p*q);
   $("sk").className="stk "+(v.s<=5?"low":"ok");$("sk").textContent=v.s<=5?"Only "+v.s+" left":"In stock";
-  $("pa").disabled=v.s<=0;$("pa").textContent="Add to cart · "+inr(v.p*q)};
+  $("pa").disabled=false;$("pa").textContent="Add to cart · "+inr(v.p*q)};
  const zm=$("zm"),gimg=$("gi");
- zm.onclick=()=>zm.classList.toggle("z");
- let tx=0,ty=0;zm.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
- zm.addEventListener("touchmove",e=>{if(!zm.classList.contains("z")||!gimg)return;e.preventDefault();const t=e.touches[0],r=zm.getBoundingClientRect();gimg.style.transformOrigin=Math.min(100,Math.max(0,(t.clientX-r.left)/r.width*100))+"% "+Math.min(100,Math.max(0,(t.clientY-r.top)/r.height*100))+"%"},{passive:false});
- zm.addEventListener("touchend",e=>{if(zm.classList.contains("z")||im.length<2)return;const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4)$("gt").children[(gi+(dx<0?1:-1)+im.length)%im.length].click()});
- zm.onmousemove=e=>{if(!gimg)return;const r=zm.getBoundingClientRect();gimg.style.transformOrigin=((e.clientX-r.left)/r.width*100)+"% "+((e.clientY-r.top)/r.height*100)+"%"};
- if($("gt"))$("gt").onclick=e=>{const b=e.target.closest("[data-g]");if(!b)return;gi=+b.dataset.g;zm.classList.remove("z");gimg.style.opacity=0;setTimeout(()=>{gimg.removeAttribute("srcset");gimg.dataset.f="";gimg.dataset.o=im[gi];gimg.src=tu(im[gi],900);gimg.style.opacity=1},200);$("gt").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x==b))};
- $("opts").onclick=e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;vi=+b.dataset.vi;q=1;dg.querySelectorAll(".opt").forEach(x=>x.classList.toggle("on",x==b));upd()};
+ if(gimg){
+  zm.onclick=()=>zm.classList.toggle("z");
+  let tx=0,ty=0;zm.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  zm.addEventListener("touchmove",e=>{if(!zm.classList.contains("z"))return;e.preventDefault();const t=e.touches[0],r=zm.getBoundingClientRect();gimg.style.transformOrigin=Math.min(100,Math.max(0,(t.clientX-r.left)/r.width*100))+"% "+Math.min(100,Math.max(0,(t.clientY-r.top)/r.height*100))+"%"},{passive:false});
+  zm.addEventListener("touchend",e=>{if(zm.classList.contains("z")||im.length<2)return;const t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4)$("gt").children[(gi+(dx<0?1:-1)+im.length)%im.length].click()});
+  zm.onmousemove=e=>{if(!gimg)return;const r=zm.getBoundingClientRect();gimg.style.transformOrigin=((e.clientX-r.left)/r.width*100)+"% "+((e.clientY-r.top)/r.height*100)+"%"};
+  $("gt").onclick=e=>{const b=e.target.closest("[data-g]");if(!b)return;gi=+b.dataset.g;zm.classList.remove("z");$("mockstage").className="mockstage m"+gi;document.querySelector("#mockstage .mock-label").textContent=labels[gi];gimg.style.opacity=0;setTimeout(()=>{gimg.removeAttribute("srcset");gimg.dataset.f="";gimg.dataset.o=im[gi];gimg.src=tu(im[gi],900);gimg.alt=cur.name+" - "+labels[gi];gimg.style.opacity=1},200);$("gt").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x==b))};
+ }
+ $("pdWish").onclick=()=>{const i=V.wl.indexOf(cur.id);i>=0?V.wl.splice(i,1):V.wl.push(cur.id);try{localStorage.setItem("toa-wl",JSON.stringify(V.wl))}catch(e){toast("Your wishlist could not be saved in this browser.")}const active=V.wl.includes(cur.id);$("pdWish").classList.toggle("on",active);$("pdWish").setAttribute("aria-pressed",String(active));$("pdWish").setAttribute("aria-label",active?"Remove from wishlist":"Add to wishlist");$("pdWish").textContent=active?"♥":"♡"};
+ $("opts").onclick=e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;vi=+b.dataset.vi;q=1;page.querySelectorAll(".opt").forEach(x=>x.classList.toggle("on",x==b));upd()};
  $("qm").onclick=()=>{q--;upd()};$("qp").onclick=()=>{q++;upd()};
- dg.querySelectorAll("[data-rp]").forEach(a=>a.onclick=()=>{openP(+a.dataset.rp);dg.scrollTo(0,0)});
- $("px").onclick=()=>dg.close();
- $("pa").onclick=()=>{const v=cur.v[vi];if(!v||q>v.s)return toast("Only "+(v?v.s:0)+" in stock");C.push({pid:cur.id,vi,q,files:[],raw:[],fileKeys:[],note:""});cartBtn();dg.close();toast("Added to cart")};
- upd();if(!dg.open)dg.showModal()}
+ $("pa").onclick=()=>{const v=cur.v[vi];if(!v||q>v.s)return toast("Only "+(v?v.s:0)+" in stock");C.push({pid:cur.id,vi,q,files:[],raw:[],fileKeys:[],note:""});cartBtn()};
+ upd();
+}
 /* Customization: size, photos and a note, in the style of a print studio */
 function openB(id){cur=S.P.find(p=>p.id==id);seo(cur);cleanup();F=[];const MAX=10,uno=cur.t=="uno";let vi=Math.max(0,cur.v.findIndex(v=>v.s>0)),U1=null,U2=null;
  const need=()=>{const v=cur.v[vi];return uno?2:cur.t=="poster"?1:Math.max(1,v?v.m:1)},qty=()=>{const v=cur.v[vi];return Math.max(v?v.m:1,Math.floor(+$("pq").value||1))};
@@ -528,7 +560,7 @@ const mcol=(h,items)=>`<div class="mc"><h4>${h}</h4>${items.join("")}</div>`;
 const ML=(a,t)=>`<a href="#" data-a="${a}">${t}</a>`,MX=(h,t)=>`<a href="${h}" target="_blank" rel="noopener">${t}</a>`,MT=t=>`<span class="mt">${t}</span>`;
 function mmHTML(k){
  if(k=="orders")return mcol("Orders",[ML("t:orders","Your orders"),ML("t:track","Track an order")]);
- if(k=="home")return mcol("Explore",[ML("go:custom","Customization"),ML("go:shopgrid","Ready-made shop"),ML("t:track","Track your order"),ML("go:about","Our story"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
+ if(k=="home")return mcol("Explore",[ML("go:custom","Customization"),ML("go:shopgrid","Ready-made shop"),ML("t:track","Track your order"),ML("go:reviews","Reviews"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
  if(k=="prod"){const g=secs();return `<div class="mc mshop"><h4>Products</h4><span class="msub">Categories</span>${ML("c:all","All products")}${g.map(x=>ML("c:"+(x.id??""),esc(x.name)+`<small>${x.l.length}</small>`)).join("")}${ML("c:wish","✦ Saved")}</div>`}
  const cu=S.P.filter(p=>p.cu);return mcol("Choose a product",cu.slice(0,5).map(p=>ML("b:"+p.id,"Customise "+esc(p.name.replace("Custom ",""))))||[MT("Coming soon")])+mcol("Photo rules",[MT("Up to 10 photos per product"),MT("Polaroids: min 5 · Stickers: min 10"),MT("UNO: designs PDF + packaging PDF"),MT("JPG, JPEG, PNG, WebP or PDF"),MT("50 MB per file"),MT("Add a name or message note")])+mcol("After you order",[MT("We confirm your photos on WhatsApp"),MT("Printed in 5–7 working days")])+`<div class="mp"><b>Upload.<br>We print.</b><span>Your photos, your product.</span></div>`}
 function openMM(k){clearTimeout(mt);mk=k;mm.innerHTML=mmHTML(k);mm.classList.add("open");nb.forEach(b=>b.setAttribute("aria-expanded",String(b.dataset.m==k)))}
@@ -543,7 +575,7 @@ mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.prev
 /* Section 6: mobile navigation drawer, hide-on-scroll header, tap outside to close dialogs, filter-chip scroll memory */
 const dr=$("drawer"),dov=$("dov"),bg=$("burger"),DL=(a,t,s)=>`<a href="#" class="dwl" data-a="${a}"><span>${t}</span>${s?`<small>${s}</small>`:""}${ic("arr")}</a>`;
 function drawerHTML(){const cu=S.P.filter(p=>p.cu),cats=secs();
- return `<h5>Explore</h5>${DL("go:shopgrid","Shop all")}${cu.length?DL("go:custom","Customization"):""}${DL("t:orders","Your orders")}${DL("t:track","Track an order")}${DL("go:about","Our story")}${DL("go:how","How it works")}${DL("go:faq","Questions")}`
+ return `<h5>Explore</h5>${DL("go:shopgrid","Shop all")}${cu.length?DL("go:custom","Customization"):""}${DL("t:orders","Your orders")}${DL("t:track","Track an order")}${DL("go:reviews","Reviews")}${DL("go:how","How it works")}${DL("go:faq","Questions")}`
  +(cats.length?`<h5>Shop by category</h5>${cats.map(x=>DL("c:"+(x.id??""),esc(x.name),x.l.length+(x.l.length==1?" item":" items"))).join("")}${DL("c:wish","✦ Saved",V.wl.length?String(V.wl.length):"")}`:"")
  +(cu.length?`<h5>Customise</h5>${cu.map(p=>DL("b:"+p.id,esc(p.name),"from "+from(p))).join("")}`:"")
  +`<div class="dwc"><a class="btn pri" target="_blank" rel="noopener" href="https://wa.me/${WA}">${ic("chat")} WhatsApp us</a><a class="btn" target="_blank" rel="noopener" href="${IG}">${ic("ig")} Instagram</a></div>`}
@@ -560,7 +592,7 @@ addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{c
 /* Tap outside a dialog to close it (ignored when a text selection drag ends outside) */
 const outside=e=>{const r=dg.getBoundingClientRect();return e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom};
 let bd=false;dg.addEventListener("pointerdown",e=>{bd=e.target===dg&&outside(e)});dg.addEventListener("click",e=>{if(bd&&e.target===dg&&outside(e))dg.close();bd=false});
-async function init(){band();$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0);hero();$("grid").innerHTML='<p class="mut">Loading…</p>';try{await loadData();if(typeof window.restoreCart=="function")await window.restoreCart()}catch(e){console.error("Store loading failed",e);$("grid").innerHTML='<div role="alert"><p class="mut">The store could not load. Check your connection and try again.</p><button type="button" class="pri" id="load-retry">Try again</button></div>';const b=$("load-retry");if(b)b.onclick=init;return}band();shop()}
+async function init(){band();$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0);hero();$("grid").innerHTML='<p class="mut">Loading…</p>';try{await loadData();if(typeof window.restoreCart=="function")await window.restoreCart()}catch(e){console.error("Store loading failed",e);const target=PQ?$("productPage"):$("grid");if(PQ)target.hidden=false;target.innerHTML='<div role="alert"><p class="mut">The store could not load. Check your connection and try again.</p><button type="button" class="pri" id="load-retry">Try again</button></div>';const b=$("load-retry");if(b)b.onclick=init;return}band();if(PQ!=null)productPage(PQ);else shop()}
 document.addEventListener("DOMContentLoaded",init,{once:true});
 </script>
 <script src="animations.js" defer></script>

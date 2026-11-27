@@ -6,7 +6,7 @@
  var say=function(m){typeof toast=="function"?toast(m):alert(m)};
  var db=function(){return typeof sb!="undefined"&&sb?sb:null};
  var stars=function(n){return"★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)};
- var hero=document.getElementById("intro")||document.querySelector(".hero"),shopgrid=$("shopgrid"),about=$("about"),faq=$("faq");
+ var hero=document.getElementById("intro")||document.querySelector(".hero"),shopgrid=$("shopgrid"),faq=$("faq");
 
  /* 1. Trust strip under the hero */
  if(hero)hero.insertAdjacentHTML("afterend",'<section id="trustbar"><div class="t5-row"><span class="t5-chip">🔒 <b>Secure Razorpay payment</b></span><span class="t5-chip">✔ <b>Payment confirmed instantly</b></span><span class="t5-chip">📸 <b>Photos checked on WhatsApp</b></span><span class="t5-chip">🚚 <b>5–7 working days</b></span><button type="button" class="t5-chip" id="t5-tr1">Track your order</button></div></section>');
@@ -14,8 +14,8 @@
  /* 2. Recently viewed (under the shop) */
  if(shopgrid)shopgrid.insertAdjacentHTML("afterend",'<section class="t5s" id="t5-recent" hidden><div class="hd"><div><span class="eyebrow">Pick up where you left off</span><h2>Recently viewed</h2></div></div><div class="t5-rv" id="t5-rvg"></div></section>');
 
- /* 3. Reviews and Instagram gallery (after Our story) */
- if(about)about.insertAdjacentHTML("afterend",
+ /* 3. Reviews and Instagram gallery (before the FAQ) */
+ if(faq)faq.insertAdjacentHTML("beforebegin",
   '<section class="t5s" id="reviews"><div class="hd"><div><span class="eyebrow">Reviews</span><h2>What customers <span class="sf" style="color:var(--o)">say</span></h2></div><div class="t5-avg" id="t5-avg"></div></div><div class="t5-rg" id="t5-rg"></div><p class="t5-empty" id="t5-none" hidden>No reviews yet. Bought something from us? Be the first to share how it went.</p><p style="margin-top:22px"><button type="button" id="t5-wr">Write a review</button></p>'+
   '<form class="t5-form" id="t5-form" hidden><input id="t5-n" placeholder="Your name" maxlength="60" required><div class="t5-pick" id="t5-pick" role="radiogroup" aria-label="Rating"></div><textarea id="t5-b" rows="3" maxlength="600" placeholder="How was your order?" required minlength="5"></textarea><button class="pri" style="font-size:15px">Send review</button><p class="mut">Reviews appear on the site after we approve them.</p></form><p class="t5-ok" id="t5-thx" hidden>Thank you! Your review will show up once we approve it.</p></section>'+
   '<section class="t5s" id="t5-insta" hidden><div class="hd"><div><span class="eyebrow">Instagram</span><h2>From <span class="sf" style="color:var(--o)">our feed</span></h2></div><a class="btn" href="'+IG+'" target="_blank" rel="noopener">Follow @theoneanother.in</a></div><div class="t5-gal" id="t5-gal"></div></section>');

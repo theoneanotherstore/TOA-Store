@@ -1,5 +1,5 @@
 :root {
-  --bg: #fffefa;
+  --bg: #fff;
   --ink: #211b17;
   --mut: #766b62;
   --ln: #eee5db;
@@ -16,9 +16,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(900px 560px at 100% -8%, rgba(255, 227, 203, .62), transparent 68%),
-    var(--bg);
+  background: #fff;
   color: var(--ink);
   line-height: 1.65;
 }
@@ -230,11 +228,12 @@ h2 {
 }
 
 .shop-custom {
-  margin-bottom: 30px;
-  padding: 22px;
-  border: 1px solid #f1e4d8;
-  border-radius: 20px;
-  background: linear-gradient(150deg, #fff7ef, #fffdfb 75%);
+  margin: 0 3vw 30px;
+  padding: clamp(30px, 5vw, 58px);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 28px;
+  background: radial-gradient(700px 360px at 84% 18%, rgba(237, 106, 24, .24), transparent 68%), #211b17;
+  box-shadow: 0 24px 56px rgba(33, 27, 23, .14);
 }
 
 .shop-custom__head {
@@ -252,6 +251,7 @@ h2 {
 .shop-custom__head h3 {
   font: 500 clamp(23px, 3vw, 32px)/1.15 Roboto, sans-serif;
   letter-spacing: -.025em;
+  color: #fff;
 }
 
 .shop-custom__head h3 .sf {
@@ -260,7 +260,7 @@ h2 {
 
 .shop-custom__head p {
   max-width: 38ch;
-  color: var(--mut);
+  color: #d9cfc6;
   font-size: 14px;
 }
 
@@ -361,6 +361,16 @@ h2 {
   width: 100%;
 }
 
+.pc-link,
+.pc-name {
+  display: block;
+  color: inherit;
+}
+
+.pc-name:hover {
+  color: var(--o2);
+}
+
 .pc .wl {
   border: 1px solid rgba(238, 229, 219, .8);
   background: rgba(255, 255, 255, .94);
@@ -385,6 +395,15 @@ h2 {
 
 .brand p {
   line-height: 1.8;
+}
+
+.thanks {
+  display: block;
+  padding: clamp(38px, 6vw, 72px);
+}
+
+.thanks p {
+  max-width: 64ch;
 }
 
 .bst div {
@@ -425,7 +444,7 @@ details p {
 
 footer {
   margin-top: 24px;
-  background: #faf4ed;
+  background: #fff;
 }
 
 .fg {
@@ -621,9 +640,9 @@ dialog h2 {
   }
 
   .shop-custom {
-    margin-bottom: 22px;
-    padding: 15px;
-    border-radius: 16px;
+    margin: 0 2vw 22px;
+    padding: 20px;
+    border-radius: 22px;
   }
 
   .shop-custom__head {
@@ -691,6 +710,7 @@ html,body,button,input,select,textarea,dialog{font-family:Roboto,sans-serif}
 
 /* Home banner: the owner's photo, GIF, animation or video, with the two buttons in the centre */
 .hmhero{position:relative;isolation:isolate;display:grid;place-items:center;height:clamp(380px,76vh,700px);overflow:hidden;background:linear-gradient(135deg,#ffb066,#ff6a00 55%,#e85d04)}
+.hmhero{border-radius:24px}
 .hm-bg,.hm-s{position:absolute;inset:0}
 .hm-s{opacity:0;transition:opacity .8s ease}
 .hm-s.on{opacity:1}

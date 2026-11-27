@@ -125,7 +125,7 @@ ${fld("k-s","Street and area","input",'type="text" name="address-line2" autocomp
  /* ---------- events ---------- */
  function wire(){const root=$("k9");
   root.addEventListener("click",e=>{const t=e.target;
-   if(t.closest("#k9-bc")){window.openCart();return}
+   if(t.closest("#k9-bc")){dg.close();window.openCart();return}
    const gt=t.closest("[data-goto]");if(gt&&!gt.disabled){status();show(+gt.dataset.goto);return}
    if(t.closest("#k9-retry")){submit();return}
    });

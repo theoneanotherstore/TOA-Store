@@ -217,7 +217,7 @@ footer .fl a:hover{color:var(--o2)}
 .rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
 .rg a{display:grid;gap:6px;font-size:13px;cursor:pointer}.rg a b{font-weight:500}
 body.productpage{background:#fff}
-body.productpage>.band,body.productpage>section,body.productpage>footer{display:none!important}
+body.productpage>.band,body.productpage>section{display:none!important}
 body.productpage #productPage{display:block;max-width:1280px;margin:0 auto;padding:32px 5vw 72px}
 .pd-back{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;color:var(--mut);font-weight:500}
 .pd-back:hover{color:var(--o2)}
@@ -384,7 +384,7 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 const WA="917397193050",IG="https://www.instagram.com/theoneanother.in",$=i=>document.getElementById(i);
-const IC={bag:'<path d="M6 7h12l-1 13H7L6 7zM9 7a3 3 0 016 0"/>',ig:'<rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="4"/>',chat:'<path d="M4 5h16v11H9l-5 4V5z"/>',arr:'<path d="M5 12h14M13 6l6 6-6 6"/>',up:'<path d="M12 16V5M7 10l5-5 5 5M5 19h14"/>'};
+const IC={bag:'<path d="M2.5 4h2l2.6 11a2 2 0 002 1.6h8.2a2 2 0 002-1.6L22 7H6"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/>',ig:'<rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="4"/>',chat:'<path d="M4 5h16v11H9l-5 4V5z"/>',arr:'<path d="M5 12h14M13 6l6 6-6 6"/>',up:'<path d="M12 16V5M7 10l5-5 5 5M5 19h14"/>'};
 const ic=n=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
 const inr=n=>"₹"+Number(n).toLocaleString("en-IN"),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const CFG={url:"https://eymxrutbkbtglynynokb.supabase.co",key:"sb_publishable_wyqPB_t2uyQjEN_JFDdQLA_vAPUV79U"};
@@ -417,7 +417,7 @@ let C=[],dg=$("dg"),cur=null,F=[],urls=[];
 const LS=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
 let V={cat:"all",n:12,wl:LS("toa-wl",[])};
 /* ?cat=<id> opens a category page that lists every product of that category */
-const CQ=new URLSearchParams(location.search).get("cat"),PQ=new URLSearchParams(location.search).get("product");if(CQ!=null)document.body.classList.add("catpage");if(PQ!=null)document.body.classList.add("productpage");
+const CQ=new URLSearchParams(location.search).get("cat"),PQ=new URLSearchParams(location.search).get("product");if(CQ!=null)document.body.classList.add("catpage");if(PQ!=null){document.body.classList.add("productpage");document.querySelectorAll("#contact a[href^='#']").forEach(a=>a.href="index.html"+a.getAttribute("href"))}
 const goTo=id=>{const el=$(id);if(CQ!=null&&(!el||el.offsetParent===null)){location.href="index.html#"+id;return}if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
 $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$("igF").innerHTML=ic("ig")+" Instagram";$("igF").href=IG;
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}

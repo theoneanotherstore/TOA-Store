@@ -17,9 +17,4 @@
   window.cartBtn=function(){orig();var n=C.reduce(function(a,i){return a+i.q},0);if(n>last&&!reduce){cb.classList.remove("bump");void cb.offsetWidth;cb.classList.add("bump")}last=n};
   last=C.reduce(function(a,i){return a+i.q},0)}
 
- /* 3. Back-to-top button */
- var t=document.createElement("button");t.id="toTop";t.type="button";t.setAttribute("aria-label","Back to top");t.textContent="↑";document.body.appendChild(t);
- var tick=false;function chk(){tick=false;t.classList.toggle("show",window.scrollY>700)}
- addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(chk)}},{passive:true});chk();
- t.onclick=function(){window.scrollTo({top:0,behavior:reduce?"auto":"smooth"})};
 })();

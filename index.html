@@ -100,7 +100,7 @@ h2{font:500 clamp(32px,4.6vw,54px)/1.08 Roboto,sans-serif;letter-spacing:-.01em}
 .chip{padding:7px 16px;font-size:13px;border-color:var(--ln);color:var(--mut)}
 .chip:hover{border-color:var(--o);color:var(--o2)}
 .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
-.sortbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:-10px 0 22px}
+.sortbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin:-10px 0 22px}
 .sortbar>div{display:flex;gap:10px;align-items:center}
 .sortbar select{width:auto;padding:8px 12px}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
@@ -360,7 +360,7 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <section class="hmhero" id="hmhero" aria-label="Featured"><div class="hm-bg" id="hmbg"></div><div class="hm-actions" id="hmactions"><a class="btn pri big" href="#shopgrid" id="shopNow">Shop now</a><a class="btn big" href="#custom" id="heroCta">Customization</a></div><div class="hm-dots" id="hmdots"></div></section>
 <section class="intro" id="intro"><span class="eyebrow">Printed from your photos</span><h1><span class="rv"><span style="--w:0">The</span></span> <span class="rv"><span style="--w:1">one</span></span><em class="sf"><span class="rv"><span style="--w:2">you</span></span> <span class="rv"><span style="--w:3">never</span></span> <span class="rv"><span style="--w:4">were.</span></span></em></h1><p>Posters, stickers, polaroids and UNO cards made from your own memories. Choose, upload, and we print.</p></section>
 <section id="shopgrid"><div class="hd"><div><span class="eyebrow">Ready-made</span><h2>The shop</h2></div></div>
-<div class="sortbar"><span class="mut" id="cnt"></span><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
+<div class="sortbar"><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
 <div id="grid"></div></section>
 <section class="shop-custom" id="custom" hidden aria-labelledby="custom-title"><div class="shop-custom__head"><div><span class="eyebrow">Customization</span><h3 id="custom-title">Your photos, <span class="sf">printed.</span></h3></div><p>Choose a product to create something from your own photos.</p></div><div class="cgrid" id="hubgrid"></div></section>
 <section class="shop-custom" id="how" aria-labelledby="how-title"><div class="hd"><div><span class="eyebrow">How it works</span><h2 id="how-title">Simple, from photo to doorstep</h2></div></div><div class="steps"><div><b>01</b><h3>Pick</h3><p class="mut">Choose a product and a size.</p></div><div><b>02</b><h3>Upload</h3><p class="mut">On Customization products, add up to 10 photos and a note.</p></div><div><b>03</b><h3>Pay securely</h3><p class="mut">UPI, cards or net banking through Razorpay.</p></div><div><b>04</b><h3>We confirm</h3><p class="mut">We check your photos on WhatsApp, then print in 5–7 working days.</p></div></div></section>
@@ -422,7 +422,8 @@ const goTo=id=>{const el=$(id);if((CQ!=null||PQ!=null)&&(!el||el.offsetParent===
 $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$("igF").innerHTML=ic("ig")+" Instagram";$("igF").href=IG;
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
-const secs=()=>[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>!p.cu&&(p.cat||null)===c.id)})).filter(x=>x.l.length);
+const isSeparateUno=p=>p.t=="uno"&&p.name.toLowerCase()=="thalapathy uno cards",customProducts=()=>S.P.filter(p=>p.cu&&!isSeparateUno(p));
+const secs=()=>[...S.C,{id:null,name:"More"}].map(c=>({id:c.id,name:c.name,l:S.P.filter(p=>(!p.cu||isSeparateUno(p))&&(p.cat||null)===c.id)})).filter(x=>x.l.length);
 function hero(){const box=$("hmbg");if(CQ!=null||PQ!=null||!box||box.dataset.ready||!sb)return;box.dataset.ready="1";
  sb.from("home_content").select("media_path,media_type,caption").eq("active",true).order("position").order("id").limit(12).then(r=>{
   const L=r.error?[]:(r.data||[]);if(!L.length)return;
@@ -440,7 +441,7 @@ function hero(){const box=$("hmbg");if(CQ!=null||PQ!=null||!box||box.dataset.rea
   dots.onclick=e=>{const d=e.target.closest(".hm-d");if(d)show([...dots.children].indexOf(d))};
   show(0)},()=>{})}
 const saved=p=>V.wl.includes(p.id);
-function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
+function hub(){const L=customProducts(),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
 const card=p=>`<article class="pc"><div class="pw"><a class="pc-link" href="index.html?product=${encodeURIComponent(p.id)}" aria-label="View ${esc(p.name)}">${art(p)}</a><button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"✦":"✧"}</button></div><a class="pc-name" href="index.html?product=${encodeURIComponent(p.id)}"><h3>${esc(p.name)}</h3></a><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"View product"}</button></article>`;
 /* Fade cards in as they scroll into view */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
@@ -450,13 +451,12 @@ const catKey=k=>k===""||k==null?"more":String(k),catId=k=>"cat-"+catKey(k);
 function cards(keepAll){const f={new:(a,b)=>b.id-a.id,low:(a,b)=>minP(a)-minP(b),high:(a,b)=>minP(b)-minP(a),name:(a,b)=>a.name.localeCompare(b.name)}[$("sort").value]||((a,b)=>b.id-a.id),
  G=secs().map(x=>({k:catKey(x.id),name:x.name,l:[...x.l].sort(f)})),sv=S.P.filter(p=>!p.cu&&saved(p)).sort(f);
  if(sv.length)G.push({k:"wish",name:"✦ Saved",l:sv});
- const total=S.P.filter(p=>!p.cu).length,LIM=matchMedia("(max-width:700px)").matches?4:8;
+ const LIM=matchMedia("(max-width:700px)").matches?4:8;
  if(CQ!=null){const g=G.find(x=>x.k==CQ);
-  $("cnt").textContent=g?g.l.length+(g.l.length==1?" product":" products"):"";
   if(g)document.title=g.name.replace("✦ ","")+" | theoneanother";
-  $("grid").innerHTML=`<a class="backlink" href="index.html#shopgrid">← All categories</a>`+(g?`<section class="catsec" id="${catId(g.k)}" aria-label="${esc(g.name)}"><div class="catsec-hd"><h3>${esc(g.name)}</h3><span class="mut">${g.l.length} ${g.l.length==1?"item":"items"}</span></div><div class="grid">${g.l.map(card).join("")}</div></section>`:`<p class="mut" style="margin-top:20px">${CQ=="wish"?"No saved products yet. Tap the star on any product to save it here.":"This category was not found."}</p>`)}
- else{$("cnt").textContent=total?total+(total==1?" product":" products"):"";
-  $("grid").innerHTML=G.length?G.map(x=>`<section class="catsec" id="${catId(x.k)}" aria-label="${esc(x.name)}"><div class="catsec-hd"><h3>${esc(x.name)}</h3><span class="mut">${x.l.length} ${x.l.length==1?"item":"items"}</span></div><div class="grid">${x.l.slice(0,LIM).map(card).join("")}</div>${x.l.length>LIM?`<p class="vm"><a class="btn" href="index.html?cat=${encodeURIComponent(x.k)}">View more <span aria-hidden="true">→</span><span class="sr"> ${esc(x.name)} products</span></a></p>`:""}</section>`).join(""):`<p class="mut">Ready-made products are coming soon.</p>`}
+  $("grid").innerHTML=`<a class="backlink" href="index.html#shopgrid">← All categories</a>`+(g?`<section class="catsec" id="${catId(g.k)}" aria-label="${esc(g.name)}"><div class="catsec-hd"><h3>${esc(g.name)}</h3></div><div class="grid">${g.l.map(card).join("")}</div></section>`:`<p class="mut" style="margin-top:20px">${CQ=="wish"?"No saved products yet. Tap the star on any product to save it here.":"This category was not found."}</p>`)}
+ else{
+  $("grid").innerHTML=G.length?G.map(x=>`<section class="catsec" id="${catId(x.k)}" aria-label="${esc(x.name)}"><div class="catsec-hd"><h3>${esc(x.name)}</h3></div><div class="grid">${x.l.slice(0,LIM).map(card).join("")}</div>${x.l.length>LIM?`<p class="vm"><a class="btn" href="index.html?cat=${encodeURIComponent(x.k)}">View more <span aria-hidden="true">→</span><span class="sr"> ${esc(x.name)} products</span></a></p>`:""}</section>`).join(""):`<p class="mut">Ready-made products are coming soon.</p>`}
  if(keepAll)document.querySelectorAll("#grid .pc").forEach(c=>c.classList.add("in"));reveal()}
 function setCat(k,scroll){k=String(k);if(CQ!=null){location.href=k=="all"?"index.html#shopgrid":"index.html?cat="+encodeURIComponent(k=="wish"?"wish":catKey(k));return}const el=$(k=="wish"?"cat-wish":k=="all"?"shopgrid":catId(k));if(!el){if(k=="wish")toast("No saved products yet. Tap the star on any product to save it here.");return}if(scroll)el.scrollIntoView({behavior:"smooth"})}
 function shop(){hero();hub();cards();reveal();ldp()}
@@ -561,8 +561,8 @@ const ML=(a,t)=>`<a href="#" data-a="${a}">${t}</a>`,MX=(h,t)=>`<a href="${h}" t
 function mmHTML(k){
  if(k=="orders")return mcol("Orders",[ML("t:orders","Your orders"),ML("t:track","Track an order")]);
  if(k=="home")return mcol("Explore",[ML("go:custom","Customization"),ML("go:shopgrid","Ready-made shop"),ML("t:track","Track your order"),ML("go:reviews","Reviews"),ML("go:how","How it works"),ML("go:faq","Questions")])+mcol("Policies",[MT("Custom products are non-refundable and non-returnable"),MT("Minimum order ₹249"),MT("Delivery in 5–7 working days")])+mcol("Contact",[MX("https://wa.me/"+WA,"WhatsApp +91 73971 93050"),MX(IG,"Instagram @theoneanother.in"),MX("mailto:theoneanotherstore@gmail.com","theoneanotherstore@gmail.com")])+`<div class="mp"><b>The one<br>you never were.</b><span>Custom prints from your photos.</span></div>`;
- if(k=="prod"){const g=secs();return `<div class="mc mshop"><h4>Products</h4><span class="msub">Categories</span>${ML("c:all","All products")}${g.map(x=>ML("c:"+(x.id??""),esc(x.name)+`<small>${x.l.length}</small>`)).join("")}${ML("c:wish","✦ Saved")}</div>`}
- const cu=S.P.filter(p=>p.cu);return mcol("Choose a product",cu.slice(0,5).map(p=>ML("b:"+p.id,"Customise "+esc(p.name.replace("Custom ",""))))||[MT("Coming soon")])+mcol("Photo rules",[MT("Up to 10 photos per product"),MT("Polaroids: min 5 · Stickers: min 10"),MT("UNO: designs PDF + packaging PDF"),MT("JPG, JPEG, PNG, WebP or PDF"),MT("50 MB per file"),MT("Add a name or message note")])+mcol("After you order",[MT("We confirm your photos on WhatsApp"),MT("Printed in 5–7 working days")])+`<div class="mp"><b>Upload.<br>We print.</b><span>Your photos, your product.</span></div>`}
+ if(k=="prod"){const g=secs();return `<div class="mc mshop"><h4>Products</h4><span class="msub">Categories</span>${ML("c:all","All products")}${g.map(x=>ML("c:"+(x.id??""),esc(x.name))).join("")}${ML("c:wish","✦ Saved")}</div>`}
+ const cu=customProducts();return mcol("Choose a product",cu.slice(0,5).map(p=>ML("b:"+p.id,"Customise "+esc(p.name.replace("Custom ",""))))||[MT("Coming soon")])+mcol("Photo rules",[MT("Up to 10 photos per product"),MT("Polaroids: min 5 · Stickers: min 10"),MT("UNO: designs PDF + packaging PDF"),MT("JPG, JPEG, PNG, WebP or PDF"),MT("50 MB per file"),MT("Add a name or message note")])+mcol("After you order",[MT("We confirm your photos on WhatsApp"),MT("Printed in 5–7 working days")])+`<div class="mp"><b>Upload.<br>We print.</b><span>Your photos, your product.</span></div>`}
 function openMM(k){clearTimeout(mt);mk=k;mm.innerHTML=mmHTML(k);mm.classList.add("open");nb.forEach(b=>b.setAttribute("aria-expanded",String(b.dataset.m==k)))}
 function closeMM(){mk=null;mm.classList.remove("open");nb.forEach(b=>b.setAttribute("aria-expanded","false"))}
 const hov=()=>matchMedia("(hover:hover)").matches,NAVTO={home:"top",prod:"shopgrid",cust:"custom",orders:""};
@@ -574,9 +574,9 @@ document.addEventListener("keydown",e=>{if(e.key=="Escape")closeMM()});
 mm.onclick=e=>{const a=e.target.closest("a");if(!a)return;if(a.dataset.a){e.preventDefault();const[x,v]=a.dataset.a.split(":");closeMM();if(x=="go"){goTo(v)}if(x=="c")setCat(v,true);if(x=="o")openP(+v);if(x=="b")openB(+v);if(x=="t"){var f=v=="orders"?window.openOrders:window.openTrack;if(f)f()}}else closeMM()};
 /* Section 6: mobile navigation drawer, hide-on-scroll header, tap outside to close dialogs, filter-chip scroll memory */
 const dr=$("drawer"),dov=$("dov"),bg=$("burger"),DL=(a,t,s)=>`<a href="#" class="dwl" data-a="${a}"><span>${t}</span>${s?`<small>${s}</small>`:""}${ic("arr")}</a>`;
-function drawerHTML(){const cu=S.P.filter(p=>p.cu),cats=secs();
+function drawerHTML(){const cu=customProducts(),cats=secs();
  return `<h5>Explore</h5>${DL("go:shopgrid","Shop all")}${cu.length?DL("go:custom","Customization"):""}${DL("t:orders","Your orders")}${DL("t:track","Track an order")}${DL("go:reviews","Reviews")}${DL("go:how","How it works")}${DL("go:faq","Questions")}`
- +(cats.length?`<h5>Shop by category</h5>${cats.map(x=>DL("c:"+(x.id??""),esc(x.name),x.l.length+(x.l.length==1?" item":" items"))).join("")}${DL("c:wish","✦ Saved",V.wl.length?String(V.wl.length):"")}`:"")
+ +(cats.length?`<h5>Shop by category</h5>${cats.map(x=>DL("c:"+(x.id??""),esc(x.name))).join("")}${DL("c:wish","✦ Saved",V.wl.length?String(V.wl.length):"")}`:"")
  +(cu.length?`<h5>Customise</h5>${cu.map(p=>DL("b:"+p.id,esc(p.name),"from "+from(p))).join("")}`:"")
  +`<div class="dwc"><a class="btn pri" target="_blank" rel="noopener" href="https://wa.me/${WA}">${ic("chat")} WhatsApp us</a><a class="btn" target="_blank" rel="noopener" href="${IG}">${ic("ig")} Instagram</a></div>`}
 function openDr(){hd.classList.remove("away");$("dwn").innerHTML=drawerHTML();dov.hidden=false;dr.inert=false;requestAnimationFrame(()=>requestAnimationFrame(()=>{dr.classList.add("open");dov.classList.add("show")}));document.documentElement.classList.add("lock");bg.setAttribute("aria-expanded","true");setTimeout(()=>$("dwx").focus(),60)}

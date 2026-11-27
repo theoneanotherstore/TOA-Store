@@ -23,8 +23,4 @@ button:not(:disabled):active,.btn:active{transform:scale(.95);transition-duratio
 @keyframes cpop{40%{transform:scale(1.14)}}
 @keyframes cwig{20%{rotate:-16deg}45%{rotate:13deg}70%{rotate:-6deg}}
 
-/* Back-to-top button */
-#toTop{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:46px;height:46px;padding:0;border:0;border-radius:50%;background:var(--g);color:#17120e;font-size:20px;font-weight:700;line-height:1;box-shadow:0 10px 26px #ff6a0055;z-index:35;opacity:0;translate:0 16px;pointer-events:none;transition:opacity .3s,translate .3s,transform .2s}
-#toTop.show{opacity:1;translate:0 0;pointer-events:auto}
-
-@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1}#toTop{transition:none}}
+@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1}}

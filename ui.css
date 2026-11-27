@@ -606,10 +606,6 @@ dialog h2 {
   box-shadow: 0 12px 30px rgba(33, 27, 23, .22);
 }
 
-#toTop {
-  border: 0;
-}
-
 @media (min-width: 1200px) {
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));

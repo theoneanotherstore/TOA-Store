@@ -8,7 +8,7 @@ button.t5-chip{cursor:pointer;color:var(--o2);border-color:#f3cfae;background:va
 
 .t5-pol{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
 .t5-pol div{background:#fff;border:1px solid var(--ln);border-radius:22px;padding:24px}
-.t5-pol h3{font:500 20px "Playfair Display",Georgia,serif;margin:6px 0}
+.t5-pol h3{font:500 20px Roboto,sans-serif;margin:6px 0}
 .t5-pol p{color:var(--mut);font-size:14px}
 .t5-ico{font-size:24px;line-height:1}
 

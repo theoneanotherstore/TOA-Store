@@ -1,6 +1,6 @@
 /* Section 5: trust and conversion. Loaded with defer, after the main script. */
 (function(){
- var WA="917397193050",IG="https://www.instagram.com/theoneanother.in";
+ var WA="917397193050",IG="https://www.instagram.com/theoneanother.in",FB="https://www.facebook.com/people/Theoneanother/61596827168250/?sk=about";
  var $=function(i){return document.getElementById(i)};
  var E=function(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
  var say=function(m){typeof toast=="function"?toast(m):alert(m)};
@@ -18,7 +18,8 @@
  if(faq)faq.insertAdjacentHTML("beforebegin",
   '<section class="t5s" id="reviews"><div class="hd"><div><span class="eyebrow">Reviews</span><h2>What customers <span class="sf" style="color:var(--o)">say</span></h2></div><div class="t5-avg" id="t5-avg"></div></div><div class="t5-rg" id="t5-rg"></div><p class="t5-empty" id="t5-none" hidden>No reviews yet. Bought something from us? Be the first to share how it went.</p><p style="margin-top:22px"><button type="button" id="t5-wr">Write a review</button></p>'+
   '<form class="t5-form" id="t5-form" hidden><input id="t5-n" placeholder="Your name" maxlength="60" required><div class="t5-pick" id="t5-pick" role="radiogroup" aria-label="Rating"></div><textarea id="t5-b" rows="3" maxlength="600" placeholder="How was your order?" required minlength="5"></textarea><button class="pri" style="font-size:15px">Send review</button><p class="mut">Reviews appear on the site after we approve them.</p></form><p class="t5-ok" id="t5-thx" hidden>Thank you! Your review will show up once we approve it.</p></section>'+
-  '<section class="t5s" id="t5-insta" hidden><div class="hd"><div><span class="eyebrow">Instagram</span><h2>From <span class="sf" style="color:var(--o)">our feed</span></h2></div><a class="btn" href="'+IG+'" target="_blank" rel="noopener">Follow @theoneanother.in</a></div><div class="t5-gal" id="t5-gal"></div></section>');
+  '<section class="t5s t5-social" id="t5-social"><div class="t5-social__instagram" id="t5-insta" hidden><div class="hd"><div><span class="eyebrow">Instagram</span><h2>From <span class="sf" style="color:var(--o)">our feed</span></h2></div><a class="btn" href="'+IG+'" target="_blank" rel="noopener">Follow @theoneanother.in</a></div><div class="t5-carousel" id="t5-ig-carousel" role="region" aria-label="Instagram photo feed" hidden></div></div>'+
+  '<aside class="t5-social__facebook" aria-labelledby="t5-fb-title"><span class="eyebrow">Facebook</span><span class="t5-fb-mark" aria-hidden="true">f</span><h2 id="t5-fb-title">Follow us on <span class="sf" style="color:var(--o)">Facebook</span></h2><p>Get updates, new releases, and a closer look at what we make.</p><div class="t5-carousel" id="t5-fb-carousel" role="region" aria-label="Facebook photo feed" hidden></div><a class="btn pri" href="'+FB+'" target="_blank" rel="noopener noreferrer">Visit our Facebook page</a></aside></section>');
 
  /* 4. Shipping, returns and payment policies, right before the FAQ */
  if(faq)faq.insertAdjacentHTML("beforebegin",'<section class="t5s" id="policies"><div class="hd"><div><span class="eyebrow">Policies</span><h2>Shipping, returns <span class="sf" style="color:var(--o)">and payment</span></h2></div></div><div class="t5-pol"><div><span class="t5-ico">🚚</span><h3>Shipping</h3><p>Delivered across India in 5–7 working days, counted from when we confirm your photos and payment.</p></div><div><span class="t5-ico">↩️</span><h3>Returns</h3><p>Custom products are non-refundable and non-returnable. If something arrives damaged or wrong, message us on WhatsApp straight away.</p></div><div><span class="t5-ico">🔒</span><h3>Payment</h3><p>Pay by UPI directly to us. We verify your payment before anything is printed.</p></div><div><span class="t5-ico">🧾</span><h3>Minimum order</h3><p class="t5-min">The minimum order is ₹249.</p></div></div></section>');
@@ -49,10 +50,15 @@
    $("t5-rg").innerHTML=L.map(function(x){return'<article class="t5-rc"><span class="t5-st" aria-label="'+x.rating+' out of 5">'+stars(x.rating)+'</span><p>'+E(x.body)+'</p><small>— '+E(x.name)+'</small></article>'}).join("")},function(){})}
 
  /* ---- Instagram gallery (rows in the gallery table) ---- */
+ function shuffle(list){var a=list.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a}
+ function galleryTrack(items,url,platform,clone){return items.map(function(x){var alt=E(x.caption||"theoneanother on "+platform);return'<a class="t5-carousel__item" href="'+url+'" target="_blank" rel="noopener noreferrer" aria-label="View '+alt+' on '+platform+'" '+(clone?'tabindex="-1" aria-hidden="true"':"")+'><img src="'+E(x.src)+'" alt="'+(clone?"":alt)+'" loading="lazy"></a>'}).join("")}
+ function renderFeed(id,items,url,platform){var el=$(id);if(!items.length){el.hidden=true;return}var first=galleryTrack(items,url,platform,false),second=galleryTrack(items,url,platform,true);el.innerHTML='<div class="t5-carousel__track"><div class="t5-carousel__group">'+first+'</div><div class="t5-carousel__group" aria-hidden="true">'+second+'</div></div>';el.hidden=false}
  function loadGallery(){var s=db();if(!s)return;
   s.from("gallery").select("image,caption").eq("active",true).order("position").order("id").limit(8).then(function(r){
-   var L=r.error?[]:(r.data||[]);$("t5-insta").hidden=!L.length;if(!L.length)return;
-   $("t5-gal").innerHTML=L.map(function(x){var u=s.storage.from("product-images").getPublicUrl(x.image).data.publicUrl;return'<a href="'+IG+'" target="_blank" rel="noopener"><img src="'+E(u)+'" alt="'+E(x.caption||"theoneanother on Instagram")+'" loading="lazy"></a>'}).join("")},function(){})}
+   var L=r.error?[]:(r.data||[]).map(function(x){return{caption:x.caption,src:s.storage.from("product-images").getPublicUrl(x.image).data.publicUrl}});
+   renderFeed("t5-ig-carousel",shuffle(L),IG,"Instagram");
+   renderFeed("t5-fb-carousel",shuffle(L),FB,"Facebook");
+   $("t5-insta").hidden=!L.length},function(){})}
 
  /* ---- Order tracking ---- */
  function openTrack(e){if(e)e.preventDefault();var d=$("dg");if(!d)return;d.className="";

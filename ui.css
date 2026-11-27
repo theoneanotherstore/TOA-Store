@@ -296,6 +296,39 @@ h2 {
   margin-bottom: 6px;
 }
 
+.shop-custom .hd {
+  margin-bottom: 20px;
+}
+
+.shop-custom .hd h2 {
+  color: #fff;
+}
+
+.shop-custom .steps {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.shop-custom .steps > div {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, .9);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.shop-custom .steps b {
+  margin-bottom: 10px;
+  color: var(--o2);
+  font-size: clamp(30px, 3vw, 38px);
+}
+
+.shop-custom .steps p {
+  color: var(--mut);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
 .cc,
 .ct,
 .pc {
@@ -654,6 +687,10 @@ dialog h2 {
     border-radius: 22px;
   }
 
+  .shop-custom .hd {
+    margin-bottom: 16px;
+  }
+
   .shop-custom__head {
     display: block;
     margin-bottom: 12px;
@@ -670,6 +707,15 @@ dialog h2 {
 
   .shop-custom .cb h3 {
     font-size: 16px;
+  }
+
+  .shop-custom .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .shop-custom .steps > div {
+    padding: 16px;
   }
 
   .k9-act,
@@ -787,6 +833,6 @@ header nav{margin-left:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .backlink{display:inline-block;font-weight:500;font-size:15px;color:var(--mut);margin-bottom:6px}
 .backlink:hover{color:var(--o2)}
-.catpage .hmhero,.catpage #custom,.catpage .intro,.catpage .brand,.catpage #how,.catpage #faq,.catpage #shopgrid>.hd{display:none!important}
+.catpage .hmhero,.catpage #custom,.catpage #how,.catpage .intro,.catpage .brand,.catpage #faq,.catpage #shopgrid>.hd{display:none!important}
 .catpage #shopgrid{padding-top:36px}
 .catpage .catsec:first-of-type{margin-top:14px}

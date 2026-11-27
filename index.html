@@ -268,7 +268,7 @@ dialog{width:calc(100vw - 20px);padding:16px;border-radius:20px}
 .fg{grid-template-columns:1fr}
 footer{padding:44px 5vw 28px}}
 /* Section 7: skip rendering work for below-the-fold sections */
-#how,#faq,#policies,#reviews,footer{content-visibility:auto;contain-intrinsic-size:auto 560px}
+#custom,#how,#faq,#policies,#reviews,footer{content-visibility:auto;contain-intrinsic-size:auto 560px}
 /* Section 6: mobile responsiveness */
 html{-webkit-text-size-adjust:100%;overflow-x:clip}
 html.lock,html:has(dialog[open]){overflow:hidden}
@@ -363,7 +363,7 @@ footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
 <div class="sortbar"><span class="mut" id="cnt"></span><div><label class="mut" for="sort">Sort by</label><select id="sort"><option value="new">New arrivals</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name: A to Z</option></select></div></div>
 <div id="grid"></div></section>
 <section class="shop-custom" id="custom" hidden aria-labelledby="custom-title"><div class="shop-custom__head"><div><span class="eyebrow">Customization</span><h3 id="custom-title">Your photos, <span class="sf">printed.</span></h3></div><p>Choose a product to create something from your own photos.</p></div><div class="cgrid" id="hubgrid"></div></section>
-<section id="how"><div class="hd"><div><span class="eyebrow">How it works</span><h2>Simple, from photo to doorstep</h2></div></div><div class="steps"><div><b>01</b><h3>Pick</h3><p class="mut">Choose a product and a size.</p></div><div><b>02</b><h3>Upload</h3><p class="mut">On Customization products, add up to 10 photos and a note.</p></div><div><b>03</b><h3>Pay securely</h3><p class="mut">UPI, cards or net banking through Razorpay.</p></div><div><b>04</b><h3>We confirm</h3><p class="mut">We check your photos on WhatsApp, then print in 5–7 working days.</p></div></div></section>
+<section class="shop-custom" id="how" aria-labelledby="how-title"><div class="hd"><div><span class="eyebrow">How it works</span><h2 id="how-title">Simple, from photo to doorstep</h2></div></div><div class="steps"><div><b>01</b><h3>Pick</h3><p class="mut">Choose a product and a size.</p></div><div><b>02</b><h3>Upload</h3><p class="mut">On Customization products, add up to 10 photos and a note.</p></div><div><b>03</b><h3>Pay securely</h3><p class="mut">UPI, cards or net banking through Razorpay.</p></div><div><b>04</b><h3>We confirm</h3><p class="mut">We check your photos on WhatsApp, then print in 5–7 working days.</p></div></div></section>
 <section id="faq"><div class="hd"><div><span class="eyebrow">Good to know</span><h2>Questions</h2></div></div>
 <details><summary>How does ordering work?</summary><p>Pick a product and size, upload your photos if it is a Customization product, add a short note if you like, and pay securely with Razorpay (UPI, cards, net banking). We check your photos with you on WhatsApp before printing.</p></details>
 <details><summary>Which photos can I upload?</summary><p>JPG, JPEG, PNG, WebP or PDF files, up to 10 per product and 50 MB each. Customised polaroids need at least 5 designs and customised stickers at least 10. Customised UNO cards need two PDFs: one with all card designs (front and back) and one for the packaging. We will message you if a photo needs changing.</p></details>
@@ -418,7 +418,7 @@ const LS=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?
 let V={cat:"all",n:12,wl:LS("toa-wl",[])};
 /* ?cat=<id> opens a category page that lists every product of that category */
 const CQ=new URLSearchParams(location.search).get("cat"),PQ=new URLSearchParams(location.search).get("product");if(CQ!=null)document.body.classList.add("catpage");if(PQ!=null){document.body.classList.add("productpage");document.querySelectorAll("#contact a[href^='#']").forEach(a=>a.href="index.html"+a.getAttribute("href"))}
-const goTo=id=>{const el=$(id);if(CQ!=null&&(!el||el.offsetParent===null)){location.href="index.html#"+id;return}if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
+const goTo=id=>{const el=$(id);if((CQ!=null||PQ!=null)&&(!el||el.offsetParent===null)){location.href="index.html#"+id;return}if(el&&!el.hidden)el.scrollIntoView({behavior:"smooth"})};
 $("waF").innerHTML=ic("chat")+" WhatsApp";$("waF").href=`https://wa.me/${WA}`;$("igF").innerHTML=ic("ig")+" Instagram";$("igF").href=IG;
 function band(){const n=new Date().toISOString().slice(0,10),on=S.set.band&&(!S.set.bf||n>=S.set.bf)&&(!S.set.bt||n<=S.set.bt),t=on?S.set.band.split("|").map(x=>`<span>${esc(x)}</span>`).join(""):"";$("band").parentElement.hidden=!on;$("band").innerHTML=t+t}
 function cartBtn(){$("cartBtn").innerHTML=ic("bag")+" "+C.reduce((a,i)=>a+i.q,0)}
@@ -439,8 +439,8 @@ function hero(){const box=$("hmbg");if(CQ!=null||PQ!=null||!box||box.dataset.rea
    else if(sl.length>1&&!calm)tm=setTimeout(()=>show(cur+1),6000)};
   dots.onclick=e=>{const d=e.target.closest(".hm-d");if(d)show([...dots.children].indexOf(d))};
   show(0)},()=>{})}
-function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
 const saved=p=>V.wl.includes(p.id);
+function hub(){const L=S.P.filter(p=>p.cu),el=$("custom");el.hidden=!L.length;$("hubgrid").innerHTML=L.map(p=>`<article class="cc" data-b="${p.id}" tabindex="0" role="button" aria-label="Customise ${esc(p.name)}">${art(p)}<div class="cb"><h3>${esc(p.name)}</h3><p>From <b>${from(p)}</b></p><span class="go">${out(p)?"Sold out":"Customise "+ic("arr")}</span></div></article>`).join("")}
 const card=p=>`<article class="pc"><div class="pw"><a class="pc-link" href="index.html?product=${encodeURIComponent(p.id)}" aria-label="View ${esc(p.name)}">${art(p)}</a><button type="button" class="wl ${saved(p)?"on":""}" data-w="${p.id}" aria-pressed="${saved(p)}" aria-label="${saved(p)?"Remove from":"Save to"} wishlist: ${esc(p.name)}">${saved(p)?"✦":"✧"}</button></div><a class="pc-name" href="index.html?product=${encodeURIComponent(p.id)}"><h3>${esc(p.name)}</h3></a><div class="row"><span>From <b>${from(p)}</b></span>${out(p)?'<span class="tag out">Out of stock</span>':'<span class="tag">In stock</span>'}</div><button class="${out(p)?"":"blk"}" data-o="${p.id}" ${out(p)?"disabled":""}>${out(p)?"Out of stock":"View product"}</button></article>`;
 /* Fade cards in as they scroll into view */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});

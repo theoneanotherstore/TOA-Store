@@ -750,3 +750,13 @@ header nav{margin-left:0}
 .catsec-hd h3{font-weight:900;font-size:clamp(24px,3.4vw,40px);line-height:1.05;letter-spacing:-.02em;text-transform:uppercase}
 .catsec-hd .mut{font-size:14px;white-space:nowrap}
 @media(max-width:700px){.catsec{margin-top:38px;scroll-margin-top:70px}.catsec-hd{margin-bottom:14px}}
+
+/* "View more" under each category, and the category page */
+.vm{text-align:center;margin:26px 0 0}
+.vm .btn{min-height:48px;padding:0 30px;display:inline-flex;align-items:center;gap:8px;font-size:15px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.backlink{display:inline-block;font-weight:500;font-size:15px;color:var(--mut);margin-bottom:6px}
+.backlink:hover{color:var(--o2)}
+.catpage .hmhero,.catpage #custom,.catpage .intro,.catpage .brand,.catpage #how,.catpage #faq,.catpage #shopgrid>.hd{display:none!important}
+.catpage #shopgrid{padding-top:36px}
+.catpage .catsec:first-of-type{margin-top:14px}

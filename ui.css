@@ -730,14 +730,15 @@ header nav{margin-left:0}
 .hacts #cartBtn:hover{color:var(--o)}
 @media(max-width:700px){.hacts #cartBtn{padding:0 6px;margin-left:0}}
 
-/* ===== Home: banner, then the two buttons on the next line, then the products ===== */
-.hmhero{height:clamp(300px,calc(100vh - 108px - 104px),760px);height:clamp(300px,calc(100svh - 108px - 104px),760px);padding:0}
-.hm-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:26px 5vw 8px}
-.hm-actions .btn{min-height:54px;padding:0 36px;font-size:17px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center}
+/* ===== Home: full banner with the two buttons at the bottom of the image ===== */
+.hmhero{height:clamp(420px,calc(100vh - 108px),980px);height:clamp(420px,calc(100svh - 108px),980px);padding:0}
+.hm-actions{position:absolute;z-index:2;left:0;right:0;bottom:56px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:0 5vw}
+.hm-actions .btn,.hm-actions .btn.pri{min-height:52px;padding:0 34px;font-size:16px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:#ffffff1f;color:#fff;border:1.5px solid #ffffffb3;box-shadow:none;font-weight:500;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hm-actions .btn:hover{background:#ffffff38}
 @media(max-width:700px){
- .hmhero{height:clamp(260px,calc(100vh - 94px - 96px),620px);height:clamp(260px,calc(100svh - 94px - 96px),620px);padding:0}
- .hm-actions{gap:10px;padding:20px 5vw 4px}
- .hm-actions .btn{flex:1 1 40%;padding:0 16px;min-height:50px;font-size:16px}
+ .hmhero{height:clamp(420px,calc(100vh - 94px),900px);height:clamp(420px,calc(100svh - 94px),900px);padding:0}
+ .hm-actions{bottom:48px;gap:10px}
+ .hm-actions .btn{flex:1 1 40%;padding:0 16px;min-height:48px;font-size:15px}
 }
 
 /* Shop: each category is its own block, one after another */

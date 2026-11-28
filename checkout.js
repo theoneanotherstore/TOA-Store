@@ -29,7 +29,7 @@
    ============================================================================= */
 (function(){
  "use strict";
- const RZP={enabled:true,keyId:"rzp_test_REPLACE_ME",createFn:"create-razorpay-order",verifyFn:"verify-razorpay-payment"};
+ const RZP={enabled:true,keyId:"rzp_test_U5XHCL4w79lKmG",createFn:"create-razorpay-order",verifyFn:"verify-razorpay-payment"};
 
  const $=i=>document.getElementById(i),E=s=>esc(s==null?"":s),money=n=>inr(n),say=m=>toast(m);
  const dg=$("dg");

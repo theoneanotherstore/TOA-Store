@@ -1,14 +1,19 @@
-// Razorpay calls this directly (no Supabase login), so deploy with --no-verify-jwt.
-import { finalize, hmac, json, safeEq, WEBHOOK_SECRET } from "../_shared/rzp.ts";
+// Razorpay -> payment.captured / order.paid. Creates the order even if the customer closed the tab after paying.
+import { env, hmacHex, safeEq } from "../_shared/common.ts";
+import { finalizeOrder } from "../_shared/finalize.ts";
 
 Deno.serve(async (req) => {
-  const body = await req.text();
-  const sig = req.headers.get("x-razorpay-signature") || "";
-  if (!safeEq(await hmac(WEBHOOK_SECRET, body), sig)) return json({ error: "Invalid signature" }, 400);
-  const ev = JSON.parse(body);
-  if (ev.event === "payment.captured") {
-    const p = ev.payload.payment.entity;
-    try { await finalize(p.order_id, p.id); } catch (e) { return json({ error: String(e) }, 500); } // 500 makes Razorpay retry
-  }
-  return json({ ok: true });
+  const raw = await req.text();
+  const sig = req.headers.get("x-razorpay-signature") ?? "";
+  const expected = await hmacHex(env("RAZORPAY_WEBHOOK_SECRET"), raw);
+  if (!env("RAZORPAY_WEBHOOK_SECRET") || !safeEq(expected, sig)) return new Response("bad signature", { status: 401 });
+  try {
+    const ev = JSON.parse(raw);
+    const pay = ev?.payload?.payment?.entity;
+    if ((ev.event === "payment.captured" || ev.event === "order.paid") && pay?.order_id && pay?.id) {
+      const r = await finalizeOrder(String(pay.order_id), String(pay.id), Number(pay.amount));
+      if (r.error) console.error("webhook finalize:", pay.order_id, r.error);
+    }
+    return new Response("ok");                 // 200 stops Razorpay retrying
+  } catch (e) { console.error(e); return new Response("error", { status: 500 }); }   // 500 makes Razorpay retry
 });

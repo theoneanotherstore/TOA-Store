@@ -3,7 +3,7 @@
 // A failed message NEVER fails the order.
 
 const WA_TOKEN = Deno.env.get("WHATSAPP_TOKEN");              // PLACEHOLDER: Meta permanent access token
-const WA_PHONE_ID = Deno.env.get("WHATSAPP_PHONE_NUMBER_ID"); // PLACEHOLDER: Meta phone number ID
+const WA_PHONE_ID = Deno.env.get("WHATSAPP_PHONE_NUMBER_ID") || Deno.env.get("WHATSAPP_PHONE_ID"); // PLACEHOLDER: Meta phone number ID
 const WA_TEMPLATE = Deno.env.get("WHATSAPP_TEMPLATE_NAME") || "order_confirmation";
 const WA_LANG = Deno.env.get("WHATSAPP_TEMPLATE_LANG") || "en";
 const MAIL_KEY = Deno.env.get("RESEND_API_KEY");               // PLACEHOLDER: Resend API key

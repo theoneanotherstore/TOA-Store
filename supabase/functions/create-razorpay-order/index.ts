@@ -1,34 +1,47 @@
-import { admin, cors, json, KEY_ID, KEY_SECRET } from "../_shared/rzp.ts";
+// Browser -> { customer:{name,email,phone,address}, items:[{variant_id,qty,note,photos}] }  ->  { order_id, amount }
+// The price is always worked out HERE from the variants table. Nothing the browser says about money is trusted.
+import { db, env, preflight, reply, validEmail, validPhone } from "../_shared/common.ts";
 
 Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
+  const pf = preflight(req); if (pf) return pf;
   try {
-    const { customer, items } = await req.json();
-    if (!customer?.name || !customer?.phone || !Array.isArray(items) || !items.length) return json({ error: "Bad request" }, 400);
+    const body = await req.json().catch(() => ({}));
+    const c = body?.customer ?? {};
+    const customer = { name: String(c.name ?? "").trim().slice(0, 100), email: String(c.email ?? "").trim().slice(0, 200), phone: String(c.phone ?? "").trim().slice(0, 30), address: String(c.address ?? "").slice(0, 600) };
+    if (customer.name.length < 2 || !validPhone(customer.phone) || (customer.email && !validEmail(customer.email))) return reply(req, { error: "Please check your name, phone and email." }, 400);
 
-    // Price comes from the database, never from the browser.
-    const db = admin();
-    const ids = items.map((i: any) => i.variant_id);
-    const { data: vs, error } = await db.from("variants").select("id,price,stock").in("id", ids);
-    if (error || !vs) return json({ error: "Could not read prices" }, 500);
+    const raw = Array.isArray(body?.items) ? body.items : [];
+    if (!raw.length || raw.length > 50) return reply(req, { error: "Your cart is empty." }, 400);
+    const items = raw.map((i: any) => ({
+      variant_id: Number(i?.variant_id), qty: Math.floor(Number(i?.qty)),
+      note: i?.note ? String(i.note).slice(0, 500) : null,
+      photos: Array.isArray(i?.photos) ? i.photos.slice(0, 60).map((p: unknown) => String(p).slice(0, 300)) : [],
+    }));
+    if (items.some((i: any) => !Number.isInteger(i.variant_id) || !(i.qty >= 1 && i.qty <= 100))) return reply(req, { error: "Invalid cart." }, 400);
+
+    const d = db();
+    const ids = [...new Set(items.map((i: any) => i.variant_id))];
+    const { data: vs, error } = await d.from("variants").select("id,price,stock").in("id", ids);
+    if (error || !vs || vs.length !== ids.length) return reply(req, { error: "Some items are no longer available." }, 409);
     let total = 0;
     for (const i of items) {
-      const v = vs.find((x: any) => x.id === i.variant_id);
-      const q = Math.floor(Number(i.qty));
-      if (!v || q < 1 || q > v.stock) return json({ error: "Stock changed, please review your cart" }, 409);
-      total += Number(v.price) * q;
+      const v: any = vs.find((x: any) => x.id === i.variant_id);
+      if (v.stock != null && i.qty > Number(v.stock)) return reply(req, { error: "Stock changed, please review your cart." }, 409);
+      total += Number(v.price) * i.qty;
     }
-    const amount = Math.round(total * 100); // paise
+    const { data: m } = await d.from("settings").select("value").eq("key", "min_order").maybeSingle();
+    const min = Number(m?.value) || 249;
+    if (total < min) return reply(req, { error: `Minimum order is ₹${min}` }, 400);
 
-    const r = await fetch("https://api.razorpay.com/v1/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: "Basic " + btoa(`${KEY_ID}:${KEY_SECRET}`) },
-      body: JSON.stringify({ amount, currency: "INR", receipt: "toa_" + Date.now() }),
-    });
-    const o = await r.json();
-    if (!r.ok) return json({ error: o?.error?.description || "Razorpay error" }, 502);
+    const amount = Math.round(total * 100);   // paise
+    const auth = "Basic " + btoa(`${env("RAZORPAY_KEY_ID")}:${env("RAZORPAY_KEY_SECRET")}`);
+    const r = await fetch("https://api.razorpay.com/v1/orders", { method: "POST", headers: { Authorization: auth, "Content-Type": "application/json" },
+      body: JSON.stringify({ amount, currency: "INR", receipt: "toa_" + Date.now().toString(36), notes: { customer: customer.name, phone: customer.phone } }) });
+    const o = await r.json().catch(() => ({}));
+    if (!r.ok || !o?.id) { console.error("razorpay order failed", JSON.stringify(o)); return reply(req, { error: "Could not start the payment. Please try again." }, 502); }
 
-    await db.from("razorpay_pending").insert({ rzp_order_id: o.id, amount, customer, items });
-    return json({ order_id: o.id, amount });
-  } catch (e) { return json({ error: String(e) }, 500); }
+    const ins = await d.from("razorpay_pending").insert({ rzp_order_id: o.id, status: "created", amount, customer, items });
+    if (ins.error) { console.error("pending insert failed", ins.error.message); return reply(req, { error: "Could not start the payment. Please try again." }, 500); }
+    return reply(req, { order_id: o.id, amount });
+  } catch (e) { console.error(e); return reply(req, { error: "Something went wrong." }, 500); }
 });
